@@ -84,8 +84,33 @@ export default function ProductFAQ({ product = {}, phone = "916383070725", whats
     // Cake customizations
     items.push({
       question: 'Can I customize the cake (message, photo, flavour)?',
-      answer: 'Yes — most cakes can be customized with a message, photo print, flavour choice, and simple design changes. For complex custom designs, please contact us with the details and we will confirm feasibility and pricing.'
+      answer: 'Share your cake message and design reference before ordering. We check which changes are feasible for the specific cake and confirm any additional charge. A photo print, flavour change or pictured decoration is not automatically included in every listing.'
     });
+
+    items.push({
+      question: 'How far ahead should I order this cake?',
+      answer: 'Send your event date and cake-cutting time when you enquire. We check availability for the chosen cake, weight and design before confirming. The website does not reserve a preparation slot or guarantee same-day delivery.'
+    });
+    items.push({
+      question: 'How many portions will this weight provide?',
+      answer: 'Tell us the guest count and whether the cake is for a small cake-cutting portion or the main dessert. We can discuss a suitable weight; tier count or weight alone does not guarantee a fixed number of servings.'
+    });
+    items.push({
+      question: 'What should I check about storage and transport?',
+      answer: 'Tell us when the cake will be served, how long it will travel and where it will be kept. Ask for handling and storage instructions for the cake you choose. Do not assume a brownie or ganache cake can stay unrefrigerated for an unlimited time.'
+    });
+    if (product.slug === 'photo-cake') {
+      items.push({
+        question: 'How do I send the photo for a Photo Cake?',
+        answer: 'Have a clear original image ready. Attach it in WhatsApp after we check the design; the website enquiry does not upload an image. Confirm the crop, layout and cake message before the order is finalized.'
+      });
+    }
+    if (product.category?.slug === 'tier-cake') {
+      items.push({
+        question: 'What venue details do you need for a tiered cake?',
+        answer: 'Share the venue address, guest count, cutting time and design reference. Discuss access, the person receiving the cake and any setup or storage arrangements before confirming the order.'
+      });
+    }
 
     return items;
   }, [product, phone, whatsappNumber]);
@@ -176,14 +201,18 @@ export default function ProductFAQ({ product = {}, phone = "916383070725", whats
       {faqs.map((f, idx) => (
         <div key={idx} className={`accordion-item`} style={{ marginBottom: 12 }}>
           <button
+            type="button"
+            id={`product-faq-question-${idx}`}
+            aria-expanded={openIndex === idx}
+            aria-controls={`product-faq-answer-${idx}`}
             className={`accordion-header ${openIndex === idx ? 'active' : ''}`}
             onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
             style={{ width: '100%', textAlign: 'left' }}
           >
             <span>{f.question}</span>
-            <i className={`fa fa-chevron-down accordion-icon ${openIndex === idx ? 'active' : ''}`} />
+            <i aria-hidden="true" className={`fa fa-chevron-down accordion-icon ${openIndex === idx ? 'active' : ''}`} />
           </button>
-          <div className={`accordion-content ${openIndex === idx ? 'active' : ''}`}>
+          <div id={`product-faq-answer-${idx}`} aria-labelledby={`product-faq-question-${idx}`} hidden={openIndex !== idx} className={`accordion-content ${openIndex === idx ? 'active' : ''}`}>
             <div className="accordion-body">
               {f.type === 'whatsapp' ? (
                 <>

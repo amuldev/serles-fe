@@ -1,26 +1,26 @@
-import { FaFlask, FaStar, FaCheckSquare, FaSmile } from "react-icons/fa";
+import { FaMapMarkerAlt, FaTruck, FaComments, FaWallet } from "react-icons/fa";
 
 // Static JSON data for milestones
 const milestonesData = [
   {
-    icon: <FaFlask size={32} color="#fff" />,
-    label: "QUALITY INGREDIENTS",
-    value: "100%",
+    icon: <FaMapMarkerAlt size={32} color="#fff" />,
+    label: "OUR BAKERY",
+    value: "Ilanji",
   },
   {
-    icon: <FaStar size={32} color="#fff" />,
-    label: "YEARS OF EXPERIENCE",
-    value: "5+",
+    icon: <FaTruck size={32} color="#fff" />,
+    label: "DELIVERY: BY ROAD, ADDRESS CHECK REQUIRED",
+    value: "Up to 20 km",
   },
   {
-    icon: <FaCheckSquare size={32} color="#fff" />,
-    label: "CAKES DELIVERED",
-    value: "500+",
+    icon: <FaComments size={32} color="#fff" />,
+    label: "CONFIRM YOUR ORDER",
+    value: "WhatsApp",
   },
   {
-    icon: <FaSmile size={32} color="#fff" />,
-    label: "HAPPY CLIENTS",
-    value: "400+",
+    icon: <FaWallet size={32} color="#fff" />,
+    label: "GOOGLE PAY & ONLINE PAYMENTS",
+    value: "Pay online",
   },
 ];
 

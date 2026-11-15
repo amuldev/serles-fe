@@ -4,9 +4,9 @@ import Team from "../components/home/Team";
 import Breadcrumb from "../components/Breadcrumb";
 import Link from 'next/link';
 
-const TITLE = "About Us - Serle's Bake | Homemade Cakes in Tenkasi";
+const TITLE = "About Our Ilanji Bakery, Tenkasi | Serle's Bake";
 const DESCRIPTION =
-  "Learn about Serle's Bake, your trusted homemade cake shop in Tenkasi. Our passion for baking and commitment to quality makes every celebration special.";
+  "Find Serle's Bake in Ilanji, Tenkasi. Browse cakes and brownies, plan your design on WhatsApp and check delivery within 20 km by road.";
 
 export const metadata = {
   title: TITLE,

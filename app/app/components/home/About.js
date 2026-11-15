@@ -46,9 +46,9 @@ export default function About() {
                                             <FaHeart size={34} color="#fff"/>
                                         </div>
                                         <div>
-                                            <div style={{ fontWeight: 700, fontSize: "1.1rem" }}>100% HOMEMADE</div>
+                                            <div style={{ fontWeight: 700, fontSize: "1.1rem" }}>HOMEMADE CAKES</div>
                                             <div style={{ fontSize: ".97rem", color: "#555" }}>
-                                                Every cake is lovingly prepared in small batches, ensuring quality and freshness.
+                                                Browse the current cakes and brownies, then confirm your preferred weight, date and design with us.
                                             </div>
                                         </div>
                                     </div>
@@ -65,9 +65,9 @@ export default function About() {
                                            <FaAward size={34}  color="#fff"/>
                                         </div>
                                         <div>
-                                            <div style={{ fontWeight: 700, fontSize: "1.1rem" }}>BAKING LEGACY</div>
+                                            <div style={{ fontWeight: 700, fontSize: "1.1rem" }}>PLAN YOUR DESIGN</div>
                                             <div style={{ fontSize: ".97rem", color: "#555" }}>
-                                                Tried-and-tested family recipes that keep our customers coming back for more.
+                                                Share a cake message or design reference so we can check the details and final price before confirming.
                                             </div>
                                         </div>
                                     </div>

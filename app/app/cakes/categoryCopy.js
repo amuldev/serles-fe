@@ -3,7 +3,7 @@ export const CATEGORY_COPY = {
   "flavoured-cakes": {
     "heading": "Birthday cake flavours from Ilanji, Tenkasi",
     "paragraphs": [
-      "Compare the current butterscotch, blackcurrant, chocolate and choco truffle options in this collection. Each product page shows its own available weights and prices; a design or price from another cake does not automatically apply to the one you choose.",
+      "Compare butterscotch, blackcurrant, chocolate and choco truffle alongside the Blueberry and Gulab Jamun cakes now in this collection. Blueberry and Gulab Jamun each have 500 g, 1 kg and 2 kg options. Each product page shows its own current prices; a design or price from another cake does not automatically apply to the one you choose.",
       "For a birthday, tell us your preferred flavour, guest count, cake message and cake-cutting time. If you need an ingredient change or an eggless option, ask us to check the specific cake before ordering. An eggless request does not establish that a cake is safe for an allergy.",
       "Send your address or map pin so we can check delivery within 20 km by road from Ilanji. We confirm availability, final price and payment instructions on WhatsApp. Same-day requests are subject to confirmation, rather than guaranteed by choosing a standard flavour."
     ]
@@ -33,9 +33,9 @@ export const CATEGORY_COPY = {
     ]
   },
   "premium-cake": {
-    "heading": "Black Forest, White Forest and Red Velvet cakes",
+    "heading": "Black Forest, White Forest, Red Velvet and Kitkat cakes",
     "paragraphs": [
-      "Browse the current premium collection and compare the actual cake photos, available weights and prices. Choose the flavour you prefer, then discuss your event date, cake message and any design change with us.",
+      "Browse Black Forest, White Forest, Red Velvet and the 1 kg Kitkat Cake. Compare the available weights and current prices on each product page. The Kitkat image is an AI-generated illustration; confirm its final decoration with us. Choose your cake, then discuss the event date, message and any design change.",
       "For cream cakes, plan where the cake will be kept before serving. Tell us the cake-cutting time and ask for handling advice for the cake you choose. Confirm any ingredient or dietary request before ordering.",
       "The bakery is in Ilanji, Tenkasi. Share your destination so we can check the road route, the 20 km coverage limit and availability. The order conversation confirms the final amount and arrangements."
     ]
