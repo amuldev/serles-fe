@@ -1,5 +1,30 @@
 # Serle's Bake — Frontend (Next.js)
 
+## Current SEO maintenance - 15 November 2026
+
+Frontend code release `d20d70f` is deployed and its production checks pass:
+four product types at 320/390/768/1366 px, homepage/About at those widths,
+two categories and four refreshed articles. The final bounded crawl checked
+98 URLs with no HTTP errors, missing canonicals or metadata outside the head.
+FAQ questions now cover preparation, portions and handling, with photo/tier
+details where relevant. Their answers and JSON-LD share one data source;
+accordion buttons have explicit state/control attributes and decorative icons
+are hidden from assistive technology. Collapsed answers are hidden.
+
+About/homepage now use confirmed Ilanji location, 20 km road eligibility,
+WhatsApp ordering and Google Pay/online payment facts in place of unsupported
+experience, delivery-count and customer-count statistics. Category guidance
+includes the current Blueberry, Gulab Jamun and Kitkat listings.
+
+CMS content is separate from the frontend repo: birthday, budget, chocolate,
+Christmas/New Year and Diwali guides were revised with scoped backups. Four
+representative product descriptions and two category metadata sets were also
+updated. Prices were not changed; the 10 November owner list remains current.
+Blog pages/API responses use separate caches, so verify rendered article body
+as well as metadata after an edit. Current evidence and remaining account/
+measurement dependencies: `../serlesbake.in-audit/NOVEMBER-15-SEO-UPDATE.md`.
+Older deployment-pending notes below are historical.
+
 Storefront for a homemade cake shop in **Tenkasi, Tamil Nadu**.
 Live at `https://www.serlesbake.in`. The Django API is a separate repo
 (`../serlesbackend`) served from `https://shop.serlesbake.in`.
