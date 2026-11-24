@@ -164,6 +164,10 @@ export default function RootLayout({ children }) {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
+            // autoConfig off: Meta's automatic page scanning misread the ₹
+            // price text and logged "Invalid parameter format for currency"
+            // on /menu and /blog. Our own events (analytics.js) still send.
+            fbq('set', 'autoConfig', false, '1270870504177513');
             fbq('init', '1270870504177513');
             fbq('track', 'PageView');
           `}

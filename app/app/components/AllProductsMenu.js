@@ -140,15 +140,12 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
     grouped[item.name].push(item);
   });
 
-  // Handle category change
+  // Category tabs only filter the products already loaded (the server sends the
+  // whole catalog with weights and prices). They used to clear the list and
+  // re-download every product plus 17 detail requests, so each tap showed
+  // "0 products / No products available" for several seconds.
   const handleCategoryChange = (categoryKey) => {
     setActiveCategory(categoryKey);
-    setCurrentPage(1);
-    setProducts([]); // Clear current products
-    setHasMorePages(false);
-    
-    // Fetch products for the new category
-    fetchProducts(1, false);
   };
 
   // Handle load more
@@ -314,6 +311,11 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
               <h4 style={{ color: "#e4718a" }}>No products available</h4>
               <p className="text-muted">Check back later for our delicious cakes!</p>
             </div>
+          </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="text-center py-5">
+            <h4 style={{ color: "#e4718a" }}>No cakes in this category yet</h4>
+            <p className="text-muted">Try another category, or ask us on WhatsApp.</p>
           </div>
         ) : (
           <>

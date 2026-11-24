@@ -11,9 +11,13 @@ const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8');
 
 test('inline scripts in the root layout parse', () => {
   const layout = read('../app/layout.js');
-  const scripts = [...layout.matchAll(/__html:\s*`([\s\S]*?)`/g)].map((m) => m[1]);
+  const scripts = [
+    ...[...layout.matchAll(/__html:\s*`([\s\S]*?)`/g)].map((m) => m[1]),
+    ...[...layout.matchAll(/<Script[^>]*>\s*\{`([\s\S]*?)`\}/g)].map((m) => m[1]), // GA, Meta Pixel
+  ];
   assert.ok(scripts.length > 0, 'expected at least one inline script');
-  for (const source of scripts) {
+  // ${...} placeholders are filled in at build time; any value parses.
+  for (const source of scripts.map((s) => s.replace(/\$\{[^}]*\}/g, 'false'))) {
     assert.doesNotThrow(() => new vm.Script(source), `inline script failed to parse:\n${source.slice(0, 200)}`);
   }
 });
