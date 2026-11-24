@@ -33,7 +33,7 @@ $line: rgba(255, 182, 193, .18);
 .links {
   margin: 0; padding: 0; list-style: none;
   a {
-    display: inline-flex; align-items: center; min-height: 36px; color: $text; font-size: 15px; text-decoration: none;
+    display: inline-flex; align-items: center; min-height: 44px; color: $text; font-size: 15px; text-decoration: none;
     &:hover { color: $pink; text-decoration: underline; text-underline-offset: 4px; }
   }
 }

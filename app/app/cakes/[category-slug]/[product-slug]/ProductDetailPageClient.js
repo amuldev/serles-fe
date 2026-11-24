@@ -11,6 +11,9 @@ import ProductFAQ from "../../../components/ProductFAQ";
 import ProductOrderingDetails from '../../../components/ProductOrderingDetails';
 import { DELIVERY_CHARGES, FRESH_BAKE_SHORT } from '../../../utils/deliveryPolicy';
 import apiCache from "../../../utils/cache";
+import { FaWhatsapp, FaMinus, FaPlus, FaClock } from 'react-icons/fa';
+import { formatRupees, weightLabel } from '../../../components/MenuProductCard';
+import panel from './ProductPurchasePanel.module.scss';
 import { getAnalyticsReference, trackStoreEvent } from "../../../utils/analytics";
 
 /** "black-forest" -> "Black Forest", for headings shown before the fetch resolves. */
@@ -51,7 +54,7 @@ export default function ProductDetailPageClient({
     availableProduct?.weight_options?.[0] ?? null
   );
   const [activeAccordion, setActiveAccordion] = useState('description');
-  const [customMessage, setCustomMessage] = useState("Happy Birthday ❤️");
+  const [customMessage, setCustomMessage] = useState("");
   const [photoFile, setPhotoFile] = useState(null);
   const isPhotoCake = /photo.?cake/i.test(initialProduct?.name || product?.name || productSlug);
   const viewItemSentFor = useRef(null);
@@ -181,7 +184,8 @@ Product Details:
 - Quantity: ${quantity}
 - Total: ${getTotalPrice()}
 
-Custom Message: ${customMessage}
+${customMessage.trim() ? `Message on the cake: ${customMessage.trim()}
+` : ''}Product page: ${typeof window !== 'undefined' ? window.location.href.split('?')[0] : ''}
 
 ${isPhotoCake ? `I will send the photo in this WhatsApp chat. Photo: ${photoFile?.name || 'to follow'}` : ''}
 
@@ -287,138 +291,12 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
     <>
 
       <style jsx>{`
-        @keyframes glitter {
-          0%, 100% {
-            background-position: 0% 50%;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
-          }
-          25% {
-            background-position: 100% 50%;
-            box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
-          }
-          50% {
-            background-position: 50% 100%;
-            box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
-          }
-          75% {
-            background-position: 50% 0%;
-            box-shadow: 0 0 35px rgba(37, 211, 102, 0.6);
-          }
-        }
-
-        .whatsapp-btn {
-          background: linear-gradient(45deg, #25D366, #128C7E, #25D366);
-          background-size: 200% 200%;
-          animation: glitter 3s ease-in-out infinite;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .whatsapp-btn::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-          transform: rotate(45deg);
-          animation: glitter 2s linear infinite;
-        }
-
-        .quantity-controls {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin: 15px 0;
-        }
-
-        .quantity-btn {
-          width: 40px;
-          height: 40px;
-          border: 2px solid #ff91a4;
-          background: #ff91a4;
-          color: white;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 18px;
-          font-weight: bold;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .quantity-btn:hover {
-          background: #8f0e1c;
-          border-color: #8f0e1c;
-          transform: scale(1.1);
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .quantity-btn:active {
-          transform: scale(0.95);
-        }
-
-        .quantity-input {
-          width: 60px;
-          height: 40px;
-          text-align: center;
-          border: 2px solid #ddd;
-          border-radius: 8px;
-          font-size: 16px;
-          font-weight: bold;
-          color: #333;
-          background: white;
-          transition: all 0.3s ease;
-        }
-
-        .quantity-input:focus {
-          outline: none;
-          border-color: #ff91a4;
-          box-shadow: 0 0 0 3px rgba(182, 17, 35, 0.1);
-        }
-
-        .price-display {
-          background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-          border: 2px solid #8f0e1c;
-          border-radius: 10px;
-          padding: 15px;
-          margin: 15px 0;
-          text-align: center;
-        }
-
-        .unit-price {
-          font-size: 16px;
-          color: #666;
-          margin-bottom: 5px;
-        }
-
-        .total-price {
-          font-size: 24px;
-          font-weight: bold;
-          color: #8f0e1c;
-        }
-
-        .quantity-label {
-          font-weight: bold;
-          color: #333;
-          margin-bottom: 10px;
-        }
-
         .accordion-item {
-          border: 2px solid #f0f0f0;
-          border-radius: 12px;
-          margin-bottom: 15px;
+          border: 1px solid #e8d3da;
+          border-radius: 14px;
+          margin-bottom: 12px;
           overflow: hidden;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s ease;
-        }
-
-        .accordion-item:hover {
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-          transform: translateY(-2px);
+          background: #fff;
         }
 
         .accordion-header {
@@ -444,34 +322,37 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
           top: 0;
           bottom: 0;
           width: 4px;
-          background: linear-gradient(135deg, #ff91a4, #ffb3c1);
-          transition: all 0.3s ease;
+          background: transparent;
+          transition: background-color .2s ease;
         }
 
         .accordion-header:hover {
-          background: linear-gradient(135deg, #ffffff, #f8f9fa);
-          color: #ff91a4;
+          background: #fff8fa;
+          color: #671d32;
+        }
+
+        .accordion-header:focus-visible {
+          outline: 3px solid #a95d76;
+          outline-offset: -3px;
         }
 
         .accordion-header.active {
-          background: linear-gradient(135deg, #ff91a4, #ffb3c1);
-          transition: all 0.3s ease;
-          color: white;
+          background: #fff1f5;
+          color: #671d32;
         }
 
         .accordion-header.active::before {
-          background: linear-gradient(135deg, #8f0e1c, #b61123);
+          background: #671d32;
         }
 
         .accordion-icon {
           transition: transform 0.3s ease;
           font-size: 20px;
-          color: #ff91a4;
+          color: #671d32;
         }
 
         .accordion-header.active .accordion-icon {
           transform: rotate(180deg);
-          color: white;
         }
 
         .accordion-content {
@@ -482,7 +363,7 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
         }
 
         .accordion-content.active {
-          max-height: 600px;
+          max-height: none; /* was 600px, which cut off long descriptions on phones */
           padding: 25px;
           border-top: 1px solid #f0f0f0;
         }
@@ -521,7 +402,7 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
 
         .accordion-body li::before {
           content: '•';
-          color: #ff91a4;
+          color: #671d32;
           font-weight: bold;
           position: absolute;
           left: -15px;
@@ -585,7 +466,11 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
           }
 
           .mobile-sticky-whatsapp {
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 52px;
             position: fixed;
             z-index: 1000;
             left: 16px;
@@ -596,7 +481,7 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
             border-radius: 999px;
             padding: 14px 20px;
             color: #fff;
-            background: #128c52;
+            background: #128c4a;
             box-shadow: 0 4px 18px rgba(0, 0, 0, .24);
             font-size: 16px;
             font-weight: 700;
@@ -670,142 +555,100 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
             </div>
             <div className="col-lg-6">
               <div className="product__details__text">
-                <h2>{product.name}</h2>
-                
-                
-                {/* Price Display */}
-                <div className="price-display">
-                  <div className="unit-price">
-                    Unit Price: {getCurrentPrice()}
-                  </div>
-                  <div className="total-price">
-                    Total: {getTotalPrice()}
-                  </div>
-                </div>
-                
-                <p>{product.short_description || product.description}</p>
-                
-                {/* Weight Options */}
+                {/* Purchase panel: rebuilt 24 Nov 2026 (ui-ux-pro-max pass). Real
+                    labels, a radio group for sizes, 44px controls, SVG icons
+                    (the Font Awesome 5 classes never loaded), no endless
+                    "glitter" animation. Behaviour is unchanged. */}
+                <h2 className={panel.name}>{product.name}</h2>
+                <p className={panel.priceLine} aria-live="polite">
+                  <span className={panel.price}>{selectedWeight ? formatRupees(getUnitPrice()) : '—'}</span>
+                  {selectedWeight && <span className={panel.priceFor}>for {weightLabel(selectedWeight)}</span>}
+                  {selectedWeight && quantity > 1 && (
+                    <span className={panel.total}>Total {formatRupees(getTotalAmount())} for {quantity}</span>
+                  )}
+                </p>
+
+                <p className={panel.summary}>{product.short_description || product.description}</p>
+
                 {product.weight_options && product.weight_options.length > 0 && (
-                  <div className="product__details__widget">
-                    <p className="field-label" id="weight-label">Select Weight:</p>
-                    <div className="d-flex flex-wrap gap-2 mb-3">
-                      {product.weight_options.map((weightOption, index) => (
-                        <button
-                          key={index}
-                          type="button"
-                          className={`btn ${selectedWeight?.id === weightOption.id ? 'btn-primary-light' : 'btn-outline-primary'}`}
-                          onClick={() => handleWeightChange(weightOption)}
-                          style={{
-                            border: selectedWeight?.id === weightOption.id ? '2px solid #ff91a4' : '2px solid #ddd',
-                            backgroundColor: selectedWeight?.id === weightOption.id ? '#ff91a4' : 'transparent',
-                            color: selectedWeight?.id === weightOption.id ? 'white' : '#ff91a4',
-                            padding: '8px 16px',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            transition: 'all 0.3s ease'
-                          }}
-                        >
-                          {weightOption.display_name?.replace(/\$/g, '₹')}
-                        </button>
-                      ))}
+                  <div className={panel.field}>
+                    <p className={panel.label} id="weight-label">Choose a size</p>
+                    <div className={panel.sizes} role="radiogroup" aria-labelledby="weight-label">
+                      {product.weight_options.map((weightOption, index) => {
+                        const active = selectedWeight?.id === weightOption.id;
+                        return (
+                          <button
+                            key={weightOption.id ?? index}
+                            type="button"
+                            role="radio"
+                            aria-checked={active}
+                            className={`${panel.size} ${active ? panel.sizeActive : ''}`}
+                            onClick={() => handleWeightChange(weightOption)}
+                          >
+                            <span className={panel.sizeWeight}>{weightLabel(weightOption)}</span>
+                            <span className={panel.sizePrice}>{formatRupees(weightOption.price) || 'Ask us'}</span>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
 
                 {isPhotoCake && (
-                  <div className="form-group mt-3" style={{ border: '1px solid #f2c5ce', borderRadius: 8, padding: 14, background: '#fff8fa' }}>
-                    <p className="field-label mb-1">Sending your photo</p>
-                    <small className="form-text text-muted">
-                      After you tap WhatsApp Enquiry, attach a clear JPG, PNG or WebP photo in the chat. An original image at least 1200 px on its shortest side is recommended for a sharp print.
-                    </small>
+                  <div className={panel.photoNote}>
+                    <p className={panel.label}>Sending your photo</p>
+                    <p>After you tap Order on WhatsApp, attach a clear JPG, PNG or WebP photo in the chat. An original image at least 1200 px on its shortest side gives a sharp print.</p>
                   </div>
                 )}
 
-                {/* Quantity Selector */}
-                <div className="product__details__quantity">
-                  <div className="quantity-label">Quantity:</div>
-                  <div className="quantity-controls">
-                    <button 
-                      className="quantity-btn bg-primary-light"
-                      onClick={() => handleQuantityChange(quantity - 1)}
-                      disabled={quantity <= 1}
-                    >
-                      -
-                    </button>
-                    <input 
-                      type="number" 
-                      value={quantity} 
-                      onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
-                      className="quantity-input"
-                      min="1"
-                    />
-                    <button 
-                      className="quantity-btn bg-primary-light"
-                      onClick={() => handleQuantityChange(quantity + 1)}
-                    >
-                      +
-                    </button>
+                <div className={panel.row}>
+                  <div className={panel.field}>
+                    <label className={panel.label} htmlFor="cake-quantity">Quantity</label>
+                    <div className={panel.stepper}>
+                      <button type="button" aria-label="Decrease quantity" onClick={() => handleQuantityChange(quantity - 1)} disabled={quantity <= 1}><FaMinus aria-hidden="true" /></button>
+                      <input id="cake-quantity" type="number" inputMode="numeric" min="1" value={quantity}
+                        onChange={(e) => handleQuantityChange(parseInt(e.target.value, 10) || 1)} />
+                      <button type="button" aria-label="Increase quantity" onClick={() => handleQuantityChange(quantity + 1)}><FaPlus aria-hidden="true" /></button>
+                    </div>
                   </div>
                 </div>
 
-                {/* Custom Message */}
-                <div className="product__details__widget mb-3">
-                  <p className="field-label" id="message-label">Custom Message:</p>
+                <div className={panel.field}>
+                  <label className={panel.label} htmlFor="cake-message">Message on the cake <span className={panel.optional}>(optional)</span></label>
                   <textarea
+                    id="cake-message"
+                    className={panel.textarea}
                     value={customMessage}
                     onChange={(e) => setCustomMessage(e.target.value)}
-                    placeholder="Enter your custom message for the cake..."
-                    className="form-control"
-                    rows="3"
-                    style={{ border: '1px solid #ddd', borderRadius: '4px', padding: '8px' }}
+                    placeholder="e.g. Happy Birthday Priya"
+                    rows={2}
+                    maxLength={120}
                   />
                 </div>
 
-                {/* WhatsApp Enquiry Button */}
-                <button 
-                  type="button" 
-                  className="primary-btn whatsapp-btn"
-                  onClick={handleWhatsAppEnquiry}
-                  style={{
-                    color: 'white',
-                    border: 'none',
-                    padding: '15px 30px',
-                    borderRadius: '8px',
-                    fontSize: '18px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    width: '100%',
-                    marginTop: '10px'
-                  }}
-                >
-                  <i className="fab fa-whatsapp me-2"></i>
-                  WhatsApp Enquiry
+                <button type="button" className={panel.cta} onClick={handleWhatsAppEnquiry}>
+                  <FaWhatsapp aria-hidden="true" /> Order on WhatsApp
                 </button>
-                <button
-                  type="button"
-                  className="mobile-sticky-whatsapp"
-                  onClick={handleWhatsAppEnquiry}
-                >
-                  <i className="fab fa-whatsapp me-2" aria-hidden="true"></i>
-                  Enquire about this cake
+                <p className={panel.ctaNote}><FaClock aria-hidden="true" /> {FRESH_BAKE_SHORT}</p>
+                <button type="button" className="mobile-sticky-whatsapp" onClick={handleWhatsAppEnquiry}>
+                  <FaWhatsapp aria-hidden="true" /> Order on WhatsApp
                 </button>
 
-                <ul className="mt-3">
-                  {/* <li><b>Availability:</b> <span>In Stock</span></li> */}
-                  <li><b>SKU:</b> <span>{product.sku || 'N/A'}</span></li>
-                  <li><b>Category:</b> <span>{product.category?.name || 'Cake'}</span></li>
-                </ul>
+                <dl className={panel.meta}>
+                  <div><dt>Category</dt><dd>{product.category?.name || 'Cake'}</dd></div>
+                  {product.sku && <div><dt>SKU</dt><dd>{product.sku}</dd></div>}
+                </dl>
 
                 {/* Product Details Accordion */}
                 <div className="product__details__accordion mt-5">
-                  <h2 style={{ 
-                    color: '#333', 
-                    fontWeight: '700', 
-                    marginBottom: '20px',
-                    borderBottom: '3px solid #ff91a4',
-                    paddingBottom: '10px'
+                  <h2 style={{
+                    color: '#671d32',
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontSize: 'clamp(24px, 2.4vw, 30px)',
+                    fontWeight: '700',
+                    marginBottom: '16px',
+                    borderBottom: '1px solid #eedde2',
+                    paddingBottom: '12px'
                   }}>
                     Product Details
                   </h2>

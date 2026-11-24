@@ -1,0 +1,94 @@
+// Product page purchase panel (brand tokens as elsewhere).
+$wine: #671d32;
+$wine-dark: #4f1426;
+$ink: #2f1c24;
+$muted: #6b5a60;
+$border: #e8d3da;
+$blush: #fff1f5;
+$whatsapp: #128c4a;
+$ring: #a95d76;
+
+.name {
+  margin: 0 0 8px; color: $wine; font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(28px, 3vw, 38px); font-weight: 700; line-height: 1.15; letter-spacing: -.015em;
+}
+
+.priceLine { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0 0 16px; }
+.price { color: $ink; font-size: clamp(28px, 3vw, 34px); font-weight: 800; font-variant-numeric: tabular-nums; }
+.priceFor { color: $muted; font-size: 16px; }
+.total { padding: 3px 10px; border-radius: 999px; background: $blush; color: $wine; font-size: 14px; font-weight: 700; }
+
+.summary { margin: 0 0 22px; color: $muted; font-size: 16px; line-height: 1.7; }
+
+.field { margin-bottom: 20px; }
+.row { display: flex; flex-wrap: wrap; gap: 20px; }
+.label { display: block; margin: 0 0 10px; color: $ink; font-size: 15px; font-weight: 700; }
+.optional { color: $muted; font-weight: 500; }
+
+.sizes { display: flex; flex-wrap: wrap; gap: 10px; }
+.size {
+  display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 104px; min-height: 56px;
+  padding: 9px 16px; border: 1.5px solid $border; border-radius: 12px; background: #fff; cursor: pointer; text-align: left;
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+  &:hover { border-color: #c98ea0; }
+  &:focus-visible { outline: 3px solid $ring; outline-offset: 2px; }
+}
+.sizeActive { border-color: $wine; background: $blush; box-shadow: inset 0 0 0 1px $wine; }
+.sizeWeight { color: $muted; font-size: 13px; font-weight: 600; }
+.sizeActive .sizeWeight { color: $wine; }
+.sizePrice { color: $ink; font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+.stepper {
+  display: inline-flex; align-items: center; border: 1.5px solid $border; border-radius: 12px; overflow: hidden; background: #fff;
+  button {
+    display: grid; place-items: center; width: 48px; height: 48px; border: 0; background: #fff; color: $wine; font-size: 14px; cursor: pointer;
+    transition: background-color .2s ease;
+    &:hover:not(:disabled) { background: $blush; }
+    &:disabled { color: #c9b6bd; cursor: not-allowed; }
+    &:focus-visible { outline: 3px solid $ring; outline-offset: -3px; }
+  }
+  input {
+    width: 56px; height: 48px; border: 0; border-left: 1px solid $border; border-right: 1px solid $border;
+    color: $ink; font-size: 17px; font-weight: 700; text-align: center; -moz-appearance: textfield;
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    &:focus-visible { outline: 3px solid $ring; outline-offset: -3px; }
+  }
+}
+
+.textarea {
+  width: 100%; min-height: 64px; padding: 12px 14px; border: 1.5px solid $border; border-radius: 12px;
+  color: $ink; font-size: 16px; line-height: 1.5; resize: vertical; background: #fff;
+  &::placeholder { color: #9b8a90; }
+  &:focus { border-color: $wine; outline: none; box-shadow: 0 0 0 3px rgba(103, 29, 50, .15); }
+}
+
+.photoNote {
+  margin-bottom: 20px; padding: 14px 16px; border: 1px solid #f2c5ce; border-radius: 12px; background: #fff8fa;
+  p:last-child { margin: 0; color: $muted; font-size: 14px; line-height: 1.6; }
+}
+
+.cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 54px; margin-top: 4px;
+  padding: 14px 24px; border: 0; border-radius: 14px; background: $whatsapp; color: #fff; font-size: 18px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 10px 24px -14px rgba(18, 140, 74, .8);
+  transition: background-color .2s ease, transform .2s ease;
+  svg { font-size: 22px; }
+  &:hover { background: #0e7239; transform: translateY(-1px); }
+  &:focus-visible { outline: 3px solid $ring; outline-offset: 3px; }
+}
+.ctaNote {
+  display: flex; align-items: flex-start; gap: 8px; margin: 12px 0 0; color: $muted; font-size: 14px; line-height: 1.6;
+  svg { flex-shrink: 0; margin-top: 4px; color: $wine; }
+}
+
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 24px; margin: 22px 0 0; padding-top: 16px; border-top: 1px solid $border;
+  div { display: flex; gap: 6px; }
+  dt { color: $muted; font-size: 14px; font-weight: 600; }
+  dd { margin: 0; color: $ink; font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .size, .cta, .stepper button { transition: none; }
+  .cta:hover { transform: none; }
+}

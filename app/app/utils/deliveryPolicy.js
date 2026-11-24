@@ -12,4 +12,4 @@ export const ORDER_LEAD_HOURS = 4;
 export const FRESH_BAKE_HEADLINE = 'Baked fresh after you order';
 export const FRESH_BAKE_NOTICE = `Please order at least ${ORDER_LEAD_HOURS} hours before you need it.`;
 export const FRESH_BAKE_SHORT = `Every cake is baked fresh after you order. ${FRESH_BAKE_NOTICE}`;
-export const FRESH_BAKE_DETAIL = 'Nothing is baked in advance or kept on a shelf: we start baking your cake after you place the order, so it reaches you fresh. Please order at least 4 hours before your delivery or pickup time. Detailed tier and custom designs may need longer; we confirm the timing on WhatsApp.';
+export const FRESH_BAKE_DETAIL = 'Nothing is baked in advance or kept on a shelf: we start baking your cake after you place the order, so it reaches you fresh. Please order at least 4 hours before you need the cake. Detailed tier and custom designs may need longer; we confirm the timing on WhatsApp.';

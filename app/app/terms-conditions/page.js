@@ -64,7 +64,7 @@ export default function TermsConditionsPage() {
 
                   <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>3. Ordering & Payment</h2>
                   <p>
-                    All orders are subject to acceptance and availability. Every cake is baked fresh after the order is placed, so orders need at least 4 hours&apos; notice before the delivery or pickup time; detailed tier and custom designs may need longer. Prices are subject to change without notice. We accept Google Pay and online payments. Contact us on WhatsApp to confirm your cake details, delivery arrangements, final total and payment instructions. Please check your order confirmation with us in the chat.
+                    All orders are subject to acceptance and availability. Every cake is baked fresh after the order is placed, so orders need at least 4 hours&apos; notice before the time you need the cake; detailed tier and custom designs may need longer. Prices are subject to change without notice. We accept Google Pay and online payments. Contact us on WhatsApp to confirm your cake details, delivery arrangements, final total and payment instructions. Please check your order confirmation with us in the chat.
                   </p>
 
                   <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>4. Delivery Terms</h2>

@@ -5,7 +5,7 @@ import { FaWhatsapp, FaStar, FaBirthdayCake, FaArrowRight } from 'react-icons/fa
 import styles from './MenuProductCard.module.scss';
 
 /** "500g - ₹499.00" (the API's display_name) -> "500g". */
-function weightLabel(option) {
+export function weightLabel(option) {
   // display_name carries the owner's wording ("500g"); weight.name is "0.5kg".
   const name = option?.display_name || option?.name || option?.weight?.name || '';
   return String(name).split(/\s+[-–—]\s+/)[0].trim() || 'Size';
