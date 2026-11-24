@@ -1,5 +1,5 @@
 import { unstable_cache } from 'next/cache';
-import { storefrontDbConfigured } from './db.js';
+import { storefrontDbConfigured, withDbDeadline } from './db.js';
 import { loadBlogSnapshot, loadCatalogSnapshot, loadPostListIds } from './source.js';
 import { apiSnapshotNeeds, postListParams, resolveApi } from './api.js';
 
@@ -8,9 +8,12 @@ import { apiSnapshotNeeds, postListParams, resolveApi } from './api.js';
 // Snapshots are cached for a day under the same tags the pages use; Django's
 // save signal calls /api/revalidate, which drops them along with the pages.
 // Bump the key suffix if a snapshot's shape changes.
+// Every load goes through withDbDeadline: the Supabase pooler can stall silently.
 const DAY = 86400;
-const dataCachedCatalog = unstable_cache(loadCatalogSnapshot, ['storefront-catalog-v1'], { revalidate: DAY, tags: ['catalog'] });
-const dataCachedBlog = unstable_cache(loadBlogSnapshot, ['storefront-blog-v1'], { revalidate: DAY, tags: ['blog'] });
+const dataCachedCatalog = unstable_cache(() => withDbDeadline('catalog snapshot', loadCatalogSnapshot),
+  ['storefront-catalog-v1'], { revalidate: DAY, tags: ['catalog'] });
+const dataCachedBlog = unstable_cache(() => withDbDeadline('blog snapshot', loadBlogSnapshot),
+  ['storefront-blog-v1'], { revalidate: DAY, tags: ['blog'] });
 
 // Concurrent callers share one load. Without this, a build prerendering dozens
 // of pages at once started dozens of snapshot loads (each ~56 round trips to the
@@ -33,7 +36,8 @@ function shareLoad(load) {
 const cachedCatalog = shareLoad(dataCachedCatalog);
 const cachedBlog = shareLoad(dataCachedBlog);
 // The /blog page's search/category filters: Django's exact list SQL, cached per query string.
-const cachedPostListIds = unstable_cache((query) => loadPostListIds(new URLSearchParams(query)),
+const cachedPostListIds = unstable_cache(
+  (query) => withDbDeadline('blog list query', () => loadPostListIds(new URLSearchParams(query))),
   ['storefront-post-list-v1'], { revalidate: DAY, tags: ['blog'] });
 
 export function storefrontDataSource() {

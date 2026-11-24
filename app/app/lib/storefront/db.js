@@ -60,6 +60,13 @@ export function db() {
       // Small on purpose: every build worker and function instance has its own pool.
       // 4 lets a snapshot's independent queries overlap (the database is ~100-200 ms away).
       max: Number(process.env.STOREFRONT_DB_POOL_SIZE || 4),
+      // No pipelining. postgres.js pipelines parameterless queries (several
+      // Parse/Bind/Execute on one connection before a reply); Supabase's
+      // transaction pooler never answers such a batch, so the blog snapshot's
+      // sort queries hung forever and Vercel builds hit the 45-minute limit
+      // (reproduced 24 Nov 2026). 0 is the only value that disables it: with 1
+      // the library still sends two queries before waiting.
+      max_pipeline: 0,
       idle_timeout: 10,
       connect_timeout: 15,
       // The transaction pooler cannot hold prepared statements across clients.
@@ -83,4 +90,58 @@ export async function closeDb() {
     client = null;
     await c.end({ timeout: 5 });
   }
+}
+
+/**
+ * Drop a pool without waiting: its connections may be stuck. Next db() builds a
+ * fresh one. Only the pool the failed attempt used: a newer pool may be serving
+ * another load's retry right now.
+ */
+function abandonDb(used) {
+  if (used && client === used) client = null;
+  used?.end({ timeout: 0 }).catch(() => {});
+}
+
+/**
+ * Run a read with a deadline, retrying on fresh connections.
+ *
+ * Supabase's transaction pooler intermittently stalls a connection: the query
+ * never answers and never errors (reproduced locally on 24 Nov 2026 - the same
+ * 20-query burst hung once, then passed in ~2 s). postgres.js has no query
+ * timeout, so one stall held a Vercel build at "Building" until the 45-minute
+ * limit killed it. Reads here are idempotent, so a stalled attempt is abandoned,
+ * its pool dropped, and the load retried; if every attempt fails, the error says
+ * so within ~1.5 minutes instead of hanging.
+ */
+export async function withDbDeadline(label, load, {
+  timeoutMs = Number(process.env.STOREFRONT_DB_TIMEOUT_MS || 30000),
+  attempts = 3,
+} = {}) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const started = Date.now();
+    let timer;
+    let used = null;
+    try {
+      const pending = load();
+      used = client; // loaders call db() synchronously, so this is the pool they took
+      const result = await Promise.race([
+        pending,
+        new Promise((_, reject) => {
+          timer = setTimeout(() => reject(new Error(`${label}: no answer from the database after ${timeoutMs / 1000}s`)), timeoutMs);
+        }),
+      ]);
+      if (attempt > 1 || process.env.NEXT_PHASE === 'phase-production-build') {
+        console.log(`[storefront] ${label} loaded in ${Date.now() - started} ms (attempt ${attempt})`);
+      }
+      return result;
+    } catch (error) {
+      lastError = error;
+      console.warn(`[storefront] ${label} attempt ${attempt}/${attempts} failed: ${error.message}`);
+      abandonDb(used);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  throw new Error(`${label} failed after ${attempts} attempts: ${lastError?.message}`);
 }

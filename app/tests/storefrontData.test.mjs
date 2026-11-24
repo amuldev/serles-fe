@@ -235,3 +235,18 @@ test('connection strings parse with any password characters (Vercel "Invalid URL
   // Errors never echo the secret.
   try { parseConnectionString('mysql://user:SuperSecret@h/db'); } catch (e) { assert.ok(!e.message.includes('SuperSecret')); }
 });
+
+test('a stalled database load is abandoned and retried, never left hanging', async (t) => {
+  t.mock.method(console, 'warn', () => {});
+  t.mock.method(console, 'log', () => {});
+  const { withDbDeadline } = await import('../app/lib/storefront/db.js');
+  let calls = 0;
+  const flaky = () => (++calls === 1 ? new Promise(() => {}) : Promise.resolve('snapshot')); // first attempt never answers
+  assert.equal(await withDbDeadline('test load', flaky, { timeoutMs: 50, attempts: 3 }), 'snapshot');
+  assert.equal(calls, 2);
+
+  const started = Date.now();
+  await assert.rejects(withDbDeadline('dead load', () => new Promise(() => {}), { timeoutMs: 50, attempts: 2 }),
+    /dead load failed after 2 attempts: .*no answer from the database/);
+  assert.ok(Date.now() - started < 1000);
+});
