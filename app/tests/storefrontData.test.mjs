@@ -217,3 +217,21 @@ test('URL recognition', () => {
   assert.equal(resolveApi('/api/banners/', fixtures()).status, 404);
   assert.equal(resolveApi('/not-api/', fixtures()).status, 404);
 });
+
+test('connection strings parse with any password characters (Vercel "Invalid URL" build failure)', async () => {
+  const { parseConnectionString } = await import('../app/lib/storefront/db.js');
+  const host = 'aws-0-ap-northeast-1.pooler.supabase.com';
+  for (const pw of ['plain', 'a#b', 'a/b', 'a?b', 'a@b', 'a:b', 'p#/?@:x']) {
+    assert.deepEqual(parseConnectionString(`postgresql://postgres.ref:${pw}@${host}:6543/postgres`),
+      { host, port: 6543, database: 'postgres', username: 'postgres.ref', password: pw }, pw);
+  }
+  assert.equal(parseConnectionString(`postgresql://u:p%23x@${host}:6543/postgres`).password, 'p#x'); // already encoded
+  assert.equal(parseConnectionString(`postgresql://u:100%@${host}:6543/postgres`).password, '100%'); // raw %
+  assert.equal(parseConnectionString(`"postgresql://u:p@${host}:6543/postgres"`).host, host); // quoted in dashboard
+  assert.equal(parseConnectionString(` postgres://u:p@${host}:6543/postgres?sslmode=require \n`).port, 6543);
+  assert.deepEqual(parseConnectionString('postgres://u:p@localhost/db'), { host: 'localhost', port: 5432, database: 'db', username: 'u', password: 'p' });
+  assert.throws(() => parseConnectionString(`postgresql://postgres.ref:[YOUR-PASSWORD]@${host}:6543/postgres`), /placeholder/);
+  assert.throws(() => parseConnectionString('https://example.com'), /must start with postgresql/);
+  // Errors never echo the secret.
+  try { parseConnectionString('mysql://user:SuperSecret@h/db'); } catch (e) { assert.ok(!e.message.includes('SuperSecret')); }
+});
