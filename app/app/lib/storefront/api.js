@@ -275,6 +275,23 @@ function priceInfo(catalog, p, publicOnly) {
   return { min, max, range, active };
 }
 
+/**
+ * Storefront-only addition (not in Django's serializer, 24 Nov 2026): the
+ * weight behind the lowest and highest price, so cards can say "From ₹350
+ * for 500g" instead of a bare range customers can't interpret. Ties pick
+ * the smallest weight. Null when a product has no weight options.
+ */
+function priceWeights(catalog, p) {
+  const { min, max, active } = priceInfo(catalog, p, true);
+  if (!active.length) return null;
+  const pick = (price) => active.filter((w) => decimalCompare(w.price, price) === 0)
+    .sort((a, b) => a.weight_in_grams - b.weight_in_grams)[0];
+  const lo = pick(min); const hi = pick(max);
+  // Customer-facing: 1500 -> "1.5kg" (Django's display name would say 1500g).
+  const label = (g) => (g >= 1000 ? `${+(g / 1000).toFixed(2)}kg` : `${g}g`);
+  return { min: lo ? label(lo.weight_in_grams) : null, max: hi ? label(hi.weight_in_grams) : null };
+}
+
 function weightDisplay(grams) {
   if (grams >= 1000 && grams % 1000 === 0) return `${grams / 1000}kg`;
   return `${grams}g`;
@@ -324,6 +341,7 @@ function serializeProductListItem(catalog, p) {
     is_featured: p.is_featured,
     is_new: p.is_new,
     is_best_seller: p.is_best_seller,
+    price_weights: priceWeights(catalog, p),
   };
 }
 

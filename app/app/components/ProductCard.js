@@ -31,6 +31,10 @@ export default function ProductCard({ product, priority = false, headingLevel = 
   const Heading = headingLevel === 'h3' ? 'h3' : 'h2';
   const href = product.category?.slug && product.slug ? `/cakes/${product.category.slug}/${product.slug}` : '/cakes';
   const price = formatFromPrice(product.price_range);
+  // Weight for the starting price ("From ₹350 · 500g"): a bare range made
+  // customers guess what the price buys. price_weights comes from the
+  // storefront API (database mode); older payloads just omit the subtext.
+  const startWeight = product.price_weights?.min;
   return (
     <div className={`${columns} ${styles.col}`}>
       <Link href={href} className={styles.card}>
@@ -47,7 +51,10 @@ export default function ProductCard({ product, priority = false, headingLevel = 
           {showBadge && product.is_best_seller && <span className={styles.badge}>Bestseller</span>}
         </span>
         <Heading className={styles.name}>{product.name}</Heading>
-        <span className={styles.price}>{price || 'Ask for price'}</span>
+        <span className={styles.price}>
+          {price || 'Ask for price'}
+          {price && startWeight && <span className={styles.weight}> · {startWeight}</span>}
+        </span>
       </Link>
     </div>
   );

@@ -5,6 +5,16 @@ export const DELIVERY_COVERAGE = `Delivery is available to eligible addresses wi
 export const DELIVERY_CHARGES = 'Delivery is ₹50 within the first 5 km, then ₹10 per additional kilometre within our delivery area. We confirm the route distance and final delivery charge on WhatsApp.';
 export const DELIVERY_AREAS = ['Ilanji', 'Tenkasi', 'Shencottai', 'Courtallam'];
 
+/**
+ * Rough delivery charge for a road distance, from the published rule
+ * (₹50 for the first 5 km, then ₹10 per km), rounded to the nearest ₹10.
+ * An estimate for a mapped point only; the real charge is quoted on WhatsApp.
+ */
+export function estimateDeliveryCharge(km) {
+  const raw = 50 + Math.max(0, km - 5) * 10;
+  return Math.round(raw / 10) * 10;
+}
+
 // Owner confirmed 24 November 2026: nothing is pre-baked. Every cake is baked
 // fresh after the order, so orders need at least 4 hours' notice. It is a
 // minimum, not a promised slot: detailed tier/custom designs are still checked

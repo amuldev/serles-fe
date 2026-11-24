@@ -21,6 +21,7 @@
 }
 .name { margin: 0; color: $ink; font-size: 16px; font-weight: 600; line-height: 1.35; transition: color .2s ease; }
 .price { color: $ink; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.weight { color: $muted; font-size: 13px; font-weight: 600; }
 
 @media (max-width: 575px) {
   .col { margin-bottom: 20px; }

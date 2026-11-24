@@ -43,7 +43,14 @@ export default async function FeaturedCakeCTA() {
             Our signature Black Forest: layers of chocolate sponge and whipped cream, topped with cherries.
             A favourite for birthdays and every celebration.
           </p>
-          {price && <p className={styles.price}>{price}</p>}
+          {price && (
+            <p className={styles.price}>
+              {product?.price_weights?.min && product?.price_weights?.max
+                ? <>{formatPriceRange(product.price_range).split(' – ')[0]}<sub>{product.price_weights.min}</sub>
+                    {product.price_weights.min !== product.price_weights.max && <> – {formatPriceRange(product.price_range).split(' – ')[1]}<sub>{product.price_weights.max}</sub></>}</>
+                : price}
+            </p>
+          )}
           <p className={styles.offer}><FaTag aria-hidden="true" /> 10% OFF on First Order</p>
           <div className={styles.ctas}>
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`${styles.button} ${styles.whatsapp}`}>

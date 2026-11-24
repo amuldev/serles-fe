@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Breadcrumb from '../components/Breadcrumb';
 import JsonLd from '../components/blog/JsonLd';
 import { SITE_URL } from '../utils/blog';
-import { DELIVERY_COVERAGE, DELIVERY_CHARGES, FRESH_BAKE_DETAIL, FRESH_BAKE_HEADLINE, ORDER_LEAD_HOURS } from '../utils/deliveryPolicy';
+import { DELIVERY_COVERAGE, DELIVERY_CHARGES, FRESH_BAKE_DETAIL, FRESH_BAKE_HEADLINE, ORDER_LEAD_HOURS, estimateDeliveryCharge } from '../utils/deliveryPolicy';
 import styles from './page.module.scss';
 import { DELIVERY_AREA_PAGES, deliveryAreaPath } from '../utils/deliveryAreas';
 
@@ -63,7 +63,7 @@ export default function CakeDeliveryPage() {
       <section className={styles.section} aria-labelledby="area-guides-heading">
         <h2 id="area-guides-heading">Local delivery guides</h2>
         <p>These guides include driving estimates to mapped village points. Your actual address and order availability are checked separately.</p>
-        <ul>{DELIVERY_AREA_PAGES.map(area => <li key={area.slug}><Link href={deliveryAreaPath(area)}>Cake enquiries for {area.name}</Link> — village-point road estimate about {area.km.toFixed(1)} km</li>)}</ul>
+        <ul>{DELIVERY_AREA_PAGES.map(area => <li key={area.slug}><Link href={deliveryAreaPath(area)}>Cake delivery to {area.name}</Link> — about {area.km.toFixed(1)} km by road, delivery about ₹{estimateDeliveryCharge(area.km)}</li>)}</ul>
         <p>Established guides: <Link href="/blog/cake-delivery-in-tenkasi-timings-and-ordering">Tenkasi</Link>, <Link href="/blog/cake-delivery-in-shencottai">Sengottai / Shencottai</Link> and <Link href="/blog/cake-delivery-in-courtallam">Courtallam</Link>.</p>
       </section>
       <div className={styles.grid}>
