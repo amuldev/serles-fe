@@ -24,7 +24,9 @@
     --------------------*/
     $('.set-bg').each(function () {
         var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
+        // React cards carry the class without data-setbg; setting url(undefined)
+        // made every page request /undefined (404).
+        if (bg) $(this).css('background-image', 'url(' + bg + ')');
     });
 
     //Search Switch

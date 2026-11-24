@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { FaClipboardList, FaBirthdayCake, FaMapMarkerAlt, FaWallet, FaTruck, FaRuler, FaBookOpen } from 'react-icons/fa';
-import { DELIVERY_COVERAGE } from '../utils/deliveryPolicy';
+import { FaClipboardList, FaBirthdayCake, FaMapMarkerAlt, FaWallet, FaTruck, FaRuler, FaBookOpen, FaClock } from 'react-icons/fa';
+import { DELIVERY_COVERAGE, FRESH_BAKE_HEADLINE, FRESH_BAKE_NOTICE } from '../utils/deliveryPolicy';
 import styles from './ShopPlanning.module.scss';
 
 export default function ProductOrderingDetails({ product }) {
@@ -15,7 +15,7 @@ export default function ProductOrderingDetails({ product }) {
         ? 'Tell us whether this is for a birthday, gifting or sharing. Confirm the selected weight and ask about the portions and any presentation changes you need.'
         : ['custom-cake', 'themed-cake'].includes(category)
           ? 'Send a design reference and identify the details that matter most. We check feasibility, available colours, size and any additional design charge before confirming.'
-          : 'Confirm the flavour, selected weight, cake message and event time. Ask us about any design changes before assuming they are included in the selected price.';
+          : 'Confirm the flavour, selected weight, cake message and delivery time. Ask us about any design changes before assuming they are included in the selected price.';
   const servingGuide = category === 'brownie'
     ? { path: '/blog/fudgy-brownies-in-tenkasi-gifting-parties-office-treats', label: 'Brownie serving & gifting' }
     : { path: '/blog/how-to-store-carry-and-serve-a-cream-cake', label: 'Handling & serving guide' };
@@ -28,6 +28,10 @@ export default function ProductOrderingDetails({ product }) {
           <p className={styles.orderIntro}>A few details to check together on WhatsApp.</p>
         </div>
       </div>
+      <p className={styles.freshNote}>
+        <FaClock aria-hidden="true" />
+        <span><strong>{FRESH_BAKE_HEADLINE}.</strong> {FRESH_BAKE_NOTICE} Nothing is baked in advance.</span>
+      </p>
       <div className={styles.orderChecks}>
         <div className={styles.orderCheck}>
           <h3 className={styles.checkHeading}><FaBirthdayCake aria-hidden="true" /> Your cake &amp; occasion</h3>

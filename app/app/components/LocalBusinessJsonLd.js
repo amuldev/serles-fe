@@ -47,7 +47,7 @@ const bakery = {
   image: `${SITE_URL}/img/logo.png`,
   logo: `${SITE_URL}/img/logo.png`,
   description:
-    `Homemade cake shop in Ilanji, Tenkasi, Tamil Nadu, baking birthday, photo, custom and tiered cakes and brownies. ${DELIVERY_COVERAGE}`,
+    `Homemade cake shop in Ilanji, Tenkasi, Tamil Nadu, baking birthday, photo, custom and tiered cakes and brownies. Every cake is baked fresh after the order; please order at least 4 hours ahead. ${DELIVERY_COVERAGE}`,
   telephone: PHONE,
   email: EMAIL,
   address: {

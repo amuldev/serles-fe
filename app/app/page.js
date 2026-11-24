@@ -46,7 +46,7 @@ export const metadata = {
   //
   // 44 chars.
   title: "Cake Shop & Bakery in Tenkasi | Serle’s Bake",
-  description: "Cake shop & bakery in Tenkasi. Order homemade cakes online on WhatsApp - birthday, photo & custom cakes, eggless on request, with home delivery.",
+  description: "Cake shop & bakery in Tenkasi. Homemade cakes baked fresh after you order: birthday, photo & custom cakes. Order 4 hours ahead on WhatsApp for delivery.",
   keywords: "bakery near me, cake shop near me, bakery Tenkasi, cake shop Tenkasi, bakery shop near me, homemade cakes, birthday cakes, eggless cakes Tenkasi",
 };
   export default async function Home() {

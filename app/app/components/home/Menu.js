@@ -536,7 +536,7 @@ export default function Menu({ initialProducts = [], initialCategories = [], ini
                     fontSize: "0.9rem",
                     fontWeight: "600"
                   }}>
-                    🚚 Same Day Delivery
+                    🧁 Baked Fresh · Order 4 Hrs Ahead
                   </div>
                   
                   <div style={{

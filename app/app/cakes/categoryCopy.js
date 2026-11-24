@@ -5,7 +5,7 @@ export const CATEGORY_COPY = {
     "paragraphs": [
       "Compare butterscotch, blackcurrant, chocolate and choco truffle alongside the Blueberry and Gulab Jamun cakes now in this collection. Blueberry and Gulab Jamun each have 500 g, 1 kg and 2 kg options. Each product page shows its own current prices; a design or price from another cake does not automatically apply to the one you choose.",
       "For a birthday, tell us your preferred flavour, guest count, cake message and cake-cutting time. If you need an ingredient change or an eggless option, ask us to check the specific cake before ordering. An eggless request does not establish that a cake is safe for an allergy.",
-      "Send your address or map pin so we can check delivery within 20 km by road from Ilanji. We confirm availability, final price and payment instructions on WhatsApp. Same-day requests are subject to confirmation, rather than guaranteed by choosing a standard flavour."
+      "Send your address or map pin so we can check delivery within 20 km by road from Ilanji. We confirm availability, final price and payment instructions on WhatsApp. Every cake is baked fresh after you order, so please order at least 4 hours before you need it. Same-day requests are subject to confirmation, rather than guaranteed by choosing a standard flavour."
     ]
   },
   "brownie": {
@@ -29,7 +29,7 @@ export const CATEGORY_COPY = {
     "paragraphs": [
       "Compare the current two-tier and three-tier cakes, then discuss your guest count and design reference with us. A tier count alone does not establish how many servings your chosen cake will provide.",
       "Send the venue, cake-cutting time and preferred presentation alongside your requested size. Ask us to check the structure, design and handover arrangements together, especially if the cake must wait before serving or needs setup at the venue.",
-      "Tiered and detailed designs require an individual availability and preparation check. Do not assume a fixed lead time or automatic same-day slot. We confirm the design, total, payment instructions and address-level delivery arrangements before the order is accepted."
+      "Tiered and detailed designs require an individual availability and preparation check. Every cake is baked fresh after you order: 4 hours is our minimum notice, and tiered or detailed designs may need longer, so do not assume an automatic same-day slot. We confirm the design, total, payment instructions and address-level delivery arrangements before the order is accepted."
     ]
   },
   "premium-cake": {

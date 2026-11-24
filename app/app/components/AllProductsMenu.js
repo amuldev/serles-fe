@@ -242,7 +242,7 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
                 🚚
               </div>
               <div style={{ fontSize: "0.9rem", color: "#666", fontWeight: "600" }}>
-                Same Day Delivery
+                Baked fresh after you order · 4 hrs notice
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Breadcrumb from '../../components/Breadcrumb';
 import JsonLd from '../../components/blog/JsonLd';
 import { SITE_URL } from '../../utils/blog';
-import { DELIVERY_COVERAGE, DELIVERY_CHARGES } from '../../utils/deliveryPolicy';
+import { DELIVERY_COVERAGE, DELIVERY_CHARGES, FRESH_BAKE_SHORT } from '../../utils/deliveryPolicy';
 import { DELIVERY_AREA_PAGES, findDeliveryArea, deliveryAreaPath } from '../../utils/deliveryAreas';
 import styles from '../page.module.scss';
 
@@ -50,7 +50,7 @@ export default async function DeliveryAreaPage({ params }) {
         <p><a href={maps} target="_blank" rel="noopener noreferrer">Open the driving route in Google Maps</a>. Send your own destination pin so we can check it separately.</p>
         <p>Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>; route calculated with <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener noreferrer">FOSSGIS/OSRM</a>. <a href={`https://www.openstreetmap.org/?mlat=${area.latitude}&mlon=${area.longitude}#map=16/${area.latitude}/${area.longitude}`} target="_blank" rel="noopener noreferrer">View or correct the mapped place</a>.</p>
       </section>
-      <section className={styles.section}><h2>Coverage, charges and confirmation</h2><p>{DELIVERY_COVERAGE}</p><p>{DELIVERY_CHARGES}</p><p>We accept Google Pay and online payments. Confirm the cake, design, date, address, final amount and payment instructions with us, and check your order confirmation in the chat. Same-day availability must be checked for the actual request.</p></section>
+      <section className={styles.section}><h2>Coverage, charges and confirmation</h2><p>{DELIVERY_COVERAGE}</p><p>{DELIVERY_CHARGES}</p><p>We accept Google Pay and online payments. Confirm the cake, design, date, address, final amount and payment instructions with us, and check your order confirmation in the chat. {FRESH_BAKE_SHORT} Same-day availability is confirmed for the actual request.</p></section>
       <section className={styles.section}><h2>{area.question}</h2><p>{area.answer}</p><p>For a photo design, send a clear original image after checking feasibility. For larger designs, discuss the guest count and handover with us. Explore our <Link href="/cakes/custom-cake">custom and photo cakes</Link>, <Link href="/cakes/tier-cake">tiered cakes</Link> or <Link href="/cakes/brownie">brownies</Link> before you enquire.</p></section>
       <nav className={styles.section} aria-label="Related delivery information"><h2>Other delivery information</h2><ul><li><Link href="/cake-delivery">Delivery boundary and ordering steps</Link></li>{area.related.map(slug => { const item = findDeliveryArea(slug); return <li key={slug}><Link href={deliveryAreaPath(item)}>Cake enquiries for {item.name}</Link></li>; })}<li><Link href="/contact">Bakery contact and location</Link></li></ul></nav>
       <div className={styles.actions}><a href={wa} className={styles.primary} target="_blank" rel="noopener noreferrer">Ask about your celebration</a><a className={styles.secondary} href="tel:+916383070725">Call +91 63830 70725</a></div>

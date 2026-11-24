@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo } from "react";
-import { DELIVERY_COVERAGE, DELIVERY_CHARGES } from '../utils/deliveryPolicy';
+import { DELIVERY_COVERAGE, DELIVERY_CHARGES, FRESH_BAKE_DETAIL } from '../utils/deliveryPolicy';
 
 function formatPrice(value) {
   if (value == null) return '';
@@ -89,7 +89,7 @@ export default function ProductFAQ({ product = {}, phone = "916383070725", whats
 
     items.push({
       question: 'How far ahead should I order this cake?',
-      answer: 'Send your event date and cake-cutting time when you enquire. We check availability for the chosen cake, weight and design before confirming. The website does not reserve a preparation slot or guarantee same-day delivery.'
+      answer: `${FRESH_BAKE_DETAIL} Send your event date and cake-cutting time when you enquire; the website does not reserve a preparation slot.`
     });
     items.push({
       question: 'How many portions will this weight provide?',

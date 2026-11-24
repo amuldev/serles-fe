@@ -105,10 +105,10 @@ export default function RootLayout({ children }) {
         {/* Microsoft Clarity Analytics */}
         <MicrosoftClarity />
 
-        {/* Page Preloder */}
-        <div id="preloder">
-          <div className="loader"></div>
-        </div>
+        {/* No full-screen preloader. The template's #preloder covered the
+            already server-rendered page (black, purple spinner) until every
+            image and tracking script loaded - about 2.5 s on every full page
+            load (24 Nov 2026). Content now shows as soon as it arrives. */}
 
         <Header />
 
@@ -189,7 +189,7 @@ export default function RootLayout({ children }) {
         <script defer src="/js/owl.carousel.min.js"></script>
         <script defer src="/js/jquery.barfiller.js"></script>
         <script defer src="/js/jquery.nicescroll.min.js"></script>
-        <script defer src="/js/main.js"></script>
+        <script defer src="/js/main.js?v=20261124"></script>
 
         {/* Preloader Script */}
         <script dangerouslySetInnerHTML={{
@@ -200,17 +200,7 @@ export default function RootLayout({ children }) {
             } else {
               window.preloaderInitialized = true;
               
-              // Wait for all scripts to load before initializing
-              window.addEventListener('load', function() {
-                const preloader = document.getElementById('preloder');
-                if (preloader && !preloader.classList.contains('hidden')) {
-                  preloader.classList.add('hidden');
-                  setTimeout(() => {
-                    preloader.style.display = 'none';
-                  }, 300);
-                }
-                
-                // Initialize plugins after everything is loaded
+              // Initialize the jQuery plugins once the page has loaded
                 setTimeout(function() {
                   if (typeof $ !== 'undefined') {
                     // Initialize slicknav if it exists
@@ -258,17 +248,6 @@ export default function RootLayout({ children }) {
                        // This used to wait a further second before the mobile
                        // menu and selects became usable.
               });
-              
-              // Fallback: hide preloader after 3 seconds if load event doesn't fire
-              setTimeout(function() {
-                const preloader = document.getElementById('preloder');
-                if (preloader && preloader.style.display !== 'none' && !preloader.classList.contains('hidden')) {
-                  preloader.classList.add('hidden');
-                  setTimeout(() => {
-                    preloader.style.display = 'none';
-                  }, 300);
-                }
-              }, 3000);
               
               // Error handling for missing JS files
               window.addEventListener('error', function(e) {

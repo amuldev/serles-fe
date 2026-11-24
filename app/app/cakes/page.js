@@ -138,14 +138,15 @@ export default async function CakesIndexPage() {
                 batches, which is why the sponge is still soft on the day it
                 reaches you and why we can adjust sweetness, filling and finish to
                 what you actually want. Choose a weight, tell us the occasion, and
-                we bake it fresh for your date.
+                we bake it fresh for your date. Because nothing is baked in
+                advance, please order at least 4 hours before you need the cake.
               </p>
 
               <h2>Cakes for Every Occasion</h2>
               <p>
                 Birthdays are what we bake most: layered sponges with a name and a
-                message piped on top, ready the same day when you order early
-                enough. Photo cakes carry an edible print of your own picture —
+                message piped on top, ready the same day when you order at least
+                4 hours ahead. Photo cakes carry an edible print of your own picture —
                 popular for first birthdays and retirements. Custom and theme cakes
                 are sculpted to a brief, so send a reference picture and we will
                 tell you honestly what is possible at what weight. For weddings,
@@ -166,10 +167,11 @@ export default async function CakesIndexPage() {
 
               <h2>Delivery and Ordering in Tenkasi</h2>
               <p>
-                We deliver across Tenkasi and the surrounding area, and same-day
-                delivery is usually possible on standard cakes when you order in the
-                morning. Custom designs and tiered cakes need at least a day&apos;s
-                notice so the bake and the decoration are not rushed. Pick a cake
+                We deliver within 20 km by road of our Ilanji bakery. Every cake is
+                baked fresh after you order, so please order at least 4 hours before
+                you need it; same-day delivery is possible on that notice. Custom
+                designs and tiered cakes may need longer so the bake and the
+                decoration are not rushed - we confirm the timing with you. Pick a cake
                 above, or message us on WhatsApp with your occasion, date and rough
                 weight and we will confirm the price and the timing.
               </p>

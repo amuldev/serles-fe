@@ -131,7 +131,7 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             // The template and Next bootstrap require inline scripts/styles.
             // HTTPS sources preserve the existing analytics/chat integrations.
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https:" + (isDev ? " 'unsafe-eval'" : '') + "; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https: wss:" + (isDev ? ' ws:' : '') + "; frame-src https:; media-src 'self' blob: https:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https:" + (isDev ? " 'unsafe-eval'" : '') + "; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https: wss:" + (isDev ? ' ws:' : '') + "; frame-src https:; media-src 'self' blob: https:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://www.facebook.com; frame-ancestors 'none'",
           },
           {
             key: 'Permissions-Policy',

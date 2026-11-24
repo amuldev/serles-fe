@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Breadcrumb from '../components/Breadcrumb';
 import JsonLd from '../components/blog/JsonLd';
 import { SITE_URL } from '../utils/blog';
-import { DELIVERY_COVERAGE, DELIVERY_CHARGES } from '../utils/deliveryPolicy';
+import { DELIVERY_COVERAGE, DELIVERY_CHARGES, FRESH_BAKE_DETAIL, FRESH_BAKE_HEADLINE, ORDER_LEAD_HOURS } from '../utils/deliveryPolicy';
 import styles from './page.module.scss';
 import { DELIVERY_AREA_PAGES, deliveryAreaPath } from '../utils/deliveryAreas';
 
@@ -10,7 +10,7 @@ import { DELIVERY_AREA_PAGES, deliveryAreaPath } from '../utils/deliveryAreas';
 // home delivery", "cake order online"). Ordering is online via WhatsApp with
 // Google Pay/online payment - there is no web checkout, so copy never implies one.
 const title = "Online Cake Order & Home Delivery in Tenkasi | Serle's Bake";
-const description = 'Order cakes online from Serle’s Bake, Tenkasi: choose a cake, confirm on WhatsApp and pay by Google Pay. Home delivery within 20 km by road of Ilanji.';
+const description = 'Order cakes online from Serle’s Bake, Tenkasi: baked fresh after you order (4 hours’ notice), confirmed on WhatsApp, delivered within 20 km of Ilanji.';
 const url = `${SITE_URL}/cake-delivery`;
 const whatsapp = `https://wa.me/916383070725?text=${encodeURIComponent('Hi! I would like to check cake delivery from Ilanji. My delivery address/map pin is: \nEvent date and time: \nCake/design and size: ')}`;
 
@@ -23,7 +23,8 @@ const questions = [
   ['Can I order a cake online in Tenkasi?', 'Yes. Choose a cake and size from our menu, then send the cake, date, cake-cutting time and delivery address or map pin on WhatsApp. We confirm availability, design, the final amount and payment (Google Pay or online payment) in the chat before you proceed. There is no checkout on this website.'],
   ['How far do you deliver?', DELIVERY_COVERAGE],
   ['What does delivery cost?', DELIVERY_CHARGES],
-  ['Can I order for today?', 'Ask us to check availability for your cake, design and event time. Same-day delivery is subject to confirmation; sending a message does not reserve a slot.'],
+  ['Can I order for today?', `Yes, if you order at least ${ORDER_LEAD_HOURS} hours before you need the cake: every cake is baked fresh after the order, so we need that time to bake and finish it. Detailed tier and custom designs may need longer. Message us with the cake, design and delivery time; sending a message does not reserve a slot until we confirm.`],
+  ['Why do you need 4 hours’ notice?', FRESH_BAKE_DETAIL],
   ['How do I pay and confirm my order?', 'We accept Google Pay and online payments. Confirm the cake, date, address, final amount and payment instructions with us on WhatsApp, and check your order confirmation in the chat.'],
   ['Can I order for family while I am away?', 'Share the recipient’s delivery address, event date and a contact for handover privately on WhatsApp. We will check the route and available arrangements with you.'],
 ];
@@ -47,6 +48,7 @@ export default function CakeDeliveryPage() {
         <p className={styles.eyebrow}>Serle&apos;s Bake · Ilanji, Tenkasi</p>
         <h2 id="delivery-intro">A cake for your celebration, with the delivery details agreed first</h2>
         <p>{DELIVERY_COVERAGE}</p>
+        <p><strong>{FRESH_BAKE_HEADLINE}.</strong> We start baking after you order, never in advance, so please order at least {ORDER_LEAD_HOURS} hours before you need the cake.</p>
         <div className={styles.actions}>
           <a className={styles.primary} href={whatsapp} target="_blank" rel="noopener noreferrer">Check delivery on WhatsApp</a>
           <Link className={styles.secondary} href="/menu">Browse cakes &amp; prices</Link>
@@ -71,7 +73,7 @@ export default function CakeDeliveryPage() {
         </section>
         <section className={styles.card} aria-labelledby="timing-heading">
           <h2 id="timing-heading">Plan around the cake-cutting time</h2>
-          <p>Tell us when you need the cake, including time for the handover and any setup. For photo, themed or tiered cakes, send your design request early so we can check feasibility, preparation and transport.</p>
+          <p>Every cake is baked fresh after you order, so allow at least {ORDER_LEAD_HOURS} hours between ordering and the time you need it. Tell us when you need the cake, including time for the handover and any setup. For photo, themed or tiered cakes, send your design request early so we can check feasibility, preparation and transport.</p>
           <p>For a hotel, hall or another venue, include its name and entrance details. Let us know if refrigeration will be available before serving.</p>
         </section>
       </div>
@@ -79,7 +81,7 @@ export default function CakeDeliveryPage() {
         <h2 id="order-heading">How to order a cake online in Tenkasi</h2>
         <ol className={styles.steps}>
           <li><strong>Choose a cake.</strong> Browse our <Link href="/cakes">cake collection</Link> and note the design and weight you would like.</li>
-          <li><strong>Send the essentials privately.</strong> Message your address or map pin, date, cake-cutting time, design request and preferred size on WhatsApp.</li>
+          <li><strong>Send the essentials privately.</strong> Message your address or map pin, date, cake-cutting time, design request and preferred size on WhatsApp, at least {ORDER_LEAD_HOURS} hours before you need the cake.</li>
           <li><strong>Check the details with us.</strong> We confirm coverage, availability, customization, the final amount and payment instructions.</li>
           <li><strong>Check your confirmation.</strong> Review the agreed cake, message, delivery address and timing in the chat. A website enquiry is the start of the conversation.</li>
         </ol>

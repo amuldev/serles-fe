@@ -35,7 +35,7 @@ export default function CelebrationPlanning() {
         ))}
       </div>
       <div className={styles.deliveryStrip}>
-        <p><FaMapMarkerAlt aria-hidden="true" /><span>Delivery is checked for eligible addresses within 20 km by road from our Ilanji bakery.</span></p>
+        <p><FaMapMarkerAlt aria-hidden="true" /><span><strong>Baked fresh after you order</strong> - please order at least 4 hours ahead. Delivery is checked for eligible addresses within 20 km by road from our Ilanji bakery.</span></p>
         <Link href="/cake-delivery">Check your delivery address</Link>
       </div>
     </section>
