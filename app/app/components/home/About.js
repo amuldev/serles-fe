@@ -25,7 +25,7 @@ export default function About() {
           </p>
           <p className={styles.text}>
             Birthday, photo, custom and tiered cakes and brownies, each one baked after you order. Tell us the occasion
-            on WhatsApp and we&apos;ll plan the cake with you. We deliver within 20 km of Ilanji:
+            on WhatsApp and we&apos;ll plan the cake with you. We deliver within 30 km of Ilanji:
             see <Link href="/cake-delivery">online cake order and home delivery in Tenkasi</Link>.
           </p>
           <Link href="/about" className={styles.more}>More about us <FaArrowRight aria-hidden="true" /></Link>

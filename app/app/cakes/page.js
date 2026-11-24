@@ -164,7 +164,7 @@ export default async function CakesIndexPage() {
 
               <h2>Delivery and Ordering in Tenkasi</h2>
               <p>
-                We deliver within 20 km by road of our Ilanji bakery. Every cake is
+                We deliver within 30 km by road of our Ilanji bakery. Every cake is
                 baked fresh after you order, so please order at least 4 hours before
                 you need it; same-day delivery is possible on that notice. Custom
                 designs and tiered cakes may need longer so the bake and the

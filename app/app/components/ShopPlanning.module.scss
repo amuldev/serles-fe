@@ -4,7 +4,9 @@ $muted: #75656a;
 $border: #eedde2;
 $blush: #fff1f5;
 
-.celebration { padding-top: clamp(40px, 5vw, 70px); padding-bottom: clamp(40px, 5vw, 70px); }
+// Alternate (sand) band so the homepage alternates white / sand sections.
+.celebrationBand { background: var(--color-alt, #f6f0e6); }
+.celebration { padding-top: clamp(48px, 7vw, 88px); padding-bottom: clamp(48px, 7vw, 88px); }
 .collectionHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 27px; }
 .collectionTitle { max-width: 680px; margin: 0 0 12px; color: $wine; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: clamp(27px, 3.1vw, 38px); font-weight: 700; line-height: 1.16; letter-spacing: -.025em; }
 .collectionIntro { max-width: 660px; margin: 0; color: $muted; font-size: 15px; line-height: 1.7; }

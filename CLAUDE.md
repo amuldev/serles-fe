@@ -336,6 +336,12 @@ Unset, it reads the Django API exactly as before.
   `apiFetch`'s literal `typeof window` check keeps `postgres` out of browser bundles.
 - **Before shipping, scan the build:** `.next/static` must contain no
   `serles-storefront` string and no connection string.
+- **Escape `$` in env files.** In `.env.local`, write `STOREFRONT_DATABASE_URL`
+  with every `$` as `\$`. Next.js expands `$NAME` there, which once silently
+  cut 8 characters from the password. The repeated failed logins tripped
+  Supabase's pooler block ("ECIRCUITBREAKER too many authentication
+  failures"), which locks out the same database user that production uses.
+  Vercel's dashboard values are not expanded.
 - **Keep `max_pipeline: 0` in `db.js`.** Supabase's transaction pooler never
   answers pipelined parameterless queries, so Vercel builds hung to the 45-min
   limit (24 Nov 2026). Every load goes through `withDbDeadline` (30 s, 3 tries).

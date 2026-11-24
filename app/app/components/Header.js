@@ -43,7 +43,7 @@ export default function Header() {
   return (
     <>
       <div className={styles.strip}>
-        <FaClock aria-hidden="true" /> Baked fresh after you order · Delivery within 20 km of Ilanji, Tenkasi
+        <FaClock aria-hidden="true" /> Baked fresh after you order · Delivery within 30 km of Ilanji, Tenkasi
       </div>
 
       <header className={styles.header}>

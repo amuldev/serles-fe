@@ -374,3 +374,31 @@ main .btn-outline-primary:hover, main .btn-outline-primary:focus, main .btn-outl
   background-color: #fff1f5; border-color: #671d32; color: #671d32;
 }
 main .btn:focus-visible { outline: 3px solid #a95d76; outline-offset: 2px; box-shadow: none; }
+
+// ---------------------------------------------------------------------------
+// Brand palette (single source, 24 Nov 2026). Components read these through
+// styles/_brand.scss. Primary is the brand burgundy; "alt" is the warm sand /
+// caramel palette used to alternate sections so pages never read as one long
+// white column.
+// ---------------------------------------------------------------------------
+:root {
+  --color-primary: #671d32;
+  --color-primary-dark: #4f1426;
+  --color-primary-soft: #8a3550;
+  --color-on-primary: #fff8f0;
+  --color-alt: #f6f0e6;        // sand: alternating section background
+  --color-alt-strong: #e9dfcf; // sand borders / frames
+  --color-accent: #c98a4b;     // caramel: small highlights only (not body text)
+  --color-accent-soft: #f7e3cc;
+  --color-blush: #fff1f5;
+  --color-cream: #fffaf7;
+  --color-ink: #2f1c24;
+  --color-muted: #6b5a60;
+  --color-border: #eedde2;
+  --color-whatsapp: #128c4a;
+}
+
+// Section rhythm helpers: wrap any page section to get standard spacing and
+// an alternating background.
+.section-std { padding: clamp(48px, 7vw, 88px) 0; }
+.section-alt { padding: clamp(48px, 7vw, 88px) 0; background: var(--color-alt); }

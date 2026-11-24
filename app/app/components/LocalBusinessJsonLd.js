@@ -67,11 +67,11 @@ const bakery = {
   ...(GEO
     ? { geo: { '@type': 'GeoCoordinates', latitude: GEO.lat, longitude: GEO.lng } }
     : {}),
-  // Owner's newer 20 km ROAD limit supersedes the older district-wide list.
+  // Owner's newer 30 km ROAD limit supersedes the older district-wide list.
   // Never encode this as an air-radius GeoCircle or invent village branches.
   areaServed: DELIVERY_AREAS.map(name => ({
     '@type': 'Place', name,
-    description: 'Eligible addresses within 20 km by road from the Ilanji bakery; route and availability confirmed before ordering.',
+    description: 'Eligible addresses within 30 km by road from the Ilanji bakery; route and availability confirmed before ordering.',
   })),
   servesCuisine: 'Bakery',
   // The plus code resolves to the exact shop rather than a fuzzy text search over

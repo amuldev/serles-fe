@@ -30,7 +30,7 @@ export default async function DeliveryAreaPage({ params }) {
   return <>
     <JsonLd data={{ '@context': 'https://schema.org', '@graph': [
       { '@type': 'WebPage', '@id': `${url}#webpage`, url, name: `Cake delivery to ${area.name}`, mainEntity: { '@id': `${url}#service` }, isPartOf: { '@id': `${SITE_URL}/#website` } },
-      { '@type': 'Service', '@id': `${url}#service`, url, name: `Cake delivery enquiries for ${area.name}`, provider: { '@id': `${SITE_URL}/#business` }, description: DELIVERY_COVERAGE, areaServed: { '@type': 'Place', name: area.name, description: 'Eligible addresses within 20 km by road from the Ilanji bakery; confirm each destination before ordering.' } },
+      { '@type': 'Service', '@id': `${url}#service`, url, name: `Cake delivery enquiries for ${area.name}`, provider: { '@id': `${SITE_URL}/#business` }, description: DELIVERY_COVERAGE, areaServed: { '@type': 'Place', name: area.name, description: 'Eligible addresses within 30 km by road from the Ilanji bakery; confirm each destination before ordering.' } },
       { '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
         { '@type': 'ListItem', position: 2, name: 'Cake delivery', item: `${SITE_URL}/cake-delivery` },

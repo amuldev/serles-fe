@@ -14,7 +14,7 @@ export default function TagCollectionIntro({ name, products = [] }) {
       <p>
         Choose the cake first, then send your date, message and preferred size on WhatsApp.
         Ask us to check any design or ingredient change before paying.
-        For delivery, share the actual address or map pin. We check availability within 20 km by road from Ilanji.
+        For delivery, share the actual address or map pin. We check availability within 30 km by road from Ilanji.
         You can also <Link href="/cakes">browse all cakes by category</Link> or <Link href="/menu">compare the menu and prices</Link>.
       </p>
     </section>

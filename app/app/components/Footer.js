@@ -58,7 +58,7 @@ export default function Footer() {
           <section className={styles.col} aria-labelledby="footer-hours">
             <h2 id="footer-hours" className={styles.heading}>Hours</h2>
             <p className={styles.line}><FaClock aria-hidden="true" /> <span>Every day<br />7:00 am – 11:00 pm</span></p>
-            <p className={styles.small}>Home delivery within 20 km by road. Address and availability are confirmed before you order.</p>
+            <p className={styles.small}>Home delivery within 30 km by road. Address and availability are confirmed before you order.</p>
           </section>
 
           <section className={styles.col} aria-labelledby="footer-contact">

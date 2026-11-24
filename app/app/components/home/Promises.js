@@ -3,7 +3,7 @@ import styles from './Promises.module.scss';
 
 const ITEMS = [
   { Icon: FaBirthdayCake, title: 'Baked fresh after you order', text: 'Nothing waits on a shelf. Order at least 4 hours ahead.' },
-  { Icon: FaTruck, title: 'Delivered from Ilanji', text: 'Within 20 km by road. ₹50 for the first 5 km.' },
+  { Icon: FaTruck, title: 'Delivered from Ilanji', text: 'Within 30 km by road. ₹50 for the first 5 km.' },
   { Icon: FaWhatsapp, title: 'Order on WhatsApp', text: 'Confirm the cake and pay by Google Pay or online.' },
 ];
 

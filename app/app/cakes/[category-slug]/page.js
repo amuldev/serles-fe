@@ -64,7 +64,7 @@ function buildCategorySchema(category, products, categorySlug) {
     name: `${category.name} Cakes`,
     description:
       category.description ||
-      `${category.name} cakes from Serle's Bake, baked to order in Tenkasi with address-level delivery checks within 20 km by road from Ilanji.`,
+      `${category.name} cakes from Serle's Bake, baked to order in Tenkasi with address-level delivery checks within 30 km by road from Ilanji.`,
     isPartOf: { "@id": `${SITE}/#website` },
     provider: { "@id": `${SITE}/#business` },
     breadcrumb: {

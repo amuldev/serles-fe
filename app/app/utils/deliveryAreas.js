@@ -11,7 +11,7 @@ export const DELIVERY_AREA_PAGES = [
       'For an event at a hall, send the hall name, its entrance and the cake-cutting time. If you are ordering a custom design, attach a reference and say which parts matter most. We will check the design, date and address together before confirming availability.',
     ],
     question: 'Does the Panpoli route cover Mekkarai too?',
-    answer: 'No. They are separate destinations. Our Mekkarai guide uses a separate village-point route. Send the actual delivery pin so we can check it against the 20 km road limit.',
+    answer: 'No. They are separate destinations. Our Mekkarai guide uses a separate village-point route. Send the actual delivery pin so we can check it against the 30 km road limit.',
     related: ['mekkarai', 'pudur-sengottai'],
   },
   {
@@ -38,7 +38,7 @@ export const DELIVERY_AREA_PAGES = [
       'For a fragile or tiered design, discuss the final handover and storage before confirming. Tell us the cake-cutting time and whether someone will be ready to receive the cake. If any access arrangement or restriction applies to your destination, explain it when you enquire so that we can check feasibility.',
     ],
     question: 'Can a cake be delivered further along my journey?',
-    answer: 'We check the actual destination against the 20 km road limit from Ilanji. A route passing through Puliyarai does not confirm delivery to a further stop. Ask before making plans or payment.',
+    answer: 'We check the actual destination against the 30 km road limit from Ilanji. A route passing through Puliyarai does not confirm delivery to a further stop. Ask before making plans or payment.',
     related: ['pudur-sengottai', 'panpoli'],
   },
   {
@@ -57,11 +57,11 @@ export const DELIVERY_AREA_PAGES = [
   {
     slug: 'mekkarai', name: 'Mekkarai', aliases: 'Mekarai, Mekkara', km: 16.1,
     latitude: 9.060605, longitude: 77.21893,
-    intro: 'For Mekkarai cake enquiries, send your exact destination to our Ilanji bakery. The driving-route estimate to the mapped Mekkarai village point is about 16.1 km, within the 20 km limit at that point. Addresses beyond the village point need their own route check.',
+    intro: 'For Mekkarai cake enquiries, send your exact destination to our Ilanji bakery. The driving-route estimate to the mapped Mekkarai village point is about 16.1 km, within the 30 km limit at that point. Addresses beyond the village point need their own route check.',
     heading: 'Mekkarai village and other Mekkara endpoints need separate checks',
     paragraphs: [
       'A search result for a dam, a road or a nearby locality can describe a different endpoint from Mekkarai village. This page uses the village coordinates shown below. Include your venue or home pin instead of asking us to infer it from a similarly named attraction.',
-      'Because the remaining distance from the village to your address matters to the 20 km boundary, confirm coverage before settling the cake and payment. Tell us if the recipient needs a particular handover point. For photo, themed or tiered cakes, discuss the design and transport arrangements early; the route estimate is not a delivery-time promise.',
+      'Because the remaining distance from the village to your address matters to the 30 km boundary, confirm coverage before settling the cake and payment. Tell us if the recipient needs a particular handover point. For photo, themed or tiered cakes, discuss the design and transport arrangements early; the route estimate is not a delivery-time promise.',
     ],
     question: 'Does a route to Mekkara dam confirm my delivery?',
     answer: 'No. A dam route and a village-address route can have different endpoints. Send your actual destination and we will check the road distance from the bakery and the available arrangements.',

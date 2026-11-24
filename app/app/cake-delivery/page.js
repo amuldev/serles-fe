@@ -10,7 +10,7 @@ import { DELIVERY_AREA_PAGES, deliveryAreaPath } from '../utils/deliveryAreas';
 // home delivery", "cake order online"). Ordering is online via WhatsApp with
 // Google Pay/online payment - there is no web checkout, so copy never implies one.
 const title = "Online Cake Order & Home Delivery in Tenkasi | Serle's Bake";
-const description = 'Order cakes online from Serle’s Bake, Tenkasi: baked fresh after you order (4 hours’ notice), confirmed on WhatsApp, delivered within 20 km of Ilanji.';
+const description = 'Order cakes online from Serle’s Bake, Tenkasi: baked fresh after you order (4 hours’ notice), confirmed on WhatsApp, delivered within 30 km of Ilanji.';
 const url = `${SITE_URL}/cake-delivery`;
 const whatsapp = `https://wa.me/916383070725?text=${encodeURIComponent('Hi! I would like to check cake delivery from Ilanji. My delivery address/map pin is: \nEvent date and time: \nCake/design and size: ')}`;
 
@@ -56,7 +56,7 @@ export default function CakeDeliveryPage() {
       </section>
       <section className={styles.section} aria-labelledby="coverage-heading">
         <h2 id="coverage-heading">Checking your delivery address</h2>
-        <p>Our bakery is on Tenkasi–Shencottai Main Road in Ilanji. For addresses in Ilanji, Tenkasi, Sengottai (Shencottai), Courtallam and surrounding villages, please send a map pin. Coverage depends on the road route to that address, within our 20 km limit, and the arrangements available for your order.</p>
+        <p>Our bakery is on Tenkasi–Shencottai Main Road in Ilanji. For addresses in Ilanji, Tenkasi, Sengottai (Shencottai), Courtallam and surrounding villages, please send a map pin. Coverage depends on the road route to that address, within our 30 km limit, and the arrangements available for your order.</p>
         <p>For nearby places such as Kottakulam, Vallam, Piranoor, Panpoli or Pudur near Sengottai, ask us to check your exact destination. A nearby town name alone does not establish delivery eligibility. We confirm the destination individually before accepting an order.</p>
         <p>We bake from Ilanji; the delivery destinations are served from this bakery. <Link href="/contact">Find our bakery and contact details</Link>.</p>
       </section>

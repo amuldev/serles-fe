@@ -1,20 +1,23 @@
-// Brand tokens for the 2026 UI pass (ui-ux-pro-max): burgundy + blush, serif
-// headings (Georgia), Inter body. Import with `@use '../styles/brand' as *;`.
+// Brand tokens. Colours resolve to the CSS variables in globals.scss (single
+// source); headings use --font-display (Cormorant Garamond), body Inter. Import with `@use '../styles/brand' as *;`.
 // Contrast on white: $wine 11.6:1, $ink 15:1, $muted 6.4:1.
-$wine: #671d32;
-$wine-dark: #4f1426;
+$wine: var(--color-primary, #671d32);
+$wine-dark: var(--color-primary-dark, #4f1426);
 $rose: #9f536b;      // eyebrow labels, 5.6:1
-$ink: #2f1c24;
-$muted: #6b5a60;
-$border: #eedde2;
-$blush: #fff1f5;
-$cream: #fffaf7;
+$ink: var(--color-ink, #2f1c24);
+$muted: var(--color-muted, #6b5a60);
+$border: var(--color-border, #eedde2);
+$blush: var(--color-blush, #fff1f5);
+$cream: var(--color-cream, #fffaf7);
 $pink: #ffb6c1;      // decorative only, never text on white
-$whatsapp: #128c4a;  // 4.6:1 with white text
+$whatsapp: var(--color-whatsapp, #128c4a);  // 4.6:1 with white text
 $ring: #a95d76;
 $serif: var(--font-display), Georgia, 'Times New Roman', serif;
-$sand: #f6f0e6;      // warm neutral section background (inspired by bakery-shop palettes)
-$sand-dark: #e9dfcf;
+$sand: var(--color-alt, #f6f0e6);      // alternate section background
+$sand-dark: var(--color-alt-strong, #e9dfcf);
+$accent: var(--color-accent, #c98a4b);
+$accent-soft: var(--color-accent-soft, #f7e3cc);
+$on-primary: var(--color-on-primary, #fff8f0);
 
 @mixin eyebrow {
   margin: 0 0 8px; color: $rose; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;

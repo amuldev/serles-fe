@@ -11,7 +11,8 @@ const choices = [
 ];
 export default function CelebrationPlanning() {
   return (
-    <section className={`container ${styles.celebration}`} aria-labelledby="celebration-planning-heading">
+    <section className={styles.celebrationBand} aria-labelledby="celebration-planning-heading">
+    <div className={`container ${styles.celebration}`}>
       <div className={styles.collectionHeader}>
         <div>
           <h2 id="celebration-planning-heading" className={styles.collectionTitle}>Plan your celebration from Ilanji</h2>
@@ -35,9 +36,10 @@ export default function CelebrationPlanning() {
         ))}
       </div>
       <div className={styles.deliveryStrip}>
-        <p><FaMapMarkerAlt aria-hidden="true" /><span><strong>Baked fresh after you order</strong> - please order at least 4 hours ahead. Delivery is checked for eligible addresses within 20 km by road from our Ilanji bakery.</span></p>
+        <p><FaMapMarkerAlt aria-hidden="true" /><span><strong>Baked fresh after you order</strong> - please order at least 4 hours ahead. Delivery is checked for eligible addresses within 30 km by road from our Ilanji bakery.</span></p>
         <Link href="/cake-delivery">Check your delivery address</Link>
       </div>
+    </div>
     </section>
   );
 }

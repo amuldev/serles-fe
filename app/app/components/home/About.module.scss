@@ -1,6 +1,6 @@
 @use '../../styles/brand' as *;
 
-.section { padding: clamp(48px, 7vw, 88px) 0; }
+.section { padding: clamp(48px, 7vw, 88px) 0; background: $sand; }
 .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
 .photo {
   overflow: hidden; border-radius: 22px; background: $blush;

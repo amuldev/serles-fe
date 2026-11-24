@@ -11,7 +11,7 @@ import styles from './about.module.scss';
 
 const TITLE = "About Our Ilanji Bakery, Tenkasi | Serle's Bake";
 const DESCRIPTION =
-  "Find Serle's Bake in Ilanji, Tenkasi. Browse cakes and brownies, plan your design on WhatsApp and check delivery within 20 km by road.";
+  "Find Serle's Bake in Ilanji, Tenkasi. Browse cakes and brownies, plan your design on WhatsApp and check delivery within 30 km by road.";
 
 export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
@@ -37,7 +37,7 @@ const STEPS = [
   { Icon: FaWhatsapp, title: 'Message us', text: 'Send the cake, size, date and cake-cutting time on WhatsApp. Add a design reference or photo if you have one.' },
   { Icon: FaClock, title: 'We bake it fresh', text: 'Nothing is baked in advance. Please order at least 4 hours before you need the cake; detailed designs may need longer.' },
   { Icon: FaWallet, title: 'Confirm and pay', text: 'We confirm the design, final amount and payment instructions. We accept Google Pay and online payments.' },
-  { Icon: FaTruck, title: 'Home delivery', text: 'We deliver within 20 km by road from Ilanji. Send your map pin and we check the route and the charge first.' },
+  { Icon: FaTruck, title: 'Home delivery', text: 'We deliver within 30 km by road from Ilanji. Send your map pin and we check the route and the charge first.' },
 ];
 
 async function loadCategories() {
@@ -85,7 +85,7 @@ export default async function AboutPage() {
             <ul className={styles.facts}>
               <li><FaMapMarkerAlt aria-hidden="true" /> Ilanji, Tenkasi, Tamil Nadu 627805</li>
               <li><FaClock aria-hidden="true" /> Open every day, 7:00 am – 11:00 pm</li>
-              <li><FaTruck aria-hidden="true" /> Delivery within 20 km by road</li>
+              <li><FaTruck aria-hidden="true" /> Delivery within 30 km by road</li>
             </ul>
             <div className={styles.ctas}>
               <Link href="/menu" className={`${styles.button} ${styles.primary}`}>See cakes &amp; prices <FaArrowRight aria-hidden="true" /></Link>
