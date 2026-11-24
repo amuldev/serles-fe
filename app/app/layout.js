@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import Script from "next/script";
 import "./globals.scss";
 import Header from './components/Header';
@@ -9,6 +9,9 @@ import LocalBusinessJsonLd from './components/LocalBusinessJsonLd';
 import ContactClickTracking from './components/ContactClickTracking';
 
 const inter = Inter({ subsets: ["latin"] });
+// Display face for headings (24 Nov 2026 redesign): an elegant, slightly
+// handmade-looking serif instead of plain Georgia. Self-hosted by next/font.
+const display = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-display", display: "swap" });
 
 // Site-wide defaults. Pages without their own openGraph inherit these, so the
 // social title must equal the page title (it said "Cakes Near Me" while the
@@ -64,7 +67,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={display.variable}>
       <head>
         <link rel="icon" href="/serlesfavicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />

@@ -10,7 +10,7 @@ $ring: #a95d76;
 
 .hero { padding: clamp(40px, 6vw, 72px) 0 clamp(32px, 5vw, 56px); background: linear-gradient(180deg, $cream, #fff); }
 .eyebrow { margin: 0 0 8px; color: #9f536b; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.title { margin: 0 0 12px; color: $wine; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(34px, 4.5vw, 52px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; }
+.title { margin: 0 0 12px; color: $wine; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: clamp(34px, 4.5vw, 52px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; }
 .lead { max-width: 640px; margin: 0 0 28px; color: $muted; font-size: 17px; line-height: 1.7; }
 
 .actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
@@ -38,7 +38,7 @@ a.action { cursor: pointer; }
   display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px; border: 1px solid $border; border-radius: 18px; background: #fff;
 }
 .cardTitle {
-  display: flex; align-items: center; gap: 10px; margin: 0; color: $wine; font-family: Georgia, 'Times New Roman', serif; font-size: 22px; font-weight: 700;
+  display: flex; align-items: center; gap: 10px; margin: 0; color: $wine; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: 22px; font-weight: 700;
   svg { font-size: 18px; }
 }
 .address {
@@ -63,7 +63,7 @@ a.action { cursor: pointer; }
 .outline { border-color: $wine; color: $wine; background: #fff; &:hover { background: $blush; color: $wine; } }
 
 .follow { padding: clamp(32px, 5vw, 48px) 0; background: $blush; }
-.followTitle { margin: 0 0 16px; color: $wine; font-family: Georgia, 'Times New Roman', serif; font-size: 24px; font-weight: 700; }
+.followTitle { margin: 0 0 16px; color: $wine; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: 24px; font-weight: 700; }
 .socials {
   display: flex; flex-wrap: wrap; gap: 12px; margin: 0; padding: 0; list-style: none;
   a {

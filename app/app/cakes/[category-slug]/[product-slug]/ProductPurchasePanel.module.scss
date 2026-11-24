@@ -9,7 +9,7 @@ $whatsapp: #128c4a;
 $ring: #a95d76;
 
 .name {
-  margin: 0 0 8px; color: $wine; font-family: Georgia, 'Times New Roman', serif;
+  margin: 0 0 8px; color: $wine; font-family: var(--font-display), Georgia, 'Times New Roman', serif;
   font-size: clamp(28px, 3vw, 38px); font-weight: 700; line-height: 1.15; letter-spacing: -.015em;
 }
 

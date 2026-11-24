@@ -44,7 +44,7 @@ function LinkList({ title, items }) {
   return (
     <section className="col-md-6 mb-4">
       <div style={{ background: "#f8f9fa", borderRadius: 15, padding: 25, height: "100%" }}>
-        <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 18, fontSize: "1.4rem" }}>{title}</h2>
+        <h2 style={{ color: "#671d32", fontFamily: "var(--font-display), Georgia, 'Times New Roman', serif", marginBottom: 18, fontSize: "1.4rem" }}>{title}</h2>
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {items.map(([label, href]) => (
             <li key={href} style={{ marginBottom: 10 }}>
@@ -69,7 +69,7 @@ export default async function SiteMapPage() {
     <Breadcrumb key="breadcrumb" title="Site Map" headingLevel="h2" />,
     <div key="content" style={{ background: "linear-gradient(135deg, #fef7f8 0%, #fff5f6 100%)", padding: "60px 0", minHeight: "70vh" }}>
       <div className="container">
-        <h1 className="text-center mb-3" style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 700 }}>Site Map</h1>
+        <h1 className="text-center mb-3" style={{ color: "#671d32", fontFamily: "var(--font-display), Georgia, 'Times New Roman', serif", fontWeight: 700 }}>Site Map</h1>
         <p className="text-center text-muted mb-5">Browse the pages, cake categories and products available at Serle&apos;s Bake.</p>
         <div className="row">
           <LinkList title="Main Pages" items={staticPages} />

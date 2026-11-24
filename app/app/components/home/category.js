@@ -38,9 +38,8 @@ export default async function Category() {
       <SectionHeading
         as="h1"
         align="center"
-        eyebrow="Serle's Bake · Ilanji"
         title="Homemade Cakes in Tenkasi"
-        intro="Baked fresh after you order, for birthdays, anniversaries and every celebration in between."
+        intro="Baked fresh after you order in Ilanji, for every celebration."
       />
       <ul className="product_grid">
         {categories.map((category, index) => {

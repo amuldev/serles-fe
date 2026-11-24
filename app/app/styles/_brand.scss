@@ -12,14 +12,16 @@ $cream: #fffaf7;
 $pink: #ffb6c1;      // decorative only, never text on white
 $whatsapp: #128c4a;  // 4.6:1 with white text
 $ring: #a95d76;
-$serif: Georgia, 'Times New Roman', serif;
+$serif: var(--font-display), Georgia, 'Times New Roman', serif;
+$sand: #f6f0e6;      // warm neutral section background (inspired by bakery-shop palettes)
+$sand-dark: #e9dfcf;
 
 @mixin eyebrow {
   margin: 0 0 8px; color: $rose; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
 }
 @mixin section-title {
   margin: 0; color: $wine; font-family: $serif; font-weight: 700; line-height: 1.15; letter-spacing: -.02em;
-  font-size: clamp(28px, 3.4vw, 40px);
+  font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -.01em;
 }
 @mixin focus-ring { outline: 3px solid $ring; outline-offset: 3px; }
 @mixin button-base {

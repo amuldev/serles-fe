@@ -43,7 +43,6 @@ export default async function Social() {
     <section className={styles.section} aria-labelledby="social-heading">
       <div className="container">
         <header className={styles.header}>
-          <p className={styles.eyebrow}>From our kitchen</p>
           <h2 id="social-heading" className={styles.title}>Real cakes, real customers</h2>
           <p className={styles.intro}>
             Every cake here was baked to order in our Ilanji kitchen. Follow along for new bakes,

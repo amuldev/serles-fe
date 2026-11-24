@@ -59,7 +59,7 @@ export default function Team() {
     return (
         <section className={styles.section}>
             <div className="container">
-                <SectionHeading eyebrow="The people behind the cakes" title="Meet the team" />
+                <SectionHeading title="Meet the team" />
                 <ul className={styles.grid}>
                     {teamMembers.map((member) => (
                         <TeamMember key={member.name} name={member.name} role={member.role} image={member.image} />

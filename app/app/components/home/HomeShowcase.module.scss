@@ -1,0 +1,19 @@
+@use '../../styles/brand' as *;
+
+.section { padding: clamp(48px, 7vw, 88px) 0; }
+.tabs {
+  display: flex; justify-content: center; gap: 4px 28px; flex-wrap: wrap; margin: -8px 0 32px;
+  @media (max-width: 767px) { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; gap: 20px; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+}
+.tab {
+  position: relative; min-height: 44px; padding: 0 2px; border: 0; background: none; color: $muted; font-size: 15px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; cursor: pointer;
+  &::after { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 2px; background: $wine; transform: scaleX(0); transition: transform .2s ease; }
+  &:hover { color: $ink; }
+  &:focus-visible { @include focus-ring; border-radius: 4px; }
+}
+.tabActive { color: $wine; &::after { transform: scaleX(1); } }
+.more { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin-top: 8px; }
+.moreLink { @include button-primary; }
+.menuLink { color: $wine; font-weight: 700; text-underline-offset: 4px; &:hover { color: $wine-dark; } }
+@media (prefers-reduced-motion: reduce) { .tab::after { transition: none; } }

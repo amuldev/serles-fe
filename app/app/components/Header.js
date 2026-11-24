@@ -1,126 +1,105 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import { FaPhone } from 'react-icons/fa';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { FaBars, FaTimes, FaWhatsapp, FaPhoneAlt, FaClock } from 'react-icons/fa';
 import EmailLink from './EmailLink';
 import Wabtn from './ui/wabtn';
+import styles from './Header.module.scss';
 
+const WHATSAPP = "https://wa.me/916383070725?text=Hi!%20I'm%20interested%20in%20ordering%20a%20cake";
+
+const NAV = [
+  { href: '/cakes', label: 'Cakes' },
+  { href: '/menu', label: 'Menu & prices' },
+  { href: '/cake-delivery', label: 'Delivery' },
+  { href: '/blog', label: 'Guides' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+/**
+ * Site header, rebuilt 24 Nov 2026. The template header was a pink logo block
+ * over a dark menu bar with contact details in the corners, the biggest "this
+ * is a template" signal on the site. Now: a slim announcement strip, a white
+ * sticky bar (logo · menu · phone + WhatsApp), and a simple drawer on phones.
+ * The logo is not a heading: each page owns its own <h1>.
+ */
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname() || '/';
+  const isActive = (href) => pathname === href || pathname.startsWith(`${href}/`);
+
+  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+  }, [open]);
 
   return (
     <>
-      {/* Offcanvas Menu Begin */}
-      <div className={`offcanvas-menu-overlay ${isMenuOpen ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}></div>
-      <div className={`offcanvas-menu-wrapper ${isMenuOpen ? 'active' : ''}`}>
-        {/* Close Button */}
-        <button type="button" className="offcanvas__close" aria-label="Close navigation" onClick={() => setIsMenuOpen(false)}>
-          <i className="fa fa-times" aria-hidden="true"></i>
-        </button>
-        
-        {/* Logo Section */}
-        <div className='d-flex align-items-center justify-content-start gap-3 p-3'>
-          <Image src="/img/serlesbakelogo.webp" alt="Serle's Bake — homemade cakes in Tenkasi"
-          title="Serle's Bake — homemade cakes in Tenkasi" width={60} height={60} />
-          <p className='text-black h6 mb-0'>Serle&apos;s Bake</p>
-        </div>
-        
-        {/* Mobile Navigation Menu */}
-        <div >
-          <nav className="mobile-menu">
+      <div className={styles.strip}>
+        <FaClock aria-hidden="true" /> Baked fresh after you order · Delivery within 20 km of Ilanji, Tenkasi
+      </div>
+
+      <header className={styles.header}>
+        <div className={`container ${styles.bar}`}>
+          <Link href="/" className={styles.brand} aria-label="Serle's Bake home">
+            <Image src="/img/serlesbakelogo.webp" alt="" width={48} height={48} priority />
+            <span className={styles.brandName}>Serle&apos;s Bake</span>
+          </Link>
+
+          <nav className={styles.nav} aria-label="Main">
             <ul>
-              <li><Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-              <li><Link href="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
-              <li><Link href="/cakes" onClick={() => setIsMenuOpen(false)}>Shop</Link></li>
-              <li><Link href="/menu" onClick={() => setIsMenuOpen(false)}>Menu & Pricing</Link></li>
-              <li><Link href="/cake-delivery" onClick={() => setIsMenuOpen(false)}>Cake Delivery</Link></li>
-              <li><Link href="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
-              <li><Link href="/testimonial" onClick={() => setIsMenuOpen(false)}>Testimonials</Link></li>
-              <li><Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+              {NAV.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={isActive(item.href) ? styles.active : undefined} aria-current={isActive(item.href) ? 'page' : undefined}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
-        </div>
-        
-        {/* Contact Info in Mobile Menu */}
-        <div className="offcanvas__contact-info p-3">
-          <div className="d-flex flex-column gap-3">
-            <EmailLink className="text-decoration-none d-flex align-items-center gap-2 text-dark" showIcon />
-            <Link href="tel:+916383070725" className="text-decoration-none d-flex align-items-center gap-2">
-              <FaPhone size={20} className="text-primary" />
-              <span className="text-dark">+91 63830 70725</span>
-            </Link>
-          </div>
-        </div>
-      </div>
-      {/* Offcanvas Menu End */}
 
-      {/* Header Section Begin */}
-      <header className="header">
-        <div className="header__top">
-          <div className="container p-0">
-            <div className="row m-0 p-0">
-              <div className="col-lg-12 m-0 p-0">
-                <div className="header-new ">
-                  <div className="inner-header d-flex align-items-center justify-content-between gap-3">
-                  <EmailLink className="text-primary-light text-decoration-none d-none d-lg-block" desktop />
-                  <Link href="/" className='text-decoration-none d-flex align-items-center gap-3 justify-content-center col-lg-6 logo-new'>
-                      <Image src="/img/serlesbakelogo.webp" alt="Serle's Bake — homemade cakes in Tenkasi"
-          title="Serle's Bake — homemade cakes in Tenkasi" width={70} height={70} />
-                      {/* This was an <h1>. It sits in the shared header, so every one
-                          of the site's ~62 URLs had "Serles Bake" as its strongest
-                          on-page heading, and pages with a real heading of their own
-                          (blog posts, contact) shipped two H1s. The `h1` class is kept,
-                          so this is a semantic change only — nothing moves visually. */}
-                      <span className='h1 text-white fw-bold mb-0 d-block'>Serle&apos;s Bake</span>
-                    </Link>
-                  <Link href="tel:+916383070725" className="text-primary-light text-decoration-none d-none d-lg-block">
-                    <i className="bi bi-telephone text-primary-light d-inline-flex align-items-center justify-content-center gap-3 h-100 ">
-                      <FaPhone  size={36}  style={{transform: 'rotate(90deg)'}}/> <p className='d-flex flex-column mb-0 h6 '>Call Us <span className="text-color">+91 63830 70725</span></p>
-                    </i>
-                  </Link>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-            <button type="button" className="canvas__open" aria-label="Open navigation" aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen(true)}>
-              <i className="fa fa-bars" aria-hidden="true"></i>
+          <div className={styles.actions}>
+            <a href="tel:+916383070725" className={styles.phone}><FaPhoneAlt aria-hidden="true" /> +91 63830 70725</a>
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={styles.order}>
+              <FaWhatsapp aria-hidden="true" /> <span>Order on WhatsApp</span>
+            </a>
+            <button type="button" className={styles.menuButton} aria-label="Open menu" aria-expanded={open} aria-controls="site-drawer" onClick={() => setOpen(true)}>
+              <FaBars aria-hidden="true" />
             </button>
           </div>
         </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <nav className="header__menu mobile-menu">
-                <ul>
-                  <li><Link href="/">Home</Link></li>
-                  <li><Link href="/about">About</Link></li>
-                  {/* <li className="active"><Link href="/cakes">Shop</Link></li> */}
-                  <li><Link href="/cakes">Shop</Link>
-                    {/* <ul className="dropdown">
-                      <li><Link href="/shop-details">Shop Details</Link></li>
-                      <li><Link href="/shopping-cart">Shopping Cart</Link></li>
-                      <li><Link href="/checkout">Check Out</Link></li>
-                      <li><Link href="/wishlist">Wishlist</Link></li>
-                      <li><Link href="/class">Class</Link></li>
-                      <li><Link href="/blog-details">Blog Details</Link></li>
-                    </ul> */}
-                  </li>
-                  <li><Link href="/menu">Menu&Pricing</Link></li>
-                  <li><Link href="/cake-delivery">Cake Delivery</Link></li>
-                  <li><Link href="/blog">Blog</Link></li>
-                  <li><Link href="/testimonial">Testimonials</Link></li>
-
-                  <li><Link href="/contact">Contact</Link></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
       </header>
+
+      <div className={`${styles.overlay} ${open ? styles.overlayOpen : ''}`} onClick={() => setOpen(false)} aria-hidden="true" />
+      <aside id="site-drawer" className={`${styles.drawer} ${open ? styles.drawerOpen : ''}`} aria-label="Menu" aria-hidden={!open}>
+        <div className={styles.drawerHead}>
+          <span className={styles.brandName}>Serle&apos;s Bake</span>
+          <button type="button" className={styles.menuButton} aria-label="Close menu" onClick={() => setOpen(false)}>
+            <FaTimes aria-hidden="true" />
+          </button>
+        </div>
+        <ul className={styles.drawerNav}>
+          <li><Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>Home</Link></li>
+          {NAV.map((item) => (
+            <li key={item.href}><Link href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</Link></li>
+          ))}
+          <li><Link href="/testimonial">Reviews</Link></li>
+        </ul>
+        <div className={styles.drawerContact}>
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={styles.order}><FaWhatsapp aria-hidden="true" /> <span>Order on WhatsApp</span></a>
+          <a href="tel:+916383070725" className={styles.drawerLink}><FaPhoneAlt aria-hidden="true" /> +91 63830 70725</a>
+          <span className={styles.drawerLink}><EmailLink /></span>
+        </div>
+      </aside>
+
       <Wabtn />
-      {/* Header Section End */}
     </>
   );
 }

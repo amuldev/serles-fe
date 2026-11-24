@@ -17,7 +17,7 @@ $line: rgba(255, 182, 193, .18);
 
 .brand { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .logo { width: 72px; height: 72px; border-radius: 50%; background: #fff; }
-.brandName { margin: 4px 0 0; color: #fff; font-family: Georgia, 'Times New Roman', serif; font-size: 26px; font-weight: 700; line-height: 1.2; }
+.brandName { margin: 4px 0 0; color: #fff; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: 26px; font-weight: 700; line-height: 1.2; }
 .brandText { margin: 0; color: $muted; font-size: 15px; line-height: 1.7; max-width: 34ch; }
 .reviews {
   display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 6px; padding: 10px 16px;

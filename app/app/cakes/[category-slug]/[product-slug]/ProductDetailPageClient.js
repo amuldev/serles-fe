@@ -643,7 +643,7 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
                 <div className="product__details__accordion mt-5">
                   <h2 style={{
                     color: '#671d32',
-                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontFamily: "var(--font-display), Georgia, 'Times New Roman', serif",
                     fontSize: 'clamp(24px, 2.4vw, 30px)',
                     fontWeight: '700',
                     marginBottom: '16px',

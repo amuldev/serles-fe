@@ -14,7 +14,7 @@ $ring: #a95d76;
   img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
 }
 .eyebrow { margin: 0 0 8px; color: #9f536b; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.title { margin: 0 0 16px; color: $wine; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(30px, 3.6vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
+.title { margin: 0 0 16px; color: $wine; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: clamp(30px, 3.6vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
 .lead { margin: 0 0 14px; color: $ink; font-size: 18px; line-height: 1.7; }
 .text { margin: 0 0 18px; color: $muted; font-size: 16px; line-height: 1.7; }
 .facts {
@@ -33,7 +33,7 @@ $ring: #a95d76;
 .primary { background: $wine; color: #fff; &:hover { background: $wine-dark; color: #fff; } }
 .outline { border-color: $wine; color: $wine; background: #fff; &:hover { background: $blush; color: $wine; } }
 
-.sectionTitle { margin: 0 0 24px; color: $wine; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(26px, 3vw, 34px); font-weight: 700; line-height: 1.2; }
+.sectionTitle { margin: 0 0 24px; color: $wine; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: clamp(26px, 3vw, 34px); font-weight: 700; line-height: 1.2; }
 
 .steps { padding: clamp(40px, 6vw, 64px) 0; background: $cream; border-top: 1px solid $border; border-bottom: 1px solid $border; }
 .stepGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
@@ -66,7 +66,7 @@ $ring: #a95d76;
 .quote {
   position: relative; max-width: 760px; margin: 0 auto 22px;
   blockquote { margin: 0; }
-  p { margin: 0; color: $ink; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.5; }
+  p { margin: 0; color: $ink; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.5; }
   figcaption { margin-top: 14px; color: $wine; font-size: 15px; font-weight: 700; }
 }
 .quoteMark { margin-bottom: 12px; color: #d79aac; font-size: 28px; }

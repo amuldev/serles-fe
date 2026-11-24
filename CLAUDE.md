@@ -262,9 +262,19 @@ Bigger than any of the above for a local bakery: an active **Google Business Pro
 
 ## UI system (ui-ux-pro-max pass, 24 Nov 2026)
 
-**Brand:** burgundy `#671d32` with blush and cream, Georgia serif headings,
-Inter body. The tokens and mixins live in `app/styles/_brand.scss`; import
-them with `@use '../styles/brand' as *;`.
+**Brand:** burgundy `#671d32` with warm sand (`$sand`) and blush, Inter body.
+Headings use Cormorant Garamond (the `--font-display` variable, loaded by
+next/font in `layout.js`). The tokens and mixins live in
+`app/styles/_brand.scss`; import them with `@use '../styles/brand' as *;`.
+
+**Reference redesign (24 Nov 2026, inspired by cakebee.in):**
+- Photo-first and restrained: little copy, few boxes, no labels above headings.
+- `components/Header.js` is a React header: announcement strip, white sticky
+  bar, and a drawer on phones. The template header markup is gone.
+- Homepage flow: category circles, banner, `HomeShowcase` (tabbed top
+  sellers), featured cake, celebration planning, `Promises`, about, team,
+  social. The full price list lives on `/menu`.
+- `ProductCard` shows only the photo, name and "From ₹…".
 
 **Reuse these instead of adding inline styles:**
 - `components/ui/SectionHeading` (eyebrow, title, intro, action)

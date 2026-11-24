@@ -1,37 +1,30 @@
-import Link from 'next/link';
 import styles from './page.module.css';
 import Banner from './components/home/Banner';
 import CelebrationPlanning from './components/CelebrationPlanning';
 import Category from './components/home/category';
-import BestsellingWrapper from './components/home/BestsellingWrapper';
 import About from './components/home/About';
-import MilestoneBar from './components/home/milestone';
-import Menu from './components/home/Menu';
+import Promises from './components/home/Promises';
+import HomeShowcase from './components/home/HomeShowcase';
 import Team from './components/home/Team';
 import Social from './components/home/Social';
 import FeaturedCakeCTA from './components/home/cta';
-import { getProductsUrl, getCategoriesUrl, getProductDetailUrl } from './config/api';
-import apiCache from './utils/cache';
+import { getProductsUrl, getCategoriesUrl } from './config/api';
 import { fetchCatalogJson, catalogList } from './utils/catalog';
 
 export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
+// The homepage grid needs only the catalog list (name, photo, price range,
+// bestseller flag). The old menu list also fetched every product's detail.
 async function getHomeMenuData() {
   try {
     const [productsPayload, categoriesPayload] = await Promise.all([
       fetchCatalogJson(getProductsUrl()),
       fetchCatalogJson(getCategoriesUrl()),
     ]);
-    const products = catalogList(productsPayload);
-    const categories = catalogList(categoriesPayload);
-    const detailed = await Promise.all(products.map(async (product) => {
-      try { return await apiCache.fetchWithCache(getProductDetailUrl(product.id)); }
-      catch { return product; }
-    }));
-    return { products: detailed, categories, catalogLoaded: true };
+    return { products: catalogList(productsPayload), categories: catalogList(categoriesPayload) };
   } catch (error) {
-    console.error('Unable to server-render homepage menu:', error);
-    return { products: [], categories: [], catalogLoaded: false };
+    console.error('Unable to server-render homepage products:', error);
+    return { products: [], categories: [] };
   }
 }
 export const metadata = {
@@ -48,22 +41,23 @@ export const metadata = {
   title: "Cake Shop & Bakery in Tenkasi | Serle’s Bake",
   description: "Cake shop & bakery in Tenkasi. Homemade cakes baked fresh after you order: birthday, photo & custom cakes. Order 4 hours ahead on WhatsApp for delivery.",
 };
-  export default async function Home() {
-  const { products, categories, catalogLoaded } = await getHomeMenuData();
+// Homepage flow (24 Nov 2026 redesign): occasions, banner, top sellers,
+// featured cake, celebration planning, promises, about, team, social.
+export default async function Home() {
+  const { products, categories } = await getHomeMenuData();
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
+      <div className={styles.main}>
         <Category />
         <Banner />
-        <CelebrationPlanning />
-        <About />
-        <MilestoneBar />
-        <Menu initialProducts={products} initialCategories={categories} initialCatalogLoaded={catalogLoaded} />
-        <BestsellingWrapper /> 
-        <Team />
+        <HomeShowcase products={products} categories={categories} />
         <FeaturedCakeCTA />
+        <CelebrationPlanning />
+        <Promises />
+        <About />
+        <Team />
         <Social />
-      </main>
+      </div>
     </div>
   );
 }

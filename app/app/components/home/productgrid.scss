@@ -1,32 +1,33 @@
-// Homepage category strip (restyled 24 Nov 2026, ui-ux-pro-max pass).
+// Homepage category strip: round, framed photos (24 Nov 2026 redesign).
 .product_grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 20px;
   margin: 0;
-  padding: 8px 0 20px;
+  padding: 8px 0 28px;
   list-style: none;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    gap: 18px 12px;
   }
 }
 .product_grid_item { min-width: 0; text-align: center; }
 .product_grid_link {
-  display: flex; flex-direction: column; align-items: center; gap: 10px; color: #2f1c24; text-decoration: none;
+  display: flex; flex-direction: column; align-items: center; gap: 12px; color: #2f1c24; text-decoration: none;
   &:hover { color: #671d32; text-decoration: none; }
-  &:hover .product_grid_photo img { transform: scale(1.04); }
-  &:focus-visible { outline: 3px solid #a95d76; outline-offset: 4px; border-radius: 20px; }
+  &:hover .product_grid_photo { border-color: #671d32; }
+  &:hover .product_grid_photo img { transform: scale(1.05); }
+  &:focus-visible { outline: 3px solid #a95d76; outline-offset: 4px; border-radius: 16px; }
 }
 .product_grid_photo {
-  display: block; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 20px; background: #fff1f5;
-  box-shadow: 0 10px 24px -18px rgba(103, 29, 50, .45);
-  img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+  display: block; width: 100%; max-width: 150px; aspect-ratio: 1; overflow: hidden; padding: 5px;
+  border: 1.5px solid #e9dfcf; border-radius: 50%; background: #fff; transition: border-color .2s ease;
+  img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transition: transform .3s ease; }
 }
-.product_grid_name { font-size: 16px; font-weight: 700; line-height: 1.3; }
-@media (max-width: 768px) { .product_grid_name { font-size: 14px; } }
+.product_grid_name { font-size: 15px; font-weight: 600; line-height: 1.3; letter-spacing: .02em; }
+@media (max-width: 768px) { .product_grid_name { font-size: 13px; } }
 @media (prefers-reduced-motion: reduce) {
-  .product_grid_photo img { transition: none; }
+  .product_grid_photo, .product_grid_photo img { transition: none; }
   .product_grid_link:hover .product_grid_photo img { transform: none; }
 }

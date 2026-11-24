@@ -128,7 +128,7 @@ export default function TagsPageClient({ initialTags, initialProducts }) {
         <div className="row">
           <div className="col-lg-12">
             <div className="mb-4" style={{ maxWidth: 760 }}>
-              <h2 style={{ color: '#671d32', fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 700, fontSize: 'clamp(26px, 3vw, 34px)', marginBottom: 12 }}>Browse by tag</h2>
+              <h2 style={{ color: '#671d32', fontFamily: "var(--font-display), Georgia, 'Times New Roman', serif", fontWeight: 700, fontSize: 'clamp(26px, 3vw, 34px)', marginBottom: 12 }}>Browse by tag</h2>
               <p>Use a tag to explore products grouped under the same catalog label. Open a collection, then compare the individual cake photos, sizes and prices.</p>
               <p>Tags help you browse; they do not confirm a cake recipe, dietary option or design change. Ask us about the product you choose and the date you need.</p>
               <p>For the full range, <Link href="/cakes">browse cakes by category</Link>. For a quick price comparison, <Link href="/menu">open the cake menu</Link>. Send your preferred cake, size, message and date on WhatsApp before confirming an order.</p>
@@ -160,7 +160,7 @@ export default function TagsPageClient({ initialTags, initialProducts }) {
                         onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#671d32'; }}
                         onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#eedde2'; }}
                       >
-                        <h3 className="mb-2" style={{ color: '#671d32', fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 700, fontSize: 24 }}>
+                        <h3 className="mb-2" style={{ color: '#671d32', fontFamily: "var(--font-display), Georgia, 'Times New Roman', serif", fontWeight: 700, fontSize: 24 }}>
                           {tag.name}
                         </h3>
                         <p className="mb-0 text-muted">

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa";
 import styles from './ProductCard.module.scss';
 
 /** "₹450.00 - ₹900.00" -> "₹450 – ₹900"; a single price stays single. */
@@ -13,16 +12,25 @@ export function formatPriceRange(range) {
   return hi && hi !== lo ? `${fmt(lo)} – ${fmt(hi)}` : fmt(lo);
 }
 
+/** "₹450.00 - ₹900.00" -> "From ₹450" (single price -> "₹450"). */
+export function formatFromPrice(range) {
+  if (!range) return null;
+  const nums = String(range).match(/[\d,]+(?:\.\d+)?/g);
+  if (!nums) return null;
+  const fmt = (n) => `₹${Number(n.replace(/,/g, '')).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+  return nums.length > 1 && nums[1] !== nums[0] ? `From ${fmt(nums[0])}` : fmt(nums[0]);
+}
+
 /**
  * Product tile for /cakes, category, tag, related and bestseller grids.
- * Restyled 24 Nov 2026 (ui-ux-pro-max pass): a card with the photo, a category
- * chip, the name in brand ink and a tidy price range. Keeps the Bootstrap
- * column wrapper the grids expect.
+ * Photo-first (24 Nov 2026 redesign, inspired by bakery shop sites): a large
+ * square photo with a hairline frame, then just the name and "From ₹…".
+ * No chips, labels or buttons competing with the cake.
  */
-export default function ProductCard({ product, priority = false, headingLevel = 'h2', columns = 'col-lg-3 col-md-6 col-6' }) {
+export default function ProductCard({ product, priority = false, headingLevel = 'h2', columns = 'col-lg-3 col-md-4 col-6', showBadge = true }) {
   const Heading = headingLevel === 'h3' ? 'h3' : 'h2';
   const href = product.category?.slug && product.slug ? `/cakes/${product.category.slug}/${product.slug}` : '/cakes';
-  const price = formatPriceRange(product.price_range);
+  const price = formatFromPrice(product.price_range);
   return (
     <div className={`${columns} ${styles.col}`}>
       <Link href={href} className={styles.card}>
@@ -30,19 +38,16 @@ export default function ProductCard({ product, priority = false, headingLevel = 
           <Image
             src={product.featured_image?.url || "/img/placeholder.jpg"}
             alt={product.featured_image?.alt_text || product.name}
-            width={400}
-            height={400}
+            width={480}
+            height={480}
             priority={priority}
             fetchPriority={priority ? 'high' : 'auto'}
-            sizes="(min-width: 992px) 25vw, 50vw"
+            sizes="(min-width: 992px) 25vw, (min-width: 768px) 33vw, 50vw"
           />
-          {product.category?.name && <span className={styles.chip}>{product.category.name}</span>}
+          {showBadge && product.is_best_seller && <span className={styles.badge}>Bestseller</span>}
         </span>
-        <span className={styles.body}>
-          <Heading className={styles.name}>{product.name}</Heading>
-          <span className={styles.price}>{price || 'Ask for price'}</span>
-          <span className={styles.more} aria-hidden="true">View details <FaArrowRight /></span>
-        </span>
+        <Heading className={styles.name}>{product.name}</Heading>
+        <span className={styles.price}>{price || 'Ask for price'}</span>
       </Link>
     </div>
   );

@@ -100,7 +100,7 @@ export default function Banner() {
         .delivery-copy { width: calc(100% - var(--art-width) - 12px); }
         .delivery-kicker { display: flex; align-items: center; gap: 8px; margin: 0 0 13px; color: #f1c5b2; font-size: 10px; font-weight: 700; letter-spacing: .15em; line-height: 1.4; text-transform: uppercase; }
         .delivery-kicker :global(svg) { flex-shrink: 0; font-size: 19px; }
-        .delivery-head { margin: 0; color: #fff7ed; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(29px, 3vw, 37px); font-weight: 700; line-height: 1.08; letter-spacing: -.035em; }
+        .delivery-head { margin: 0; color: #fff7ed; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-size: clamp(29px, 3vw, 37px); font-weight: 700; line-height: 1.08; letter-spacing: -.035em; }
         .delivery-origin { margin: 10px 0 7px; color: #eed8cd; font-size: 12px; line-height: 1.5; }
         .delivery-price-row { display: flex; align-items: center; gap: 12px; }
         .delivery-price { display: inline-flex; align-items: flex-start; gap: 2px; color: #fff8ed; font-size: 57px; font-weight: 800; line-height: 1.05; letter-spacing: -.06em; }

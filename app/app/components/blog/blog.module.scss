@@ -87,7 +87,7 @@ $line: #ececec;
 }
 
 .cardTitle {
-  font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+  font-family: var(--font-display), Georgia, 'Times New Roman', serif; // Playfair was never loaded
   font-style: normal;
   font-size: 22px;
   line-height: 1.35;
@@ -153,7 +153,7 @@ $line: #ececec;
 }
 
 .pageTitle {
-  font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+  font-family: var(--font-display), Georgia, 'Times New Roman', serif; // Playfair was never loaded
   font-style: normal;
   font-weight: 700;
   font-size: 40px;
@@ -180,7 +180,7 @@ $line: #ececec;
   background: #fbfbfb;
 
   h4 {
-    font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+    font-family: var(--font-display), Georgia, 'Times New Roman', serif; // Playfair was never loaded
     font-style: normal;
     color: $ink;
     margin-bottom: 10px;
@@ -358,7 +358,7 @@ $line: #ececec;
   }
 
   h3 {
-    font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+    font-family: var(--font-display), Georgia, 'Times New Roman', serif; // Playfair was never loaded
     font-style: normal;
     font-size: 15px;
     line-height: 1.45;
@@ -406,7 +406,7 @@ $line: #ececec;
   text-align: center;
 
   h5 {
-    font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+    font-family: var(--font-display), Georgia, 'Times New Roman', serif; // Playfair was never loaded
     font-style: normal;
     color: #ffffff;
     margin-bottom: 10px;
@@ -444,7 +444,7 @@ $line: #ececec;
 }
 
 .postTitle {
-  font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+  font-family: var(--font-display), Georgia, 'Times New Roman', serif; // Playfair was never loaded
   font-style: normal;
   font-weight: 700;
   font-size: 38px;
@@ -505,7 +505,7 @@ $line: #ececec;
   h2,
   h3,
   h4 {
-    font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+    font-family: var(--font-display), Georgia, 'Times New Roman', serif; // Playfair was never loaded
     font-style: normal;
     color: $ink;
     margin: 38px 0 16px;
