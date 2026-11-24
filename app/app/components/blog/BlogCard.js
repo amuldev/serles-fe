@@ -23,8 +23,8 @@ export default function BlogCard({ post, priority = false }) {
       <Link href={href} className={styles.cardPic} aria-label={post.title}>
         <Image
           src={cover}
-          alt={post.cover_image?.alt_text || post.title || 'Serles Bake blog post'}
-          title={post.cover_image?.alt_text || post.title || 'Serles Bake blog post'}
+          alt={post.cover_image?.alt_text || post.title || "Serle's Bake blog post"}
+          title={post.cover_image?.alt_text || post.title || "Serle's Bake blog post"}
           width={640}
           height={420}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
