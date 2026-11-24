@@ -1,5 +1,10 @@
 # Serle's Bake — Frontend (Next.js)
 
+> **Current facts live in the workspace `../CLAUDE.md`** (goal, progress, business facts, rules).
+> As of 24 Nov 2026: delivery is **30 km by road** (`utils/deliveryPolicy.js`, `DELIVERY_LIMIT_KM`);
+> the site runs in database mode; UI tokens are in `app/globals.scss` + `app/styles/_brand.scss`.
+> Dated notes below are history: where they say 20 km or describe the old template header/cards, they are superseded.
+
 ## Current SEO maintenance - 15 November 2026
 
 Frontend code release `d20d70f` is deployed and its production checks pass:
