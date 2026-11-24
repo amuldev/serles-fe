@@ -9,7 +9,7 @@ import JsonLd from "@/app/components/blog/JsonLd";
 
 const SITE = 'https://www.serlesbake.in';
 
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
 async function getMenuData() {
   try {

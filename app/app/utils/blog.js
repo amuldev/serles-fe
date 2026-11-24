@@ -1,3 +1,5 @@
+import { apiFetch } from './apiFetch.js';
+
 // Blog helpers: fetching, URL mapping, HTML hardening and SEO metadata.
 //
 // The blog API is public + read-only (see BLOG_API_GUIDE.md). Everything here is
@@ -33,9 +35,11 @@ export const SITE_URL = canonicalSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 export const SITE_NAME = "Serle's Bake";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/img/logo.png`;
 
-// Revalidate windows (seconds). Posts change rarely; lists a little more often.
-export const BLOG_LIST_REVALIDATE = 300;
-export const BLOG_DETAIL_REVALIDATE = 600;
+// Revalidate windows (seconds). One day for both: Django calls /api/revalidate
+// when a post is saved, so edits still appear immediately. The old 5/10-minute
+// windows cost CPU on every crawler visit (Vercel Hobby pause, Nov 2026).
+export const BLOG_LIST_REVALIDATE = 86400;
+export const BLOG_DETAIL_REVALIDATE = 86400;
 
 // ---------------------------------------------------------------------------
 // Fetching
@@ -47,7 +51,10 @@ export const BLOG_DETAIL_REVALIDATE = 600;
  */
 export async function fetchBlog(url, { revalidate = BLOG_LIST_REVALIDATE, tags = ['blog'], required = false, allowNotFound = true } = {}) {
   try {
-    const response = await fetch(url, {
+    const onServer = typeof window === 'undefined';
+    // `ssr=1`: Django answers no-store, so a just-revalidated page never gets a
+    // stale CDN copy (see utils/catalog.js).
+    const response = await apiFetch(onServer ? `${url}${url.includes('?') ? '&' : '?'}ssr=1` : url, {
       headers: { Accept: 'application/json' },
       next: { revalidate, tags },
     });

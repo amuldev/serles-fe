@@ -1,5 +1,10 @@
 import sitemapUtils from '../utils/sitemap.mjs';
 
+// Route handlers are dynamic by default, so every crawler fetch rebuilt the
+// sitemap from the API. Hourly rather than daily: if a rebuild ever hits the
+// fallback below, it is replaced within the hour instead of a day.
+export const revalidate = 3600;
+
 export async function GET() {
   try {
     const sitemap = await sitemapUtils.generateXMLSitemap();

@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getCategoriesUrl } from '../../config/api';
+import { serverApiUrl, serverFetchOptions } from '../../utils/catalog';
+import { apiFetch } from '../../utils/apiFetch';
 import './productgrid.scss';
 
 async function fetchCategories() {
-  const res = await fetch(getCategoriesUrl());
+  const res = await apiFetch(serverApiUrl(getCategoriesUrl()), serverFetchOptions());
   if (!res.ok) {
     throw new Error('Failed to fetch categories');
   }

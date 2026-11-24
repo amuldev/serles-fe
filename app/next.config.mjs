@@ -16,8 +16,11 @@ const nextConfig = {
       'cdn.serlesbake.in'
     ],
     unoptimized: false,
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    // WebP only: AVIF is far more CPU-expensive to encode, and the 2048/3840
+    // variants served no real visitor (91% phones) while multiplying the
+    // transformations crawlers could trigger. Vercel Hobby pause, Nov 2026.
+    formats: ['image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     // Optimised images were re-generated after only 60s, so repeat visitors kept
     // re-fetching them. A week keeps them cached without stranding updates for

@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaMotorcycle, FaWhatsapp, FaArrowRight } from 'react-icons/fa';
-import { API_CONFIG } from '../../config/api';
 
 const staticBanners = [
   {
@@ -16,7 +15,9 @@ const staticBanners = [
     id: 2,
     title: 'Cake customization',
     description: "Ask Serle's Bake about your cake design and customization.",
-    image: `${API_CONFIG.BASE_URL}/api/media/banners/freecustomization.png`,
+    // Same file (identical SHA-256) on the R2 CDN; Django's /api/media/ copy is
+    // not needed, so the storefront runs without the backend.
+    image: 'https://cdn.serlesbake.in/banners/freecustomization.png',
     href: 'https://wa.me/916383070725',
   },
 ];

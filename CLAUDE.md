@@ -260,6 +260,44 @@ not.
 
 Bigger than any of the above for a local bakery: an active **Google Business Profile**.
 
+## Running without Django (database mode, added 24 Nov 2026)
+
+**What it is:** setting the server-only env var `STOREFRONT_DATABASE_URL` makes the
+storefront read Supabase directly, with no Django needed to render anything.
+Unset, it reads the Django API exactly as before.
+
+**How it works:**
+- `app/lib/storefront/` reimplements every endpoint the site uses, byte for byte:
+  products, product detail, categories, tags and the whole blog API.
+- `source.js` loads two small snapshots (catalog, blog). They are cached for a day
+  under the `catalog`/`blog` tags, so `/api/revalidate` drops them.
+- `api.js` builds Django's exact JSON from them: field order, IST timestamps,
+  decimals, MetaData/schema auto-generation, Python rounding and word counts.
+- Where Django had no ORDER BY, Postgres decides the order, so we run **Django's
+  exact SQL**: related products per post, and the `/blog` search/filter list.
+- `utils/apiFetch.js` routes server fetches there. Browser calls go to this site's
+  own `app/api/[...path]` (database, or a proxy to Django when the var is unset).
+- The banner image now loads from the CDN instead of Django's `/api/media/`.
+
+**QA (all must pass before shipping changes here):**
+- `npm test`: unit tests with fixtures, covering cases the live data lacks.
+- `npm run qa:parity -- --django <url>`: every endpoint and variant against a
+  running Django. It needs `STOREFRONT_DATABASE_URL`, and the Django instance must
+  not increment `views_count`.
+- `npm run qa:render`: whole-site comparison of two builds (capture, then compare).
+- Results from 24 Nov: `../serlesbake.in-audit/STOREFRONT-INDEPENDENCE-QA.md`.
+
+**Known differences (deliberate):**
+- Post reads no longer increment `views_count`. It was noise and nothing displays it.
+- Content edits still happen in Django admin, which can be deployed or run locally
+  against the same database. Its save signal refreshes the site.
+
+**Rules:**
+- **Never import `lib/storefront/server.js` or `db.js` from client code.**
+  `apiFetch`'s literal `typeof window` check keeps `postgres` out of browser bundles.
+- **Before shipping, scan the build:** `.next/static` must contain no
+  `serles-storefront` string and no connection string.
+
 ## The backend has a stale hostname — avoid it
 
 Both catalog and blog now come from **`https://shop.serlesbake.in`**.
@@ -274,8 +312,22 @@ and not the other; one host is behind, and blog was merely where that was fatal.
 `sitemap.xml` and blog/product pages fetch from the Django API at `shop.serlesbake.in`,
 with a static fallback if the API fails (`app/app/sitemap.xml/route.js`).
 
-Public API responses are CDN-cached for 60 s with a 10-minute stale-while-revalidate
-window, so **content edits can take up to a minute to appear** — that's expected, not a bug.
+**Caching (since 24 Nov 2026, after the Vercel Hobby CPU pause):**
+
+- **Pages and server fetches are cached for 1 day**: `revalidate = 86400` on every
+  catalog/blog page, and server fetches use the data cache tagged `catalog`/`blog`
+  (see `utils/catalog.js`).
+- **The dynamic `/cakes` routes need `generateStaticParams` returning `[]`.**
+  Without it they were `ƒ` (a full render on every request). Check that the build
+  output still shows `●` for them.
+- **Server fetches add `?ssr=1`.** Django answers those with `no-store`, so the
+  CDN never feeds a stale copy into a refresh.
+- **Edits appear immediately:** Django POSTs `/api/revalidate` (header
+  `x-revalidate-secret`) after any catalog/blog save, and that clears everything.
+  **This needs `REVALIDATE_SECRET` set to the same value in both Vercel projects.**
+  Without it, edits take up to a day.
+- Never reintroduce 60 s windows, per-request route handlers, AVIF, or
+  2048/3840 px image sizes.
 
 Blog post routes are `/blog/<slug>/`, which must match the `url` and JSON-LD the API emits.
 

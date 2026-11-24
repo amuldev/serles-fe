@@ -4,7 +4,7 @@ import { getTags, getTag, getTagPosts, getSidebarData } from '../../../utils/blo
 import { blogTagPath, buildMetadata, SITE_NAME } from '../../../utils/blog';
 
 // Next requires a literal here; mirrors BLOG_LIST_REVALIDATE in utils/blog.js.
-export const revalidate = 300;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
 export async function generateStaticParams() {
   const tags = await getTags();

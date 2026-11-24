@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE}/cakes/tags`;
 
 // Server-rendered, so without this it would be prerendered once and never pick up
 // new tags. 60s matches the public API's own CDN cache window.
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
 // This route used to be a client component declaring its SEO tags through
 // next/head, which the App Router ignores — so it emitted no title of its own and

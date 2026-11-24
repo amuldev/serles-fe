@@ -14,7 +14,7 @@ import { getProductsUrl, getCategoriesUrl, getProductDetailUrl } from './config/
 import apiCache from './utils/cache';
 import { fetchCatalogJson, catalogList } from './utils/catalog';
 
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
 async function getHomeMenuData() {
   try {

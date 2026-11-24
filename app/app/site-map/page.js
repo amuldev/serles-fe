@@ -4,7 +4,7 @@ import { DELIVERY_AREA_PAGES, deliveryAreaPath } from '../utils/deliveryAreas';
 import { getProductsUrl, getCategoriesUrl } from "../config/api";
 import { fetchCatalogJson, catalogList } from "../utils/catalog";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
 const TITLE = "Site Map - Serle's Bake | Complete Navigation Guide";
 const DESCRIPTION = "Browse Serle's Bake pages, cake categories and products. Find our menu, homemade cakes, ordering information and bakery contact details in Tenkasi.";

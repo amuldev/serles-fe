@@ -1,14 +1,13 @@
 import { getProductsUrl } from '../../config/api';
+import { serverApiUrl, serverFetchOptions } from '../../utils/catalog';
+import { apiFetch } from '../../utils/apiFetch';
 import Bestselling from './Bestselling';
 
 async function fetchBestselling() {
   try {
-    const res = await fetch(getProductsUrl(), {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-      headers: {
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
-      }
-    });
+    // Shares the server data policy in utils/catalog.js: 1-day cache, dropped on
+    // CMS save via /api/revalidate.
+    const res = await apiFetch(serverApiUrl(getProductsUrl()), serverFetchOptions());
     
     if (!res.ok) {
       console.error('Failed to fetch bestselling products:', res.status, res.statusText);

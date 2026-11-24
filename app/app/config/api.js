@@ -38,24 +38,34 @@ export const API_CONFIG = {
   TAGS_ENDPOINT: process.env.NEXT_PUBLIC_TAGS_ENDPOINT || '/api/tags/?format=json',
 };
 
+// Browser calls go to this site's own /api routes (app/api/[...path]), which
+// answer from the database or proxy Django - so client code never needs the
+// backend host. The trailing slash Django wants is dropped to skip the 308 that
+// trailingSlash:false would add. Server calls keep the Django-shaped absolute
+// URL; utils/apiFetch.js answers those from the database when configured.
+function apiHref(base, path) {
+  if (typeof window === 'undefined') return `${base}${path}`;
+  return path.replace(/\/(?=\?|$)/, '');
+}
+
 export const getProductsUrl = (page = 1, pageSize = 100) => {
-  return `${API_CONFIG.BASE_URL}${API_CONFIG.PRODUCTS_ENDPOINT}&page=${page}&page_size=${pageSize}`;
+  return apiHref(API_CONFIG.BASE_URL, `${API_CONFIG.PRODUCTS_ENDPOINT}&page=${page}&page_size=${pageSize}`);
 };
 
 export const getProductDetailUrl = (id) => {
-  return `${API_CONFIG.BASE_URL}${API_CONFIG.PRODUCT_DETAIL_ENDPOINT.replace('{id}', id)}`;
-}; 
+  return apiHref(API_CONFIG.BASE_URL, API_CONFIG.PRODUCT_DETAIL_ENDPOINT.replace('{id}', id));
+};
 
 export const getCategoriesUrl = () => {
-  return `${API_CONFIG.BASE_URL}${API_CONFIG.CATEGORIES_ENDPOINT}`;
+  return apiHref(API_CONFIG.BASE_URL, API_CONFIG.CATEGORIES_ENDPOINT);
 };
 
 export const getBannersUrl = () => {
-  return `${API_CONFIG.BASE_URL}${API_CONFIG.BANNERS_ENDPOINT}`;
+  return apiHref(API_CONFIG.BASE_URL, API_CONFIG.BANNERS_ENDPOINT);
 };
 
 export const getTagsUrl = () => {
-  return `${API_CONFIG.BASE_URL}${API_CONFIG.TAGS_ENDPOINT}`;
+  return apiHref(API_CONFIG.BASE_URL, API_CONFIG.TAGS_ENDPOINT);
 };
 // ---------------------------------------------------------------------------
 // Blog
@@ -74,7 +84,7 @@ export const BLOG_CONFIG = {
 };
 
 const blogUrl = (path, query) => {
-  const url = `${BLOG_CONFIG.BASE_URL}${BLOG_CONFIG.BASE_PATH}${path}`;
+  const url = apiHref(BLOG_CONFIG.BASE_URL, `${BLOG_CONFIG.BASE_PATH}${path}`);
   const qs = query ? buildQuery(query) : '';
   return qs ? `${url}?${qs}` : url;
 };

@@ -14,7 +14,7 @@ const TITLE = "Cakes in Tenkasi | Birthday & Custom Cakes – Serle's Bake";
 // The page is server-rendered, so without this it would be prerendered once at
 // build time and serve that HTML until the next deploy — new products would never
 // appear. 60s matches the public API's own CDN cache window.
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
 const asList = (payload) =>
   Array.isArray(payload?.results) ? payload.results : Array.isArray(payload) ? payload : [];

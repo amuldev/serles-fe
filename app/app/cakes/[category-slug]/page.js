@@ -21,7 +21,14 @@ function categoryTitle(name) {
 
 // Server-rendered, so without this it would be prerendered once and never pick up
 // new products. 60s matches the public API's own CDN cache window.
-export const revalidate = 60;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
+// Without generateStaticParams this route was fully dynamic: every request
+// re-rendered on the server (a large share of the CPU that paused the Vercel
+// team in Nov 2026). An empty list keeps the build independent of the API while
+// caching each page on its first visit for the revalidate window above.
+export async function generateStaticParams() {
+  return [];
+}
 
 // Generate metadata for the category page
 export async function generateMetadata({ params }) {

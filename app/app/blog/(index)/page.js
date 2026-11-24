@@ -15,7 +15,7 @@ import {
 } from '../../utils/blog';
 
 // Next requires a literal here; mirrors BLOG_LIST_REVALIDATE in utils/blog.js.
-export const revalidate = 300;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
 const PAGE_TITLE = `Cake Guides & Baking Stories | ${SITE_NAME}`;
 const PAGE_DESCRIPTION =

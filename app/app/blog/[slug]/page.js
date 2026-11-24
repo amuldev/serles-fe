@@ -26,7 +26,7 @@ import {
 } from '../../utils/blog';
 
 // Next requires a literal here; mirrors BLOG_DETAIL_REVALIDATE in utils/blog.js.
-export const revalidate = 600;
+export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 
 /**
  * Pre-render the known posts at build time; anything published later is

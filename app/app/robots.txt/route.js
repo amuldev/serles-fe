@@ -1,3 +1,6 @@
+// Fixed text; serve it as a static file instead of running a function per crawl.
+export const dynamic = 'force-static';
+
 export async function GET() {
   // `Disallow: /_next/` used to sit in this list, which blocked Googlebot from
   // fetching every JavaScript and CSS bundle on the site. Google renders pages

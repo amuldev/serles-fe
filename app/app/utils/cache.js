@@ -1,4 +1,7 @@
 // Cache utility for API calls - Optimized for Vercel deployment
+import { isServer, serverApiUrl, serverFetchOptions } from './catalog.js';
+import { apiFetch } from './apiFetch.js';
+
 class APICache {
   constructor() {
     this.cache = new Map();
@@ -44,9 +47,13 @@ class APICache {
 
   // Fetch with cache - Optimized for Vercel serverless
   async fetchWithCache(url, options = {}) {
+    // On the server, Next's data cache (1 day, tag-revalidated) is the cache.
+    // This in-memory copy must be skipped there: a warm instance would otherwise
+    // bake up-to-5-minute-old data into a page that was just revalidated.
+    const onServer = isServer();
     const key = this.generateKey(url);
-    const cached = this.get(key);
-    
+    const cached = onServer ? null : this.get(key);
+
     if (cached) {
       return cached;
     }
@@ -56,7 +63,8 @@ class APICache {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-      const response = await fetch(url, {
+      const response = await apiFetch(onServer ? serverApiUrl(url) : url, {
+        ...(onServer ? serverFetchOptions() : {}),
         ...options,
         signal: controller.signal,
         headers: {
@@ -73,7 +81,7 @@ class APICache {
       }
 
       const data = await response.json();
-      this.set(key, data);
+      if (!onServer) this.set(key, data);
       return data;
     } catch (error) {
       console.error('Fetch error:', error);
