@@ -58,7 +58,8 @@ export function db() {
     client = postgres({
       ...conn,
       // Small on purpose: every build worker and function instance has its own pool.
-      max: Number(process.env.STOREFRONT_DB_POOL_SIZE || 2),
+      // 4 lets a snapshot's independent queries overlap (the database is ~100-200 ms away).
+      max: Number(process.env.STOREFRONT_DB_POOL_SIZE || 4),
       idle_timeout: 10,
       connect_timeout: 15,
       // The transaction pooler cannot hold prepared statements across clients.

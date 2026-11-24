@@ -9,8 +9,29 @@ import { apiSnapshotNeeds, postListParams, resolveApi } from './api.js';
 // save signal calls /api/revalidate, which drops them along with the pages.
 // Bump the key suffix if a snapshot's shape changes.
 const DAY = 86400;
-const cachedCatalog = unstable_cache(loadCatalogSnapshot, ['storefront-catalog-v1'], { revalidate: DAY, tags: ['catalog'] });
-const cachedBlog = unstable_cache(loadBlogSnapshot, ['storefront-blog-v1'], { revalidate: DAY, tags: ['blog'] });
+const dataCachedCatalog = unstable_cache(loadCatalogSnapshot, ['storefront-catalog-v1'], { revalidate: DAY, tags: ['catalog'] });
+const dataCachedBlog = unstable_cache(loadBlogSnapshot, ['storefront-blog-v1'], { revalidate: DAY, tags: ['blog'] });
+
+// Concurrent callers share one load. Without this, a build prerendering dozens
+// of pages at once started dozens of snapshot loads (each ~56 round trips to the
+// Tokyo database) before the first could be cached, and a Vercel build sat at
+// "Building" for 9+ minutes. During `next build` the data cannot change, so each
+// build process loads a snapshot once; at runtime only the in-flight load is
+// shared and unstable_cache/revalidateTag stay in charge of freshness.
+const IS_BUILD = process.env.NEXT_PHASE === 'phase-production-build';
+function shareLoad(load) {
+  let pending = null;
+  return () => {
+    if (!pending) {
+      pending = load();
+      if (!IS_BUILD) pending = pending.finally(() => { pending = null; });
+      else pending.catch(() => { pending = null; }); // a failed build load may be retried
+    }
+    return pending;
+  };
+}
+const cachedCatalog = shareLoad(dataCachedCatalog);
+const cachedBlog = shareLoad(dataCachedBlog);
 // The /blog page's search/category filters: Django's exact list SQL, cached per query string.
 const cachedPostListIds = unstable_cache((query) => loadPostListIds(new URLSearchParams(query)),
   ['storefront-post-list-v1'], { revalidate: DAY, tags: ['blog'] });

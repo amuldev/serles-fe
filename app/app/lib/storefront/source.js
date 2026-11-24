@@ -158,23 +158,21 @@ export async function loadBlogSnapshot() {
   // Related products/categories have no ORDER BY in Django: the join plan
   // decides. Running Django's exact prefetch query shape, one post at a time
   // as its detail view does, returns them in the order Django would.
-  const relatedProducts = [];
-  const relatedCategories = [];
-  for (const post of posts) {
-    const [productRows, categoryRows] = await Promise.all([
-      sql`select r.blogpost_id, p.id as product_id
-            from app_product p
-           inner join blog_blogpost_related_products r on (p.id = r.product_id)
-            left outer join app_category c on (p.category_id = c.id)
-           where r.blogpost_id in (${post.id})`,
-      sql`select r.blogpost_id, c.id as category_id
-            from app_category c
-           inner join blog_blogpost_related_categories r on (c.id = r.category_id)
-           where r.blogpost_id in (${post.id})`,
-    ]);
-    relatedProducts.push(...productRows);
-    relatedCategories.push(...categoryRows);
-  }
+  // Issued concurrently (the pool caps parallelism); each is still Django's
+  // exact single-post query, so ordering is unchanged.
+  const perPost = await Promise.all(posts.map((post) => Promise.all([
+    sql`select r.blogpost_id, p.id as product_id
+          from app_product p
+         inner join blog_blogpost_related_products r on (p.id = r.product_id)
+          left outer join app_category c on (p.category_id = c.id)
+         where r.blogpost_id in (${post.id})`,
+    sql`select r.blogpost_id, c.id as category_id
+          from app_category c
+         inner join blog_blogpost_related_categories r on (c.id = r.category_id)
+         where r.blogpost_id in (${post.id})`,
+  ])));
+  const relatedProducts = perPost.flatMap(([productRows]) => [...productRows]);
+  const relatedCategories = perPost.flatMap(([, categoryRows]) => [...categoryRows]);
 
   // List sorting is ORDER BY one column, so ties (two posts published in the
   // same batch) come back in whatever order Postgres returns. Capture that
