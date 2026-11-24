@@ -39,6 +39,8 @@ export function buildProductMetadata(product = {}, categorySlug, productSlug) {
       description: text(meta.og_description) || description,
       type: 'website',
       url: pageUrl,
+      siteName: "Serle's Bake",
+      locale: 'en_IN',
       images: [ogImage],
     },
     twitter: {
