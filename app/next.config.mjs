@@ -229,6 +229,20 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      // /blog stays cached by not reading its query string. Old filter links
+      // move to the pages that handle them (Next carries the query across).
+      {
+        source: '/blog',
+        has: [{ type: 'query', key: 'search' }],
+        destination: '/blog/search',
+        permanent: false,
+      },
+      {
+        source: '/blog',
+        has: [{ type: 'query', key: 'category', value: '(?<category>[a-z0-9-]+)' }],
+        destination: '/blog/categories/:category',
+        permanent: true,
+      },
       // The product "Choclate" was misspelled, so its slug was too. Renaming it in
       // the admin changes the url, which would otherwise 404 for anyone holding the
       // old link and discard whatever ranking that url had earned. A 308 passes

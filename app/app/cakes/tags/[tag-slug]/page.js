@@ -11,10 +11,12 @@ const SITE = "https://www.serlesbake.in";
 export const revalidate = 86400; // 1 day; CMS saves refresh instantly via /api/revalidate
 // Without generateStaticParams this route was fully dynamic: every request
 // re-rendered on the server (a large share of the CPU that paused the Vercel
-// team in Nov 2026). An empty list keeps the build independent of the API while
-// caching each page on its first visit for the revalidate window above.
+// team in Nov 2026). Every tag is prerendered at build. An empty list (render on
+// first visit) worked locally but every page 404'd on Vercel, and the 404 was
+// cached for the revalidate window (24 Nov 2026).
 export async function generateStaticParams() {
-  return [];
+  const tags = asList(await apiCache.fetchWithCache(getTagsUrl()));
+  return tags.filter((t) => t?.slug).map((t) => ({ 'tag-slug': t.slug }));
 }
 
 const asList = (payload) =>

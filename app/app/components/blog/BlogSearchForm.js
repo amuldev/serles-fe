@@ -6,8 +6,9 @@ import { FaSearch } from 'react-icons/fa';
 import styles from './blog.module.scss';
 
 /**
- * Search box for the blog. Navigates to /blog?search=… so results stay
- * server-rendered, shareable and crawlable rather than living in client state.
+ * Search box for the blog. Navigates to /blog/search?search=… so results stay
+ * server-rendered and shareable rather than living in client state, while
+ * /blog itself stays cached.
  */
 export default function BlogSearchForm({ initialValue = '' }) {
   const [term, setTerm] = useState(initialValue);
@@ -16,7 +17,7 @@ export default function BlogSearchForm({ initialValue = '' }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const query = term.trim();
-    router.push(query ? `/blog?search=${encodeURIComponent(query)}` : '/blog');
+    router.push(query ? `/blog/search?search=${encodeURIComponent(query)}` : '/blog');
   };
 
   return (
