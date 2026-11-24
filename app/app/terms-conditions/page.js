@@ -30,7 +30,7 @@ export default function TermsConditionsPage() {
                 lineHeight: "1.8"
               }}>
                 <h1 className="text-center mb-5" style={{ 
-                  color: "#e4718a",
+                  color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif",
                   fontWeight: "700",
                   fontSize: "2.5rem"
                 }}>
@@ -46,12 +46,12 @@ export default function TermsConditionsPage() {
                     })}
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>1. Acceptance of Terms</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>1. Acceptance of Terms</h2>
                   <p>
                     By accessing and using serlesbake.in ("the Website"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>2. Use License</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>2. Use License</h2>
                   <p>
                     Permission is granted to temporarily download one copy of the materials (information or software) on Serles Bake's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
                   </p>
@@ -62,52 +62,52 @@ export default function TermsConditionsPage() {
                     <li>Remove any copyright or other proprietary notations from the materials</li>
                   </ul>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>3. Ordering & Payment</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>3. Ordering & Payment</h2>
                   <p>
                     All orders are subject to acceptance and availability. Every cake is baked fresh after the order is placed, so orders need at least 4 hours&apos; notice before the time you need the cake; detailed tier and custom designs may need longer. Prices are subject to change without notice. We accept Google Pay and online payments. Contact us on WhatsApp to confirm your cake details, delivery arrangements, final total and payment instructions. Please check your order confirmation with us in the chat.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>4. Delivery Terms</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>4. Delivery Terms</h2>
                   <p>
                     {DELIVERY_COVERAGE} Delivery times are estimates and may vary based on location and order volume. We are not responsible for delays due to circumstances beyond our control.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>5. Cancellation Policy</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>5. Cancellation Policy</h2>
                   <p>
                     Orders can be cancelled up to 24 hours before the scheduled delivery time. Cancellations made within 24 hours may incur a cancellation fee. Custom orders may have different cancellation terms.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>6. Refund Policy</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>6. Refund Policy</h2>
                   <p>
                     Refunds are provided in case of quality issues or if the product is significantly different from what was ordered. Refund requests must be made within 24 hours of delivery. Refunds will be processed within 5-7 business days.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>7. Allergen Information</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>7. Allergen Information</h2>
                   <p>
                     While we take care to avoid cross-contamination, our products may contain allergens including gluten, dairy, eggs, and nuts. Customers with allergies should inform us before placing orders.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>8. Intellectual Property</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>8. Intellectual Property</h2>
                   <p>
                     All content on this website, including text, graphics, logos, images, and software, is the property of Serles Bake and is protected by copyright laws.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>9. Limitation of Liability</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>9. Limitation of Liability</h2>
                   <p>
                     Serles Bake shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service or any products purchased.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>10. Governing Law</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>10. Governing Law</h2>
                   <p>
                     These terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>11. Changes to Terms</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>11. Changes to Terms</h2>
                   <p>
                     We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting on the website. Your continued use of the website constitutes acceptance of the modified terms.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>12. Contact Information</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>12. Contact Information</h2>
                   <p>
                     For questions about these Terms & Conditions, please contact us at:
                   </p>

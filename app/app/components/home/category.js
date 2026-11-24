@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getCategoriesUrl } from '../../config/api';
-import { serverApiUrl, serverFetchOptions } from '../../utils/catalog';
+import { getCategoriesUrl, getProductsUrl } from '../../config/api';
+import { serverApiUrl, serverFetchOptions, catalogList, fetchCatalogJson } from '../../utils/catalog';
 import { apiFetch } from '../../utils/apiFetch';
+import SectionHeading from '../ui/SectionHeading';
 import './productgrid.scss';
 
 async function fetchCategories() {
@@ -10,42 +11,62 @@ async function fetchCategories() {
   if (!res.ok) {
     throw new Error('Failed to fetch categories');
   }
-  const categoriesData = await res.json();
-  return categoriesData;
+  return res.json();
+}
+
+/** A real photo for categories without their own image (Themed Cake showed the template's stock cupcake). */
+async function productPhotoByCategory() {
+  try {
+    const products = catalogList(await fetchCatalogJson(getProductsUrl()));
+    const map = {};
+    for (const p of products) {
+      if (p.category?.slug && p.featured_image?.url && !map[p.category.slug]) map[p.category.slug] = p.featured_image.url;
+    }
+    return map;
+  } catch {
+    return {};
+  }
 }
 
 export default async function Category() {
-  const categoriesData = await fetchCategories();
+  const [categoriesData, fallbackPhotos] = await Promise.all([fetchCategories(), productPhotoByCategory()]);
+  const categories = catalogList(categoriesData);
   return (
-    <section className="container text-center pt-5">
-      {/* The homepage's <h1>. It used to be the logo in the shared header, which
-          made every page on the site claim "Serles Bake" as its main heading; with
-          that unwrapped, this — the first heading on the page — becomes the real
-          one. Wording matches the page title's primary keyword rather than the
-          generic "Home Made Cakes". The `h2` class is kept, so nothing moves
-          visually. This component is homepage-only. */}
-      <h1 className='h2'>Homemade Cakes in Tenkasi</h1>
-      <p className='p'>From Our Oven to Your Heart</p>
-      <div className="product_grid">
-        {categoriesData.map((category, index) => (
-          <div className="product_grid_item" key={category.id}>
-            <Link href={`/cakes/${category.slug}`} className='text-decoration-none'>
-              <Image
-                src={category.image || '/img/shop/product-1.jpg'}
-                alt={category.name}
-                title={category.name}
-                width={100}
-                height={100}
-                priority={index === 0}
-                fetchPriority={index === 0 ? 'high' : 'auto'}
-                loading={index === 0 ? 'eager' : 'lazy'}
-              />
-              <h2 className='h6'>{category.name}</h2>
-            </Link>
-          </div>
-        ))}
-      </div>
-
+    <section className="container pt-5 pb-2">
+      {/* The homepage's <h1>: the first heading on the page, matching the
+          title's primary keyword. This component is homepage-only. */}
+      <SectionHeading
+        as="h1"
+        align="center"
+        eyebrow="Serle's Bake · Ilanji"
+        title="Homemade Cakes in Tenkasi"
+        intro="Baked fresh after you order, for birthdays, anniversaries and every celebration in between."
+      />
+      <ul className="product_grid">
+        {categories.map((category, index) => {
+          const image = (typeof category.image === 'string' ? category.image : category.image?.url) || fallbackPhotos[category.slug];
+          return (
+            <li className="product_grid_item" key={category.id}>
+              <Link href={`/cakes/${category.slug}`} className="product_grid_link">
+                <span className="product_grid_photo">
+                  {image && (
+                    <Image
+                      src={image}
+                      alt=""
+                      width={240}
+                      height={240}
+                      sizes="(max-width: 768px) 30vw, 180px"
+                      priority={index < 3}
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                    />
+                  )}
+                </span>
+                <span className="product_grid_name">{category.name}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }

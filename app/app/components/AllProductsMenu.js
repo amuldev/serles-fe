@@ -6,12 +6,11 @@ import Link from "next/link";
 import { FaArrowDown, FaArrowLeft, FaClock } from "react-icons/fa";
 import styles from './home/Menu.module.css';
 import MenuProductCard from './MenuProductCard';
+import SectionHeading from './ui/SectionHeading';
+import CategoryTabs from './ui/CategoryTabs';
 import { getAnalyticsReference, trackStoreEvent } from '../utils/analytics';
 import { fetchCatalogJson, catalogList } from '../utils/catalog';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 export default function AllProductsMenu({ initialProducts = [], initialCategories = [], initialCatalogLoaded = false }) {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -134,6 +133,10 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
     : products.filter((p) => p.category?.slug === activeCategory);
 
   // Group by name, so that each name has multiple variants (if any)
+  // Unique cake names across all categories (count for the "All" tab).
+  const groupedAll = {};
+  products.forEach((item) => { groupedAll[item.name] = true; });
+
   const grouped = {};
   filteredProducts.forEach((item) => {
     if (!grouped[item.name]) grouped[item.name] = [];
@@ -178,114 +181,29 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
   };
 
   return (
-    <section style={{ background: "#fff", padding: "60px 0" }}>
+    <section style={{ background: "#fff", padding: "clamp(36px, 6vw, 72px) 0" }}>
       <div className="container">
-        <div className="text-center mb-4">
-          <div style={{ color: "#e4718a", fontWeight: 700, fontSize: "1.5rem" }} className="cursive mb-2">
-            Complete Menu &amp; Pricing
-          </div>
-          <h2 style={{ fontWeight: 800, fontSize: "2.2rem", margin: "0 0 10px 0", letterSpacing: "1px" }} className="h1 text-gray">
-            ALL OUR HOMEMADE <br /> CAKE COLLECTION
-          </h2>
-          <div style={{ width: 80, height: 4, background: "#e4718a", margin: "16px auto 0 auto", borderRadius: 2 }} />
-          <p style={{ color: "#666", fontSize: "1.1rem", marginTop: "20px", maxWidth: "600px", margin: "0 auto" }}>
-            Browse through our complete collection of delicious cakes. Each cake is made with love and the finest ingredients.
-          </p>
-          
-          {/* Quick Stats */}
-          <div style={{ 
-            display: "flex", 
-            justifyContent: "center", 
-            gap: "30px", 
-            marginTop: "30px",
-            flexWrap: "wrap"
-          }}>
-            <div style={{
-              background: "linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%)",
-              padding: "15px 25px",
-              borderRadius: "15px",
-              border: "2px solid #e4718a",
-              textAlign: "center"
-            }}>
-              <div style={{ fontSize: "1.5rem", fontWeight: "800", color: "#e4718a" }}>
-                {loading ? "—" : totalProducts || Object.keys(grouped).length}
-              </div>
-              <div style={{ fontSize: "0.9rem", color: "#666", fontWeight: "600" }}>
-                Total Products
-              </div>
-            </div>
-            <div style={{
-              background: "linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%)",
-              padding: "15px 25px",
-              borderRadius: "15px",
-              border: "2px solid #e4718a",
-              textAlign: "center"
-            }}>
-              <div style={{ fontSize: "1.5rem", fontWeight: "800", color: "#e4718a" }}>
-                {loading ? "—" : categories.length}
-              </div>
-              <div style={{ fontSize: "0.9rem", color: "#666", fontWeight: "600" }}>
-                Categories
-              </div>
-            </div>
-            <div style={{
-              background: "linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%)",
-              padding: "15px 25px",
-              borderRadius: "15px",
-              border: "2px solid #e4718a",
-              textAlign: "center"
-            }}>
-              <div style={{ fontSize: "1.5rem", fontWeight: "800", color: "#e4718a" }}>
-                <FaClock aria-hidden="true" />
-              </div>
-              <div style={{ fontSize: "0.9rem", color: "#666", fontWeight: "600" }}>
-                Baked fresh after you order · 4 hrs notice
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Category Tabs */}
-        <div className="d-flex flex-wrap justify-content-center mb-5">
-          <div style={{
-            background: "#231f20",
-            borderRadius: 4,
-            overflow: "hidden",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.04)"
-          }}>
-            {categoryTabs.map(tab => (
-              <button
-                key={tab.key}
-                className={classNames(
-                  "px-4 py-2 border-0 fw-bold",
-                  activeCategory === tab.key
-                    ? "bg-pink text-white"
-                    : "bg-transparent text-white-50"
-                )}
-                style={{
-                  background: activeCategory === tab.key ? "#e4718a" : "transparent",
-                  color: activeCategory === tab.key ? "#fff" : "#e0e0e0",
-                  border: "none",
-                  outline: "none",
-                  cursor: "pointer",
-                  fontSize: "1rem",
-                  transition: "background 0.2s"
-                }}
-                onClick={() => handleCategoryChange(tab.key)}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        <SectionHeading
+          align="center"
+          eyebrow="Complete menu"
+          title="All our homemade cakes"
+          intro="Every cake with its sizes and prices. Tap Details for photos and options, or Order to send the details on WhatsApp."
+        />
+        <p className={styles.freshNote}><FaClock aria-hidden="true" /> Baked fresh after you order · please order at least 4 hours ahead</p>
 
-        {/* Products Count */}
-        <div className="text-center mb-4">
-          <p style={{ color: "#666", fontSize: "1rem" }}>
-            {loading ? "Loading products…" : `Showing ${Object.keys(grouped).length} of ${totalProducts || Object.keys(grouped).length} products`}
-            {activeCategory !== "all" && ` in ${categories.find(c => c.slug === activeCategory)?.name || activeCategory}`}
-          </p>
-        </div>
+        <CategoryTabs
+          tabs={categoryTabs.map((tab) => ({
+            ...tab,
+            count: tab.key === 'all' ? Object.keys(groupedAll).length : products.filter((p) => p.category?.slug === tab.key).length,
+          }))}
+          active={activeCategory}
+          onChange={handleCategoryChange}
+        />
+
+        <p className={styles.countLine} aria-live="polite">
+          {loading ? "Loading cakes…" : `Showing ${Object.keys(grouped).length} ${Object.keys(grouped).length === 1 ? 'cake' : 'cakes'}`}
+          {activeCategory !== "all" && ` in ${categories.find(c => c.slug === activeCategory)?.name || activeCategory}`}
+        </p>
 
         {/* Products Grid */}
         {loading ? (
@@ -397,29 +315,9 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
 
             {/* Back to Home Menu */}
             <div className="text-center mt-4">
-              <Link
-                href="/"
-                style={{
-                  color: "#e4718a",
-                  textDecoration: "none",
-                  fontSize: "1rem",
-                  fontWeight: "600",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  transition: "all 0.3s ease"
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.color = "#8f0e1c";
-                  e.target.style.transform = "translateX(-5px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = "#e4718a";
-                  e.target.style.transform = "translateX(0)";
-                }}
-              >
+              <Link href="/" className={styles.backLink}>
                 <FaArrowLeft aria-hidden="true" />
-                Back to Home Menu
+                Back to home
               </Link>
             </div>
           </>

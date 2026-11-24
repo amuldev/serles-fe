@@ -1,0 +1,19 @@
+@use '../../styles/brand' as *;
+
+.scroller {
+  margin: 0 0 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+.row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 2px; }
+.tab {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; border: 1.5px solid $border; border-radius: 999px;
+  background: #fff; color: $ink; font-size: 15px; font-weight: 600; white-space: nowrap; cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  &:hover { border-color: #c98ea0; }
+  &:focus-visible { @include focus-ring; }
+}
+.active { border-color: $wine; background: $wine; color: #fff; &:hover { border-color: $wine; } .count { background: rgba(255, 255, 255, .2); color: #fff; } }
+.count { padding: 1px 8px; border-radius: 999px; background: $blush; color: $wine; font-size: 12px; font-weight: 700; }
+
+@media (max-width: 767px) { .row { flex-wrap: nowrap; width: max-content; min-width: 100%; justify-content: flex-start; } }
+@media (prefers-reduced-motion: reduce) { .tab { transition: none; } }

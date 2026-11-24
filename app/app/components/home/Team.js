@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './Team.module.css';
+import SectionHeading from '../ui/SectionHeading';
 import { logImageError, getFallbackImage } from '../../utils/imageUtils';
 
 export default function Team() {
@@ -10,22 +11,22 @@ export default function Team() {
     // visitors to private accounts. Roles need owner confirmation.
     const teamMembers = [
         {
-            name: "SANTHIYA THANGARAJ",
+            name: "Santhiya Thangaraj",
             role: "CEO & Head Baker",
             image: "/img/team/santhiya-cartoon.webp"
         },
         {
-            name: "THANGARAJ S.",
+            name: "Thangaraj S.",
             role: "CFO & Creative Designer",
             image: "/img/team/thangaraj-cartoon.webp"
         },
         {
-            name: "AMULRAJ S.",
+            name: "Amulraj S.",
             role: "COO",
             image: "/img/team/amulrajs-cartoon.webp"
         },
         {
-            name: "RAMYA",
+            name: "Ramya",
             role: "CFO",
             image: "/img/team/ramya-cartoon.webp"
         }
@@ -38,51 +39,32 @@ export default function Team() {
         };
 
         return (
-            <div className="col-lg-3 col-md-6 col-6">
-                <div className={`team__item set-bg ${styles.teamItem}`}>
+            <li className={styles.member}>
+                <span className={styles.photo}>
                     <Image
                         src={image}
-                        alt={name}
-                        title={name}
+                        alt={`${name}, ${role}`}
                         width={300}
                         height={400}
-                        className={styles.teamMemberImage}
                         onError={handleImageError}
                         sizes="(max-width: 991px) 50vw, 25vw"
                     />
-                    <div className={`team__item__text ${styles.teamItemText}`}>
-                        <h3 className="h6">{name}</h3>
-                        <span>{role}</span>
-                    </div>
-                </div>
-            </div>
+                </span>
+                <span className={styles.name}>{name}</span>
+                <span className={styles.role}>{role}</span>
+            </li>
         );
     }
 
     return (
-        <section className="team spad">
+        <section className={styles.section}>
             <div className="container">
-                <div className="row">
-                    <div className="col-lg-7 col-md-7 col-sm-7">
-                        <div className="section-title">
-                            <span className="text-pink cursive">Team Members</span>
-                            <h2 className="h1 text-gray">Meet the Team  </h2>
-                        </div>
-                    </div>
-                    <div className="col-lg-5 col-md-5 col-sm-5">
-
-                    </div>
-                </div>
-                <div className="row">
-                    {teamMembers.map((member, idx) => (
-                        <TeamMember
-                            key={idx}
-                            name={member.name}
-                            role={member.role}
-                            image={member.image}
-                        />
+                <SectionHeading eyebrow="The people behind the cakes" title="Meet the team" />
+                <ul className={styles.grid}>
+                    {teamMembers.map((member) => (
+                        <TeamMember key={member.name} name={member.name} role={member.role} image={member.image} />
                     ))}
-                </div>
+                </ul>
             </div>
         </section>
     );

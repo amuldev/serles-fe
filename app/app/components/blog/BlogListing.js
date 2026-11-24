@@ -54,7 +54,8 @@ export default async function BlogListing({ search = '', category = '' }) {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="section-title">
+              {/* Not "section-title": the template styles its spans pink/Oswald. */}
+              <div className="mb-4">
                 <span className={styles.eyebrow}>From our kitchen</span>
                 <h1 className={styles.pageTitle}>
                   {activeCategory ? activeCategory.name : 'Cake Guides & Baking Stories'}

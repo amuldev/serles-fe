@@ -1,116 +1,33 @@
-@use '../styles/variables.scss' as *;
+@use '../styles/brand' as *;
 
-.shop__option {
-  margin-bottom: 50px;
-  
-  .shop__option__search {
-    form {
-      border: 1px solid #e1e1e1;
-      height: 46px;
-      position: relative;
-      
-      .nice-select {
-        float: left;
-        border: none;
-        background: transparent;
-        display: inline-block;
-        width: 25%;
-        height: 44px;
-        line-height: 44px;
-        padding-left: 30px;
-        border-radius: 0;
-        
-        &.filtering {
-          opacity: 0.7;
-          transition: opacity 0.3s ease;
-        }
-      }
-      
-      input {
-        width: 75%;
-        height: 100%;
-        border: none;
-        font-size: 16px;
-        color: #000000;
-        padding-left: 30px;
-        
-        &.filtering {
-          opacity: 0.7;
-          transition: opacity 0.3s ease;
-        }
-        
-        &::-webkit-input-placeholder {
-          color: #000000;
-        }
-        
-        &::-moz-placeholder {
-          color: #000000;
-        }
-        
-        &:-ms-input-placeholder {
-          color: #000000;
-        }
-        
-        &::-ms-input-placeholder {
-          color: #000000;
-        }
-        
-        &::placeholder {
-          color: #000000;
-        }
-      }
-      
-      button {
-        color: #000000;
-        font-size: 16px;
-        font-weight: 700;
-        position: absolute;
-        right: 0;
-        top: 0;
-        border: none;
-        background: transparent;
-        height: 100%;
-        padding: 0 15px;
-      }
-    }
-  }
-  
-  .shop__option__right {
-    text-align: right;
-    
-    .nice-select {
-      border: none;
-      background: #f5f5f5;
-      display: inline-block;
-      width: 205px;
-      height: 46px;
-      line-height: 46px;
-      padding-left: 30px;
-      border-radius: 0;
-      float: none;
-      margin-right: 18px;
-      
-      &.filtering {
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
-      }
-    }
-    
-    a {
-      display: inline-block;
-      font-size: 18px;
-      color: #000000;
-      margin-left: 8px;
-      transition: all 0.3s ease;
-      
-      &.disabled {
-        opacity: 0.5;
-        pointer-events: none;
-      }
-      
-      &:hover {
-        color: #888888;
-      }
-    }
-  }
-} 
+// Filter bar for /cakes and category pages (rebuilt 24 Nov 2026).
+.bar {
+  display: grid; grid-template-columns: minmax(160px, 1fr) minmax(0, 2fr) minmax(160px, 1fr); gap: 14px; align-items: end;
+  margin-bottom: 32px; padding: 16px; border: 1px solid $border; border-radius: 18px; background: $cream;
+}
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; margin: 0; }
+.label { color: $ink; font-size: 13px; font-weight: 700; }
+
+.field select, .searchBox {
+  width: 100%; min-height: 48px; border: 1.5px solid $border; border-radius: 12px; background: #fff; color: $ink; font-size: 16px;
+}
+.field select {
+  padding: 0 40px 0 14px; appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23671d32' d='M6 8 0 1.4 1.4 0 6 4.8 10.6 0 12 1.4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  &:focus { border-color: $wine; outline: none; box-shadow: 0 0 0 3px rgba(103, 29, 50, .15); }
+}
+.searchBox {
+  display: flex; align-items: center; gap: 10px; padding: 0 14px;
+  svg { flex-shrink: 0; color: $muted; }
+  input { flex: 1; min-width: 0; height: 44px; border: 0; background: transparent; color: $ink; font-size: 16px; outline: none; }
+  input::placeholder { color: #9b8a90; }
+  &:focus-within { border-color: $wine; box-shadow: 0 0 0 3px rgba(103, 29, 50, .15); }
+}
+.filtering { opacity: .7; }
+.disabled { pointer-events: none; opacity: .5; }
+
+@media (max-width: 767px) {
+  .bar { grid-template-columns: 1fr 1fr; padding: 12px; gap: 10px; }
+  .search { grid-column: 1 / -1; grid-row: 1; }
+}

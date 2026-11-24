@@ -116,11 +116,11 @@ export default function TagPageClient({
     filteredProducts.length > 0 ? filteredProducts : searchTerm ? [] : products;
 
   // Breadcrumb items
+  // Breadcrumb adds "Home" itself; the last item is the current page.
   const breadcrumbItems = [
-    { name: "Home", href: "/" },
     { name: "Cakes", href: "/cakes" },
     { name: "Tags", href: "/cakes/tags" },
-    { name: currentTag?.name || tagSlug, href: `/cakes/tags/${tagSlug}` }
+    { name: currentTag?.name || tagSlug }
   ];
 
   // Meta data - dynamically generated from API with fallback
@@ -177,11 +177,11 @@ export default function TagPageClient({
   return (
     <>
 
-      <div className="container mt-5">
-        <Breadcrumb 
-          title={currentTag ? `${currentTag.name} Cakes` : "Tagged Cakes"}
-          items={breadcrumbItems}
-        />
+      <Breadcrumb
+        title={currentTag ? `${currentTag.name} Cakes` : "Tagged Cakes"}
+        items={breadcrumbItems}
+      />
+      <div className="container py-5">
         <TagCollectionIntro name={currentTag?.name || titleFromSlug(tagSlug)} products={products} />
 
         <div className="row">

@@ -7,12 +7,11 @@ import { FaUtensils } from "react-icons/fa";
 import styles from './Menu.module.css';
 import MenuProductCard from '../MenuProductCard';
 import MenuPromo from './MenuPromo';
+import SectionHeading from '../ui/SectionHeading';
+import CategoryTabs from '../ui/CategoryTabs';
 import { getAnalyticsReference, trackStoreEvent } from '../../utils/analytics';
 import { fetchCatalogJson, catalogList } from '../../utils/catalog';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 // Helper: normalize category key from API category name/slug
 function getCategoryKeyFromProduct(product) {
@@ -136,51 +135,15 @@ export default function Menu({ initialProducts = [], initialCategories = [], ini
 
 
   return (
-    <section style={{ background: "#fff", padding: "60px 0" }}>
+    <section style={{ background: "#fff", padding: "clamp(48px, 7vw, 88px) 0" }}>
       <div className="container">
-        <div className="text-center mb-4">
-          <div style={{ color: "#e4718a", fontWeight: 700, fontSize: "1.5rem" }} className="cursive mb-2">
-            Menu &amp; Pricing
-          </div>
-          <h2 style={{ fontWeight: 800, fontSize: "2.2rem", margin: "0 0 10px 0", letterSpacing: "1px" }} className="h1 text-gray">
-            EXPLORE OUR HOMEMADE <br /> CAKE COLLECTION
-          </h2>
-          <div style={{ width: 80, height: 4, background: "#e4718a", margin: "16px auto 0 auto", borderRadius: 2 }} />
-        </div>
-        
-        {/* Category Tabs */}
-        <div className="d-flex flex-wrap justify-content-center mb-5">
-          <div style={{
-            background: "#231f20",
-            borderRadius: 4,
-            overflow: "hidden",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.04)"
-          }}>
-            {categoryTabs.map(tab => (
-              <button
-                key={tab.key}
-                className={classNames(
-                  "px-4 py-2 border-0 fw-bold",
-                  activeCategory === tab.key
-                    ? "bg-pink text-white"
-                    : "bg-transparent text-white-50"
-                )}
-                style={{
-                  background: activeCategory === tab.key ? "#e4718a" : "transparent",
-                  color: activeCategory === tab.key ? "#fff" : "#e0e0e0",
-                  border: "none",
-                  outline: "none",
-                  cursor: "pointer",
-                  fontSize: "1rem",
-                  transition: "background 0.2s"
-                }}
-                onClick={() => setActiveCategory(tab.key)}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        <SectionHeading
+          align="center"
+          eyebrow="Menu & pricing"
+          title="Explore our homemade cakes"
+          intro="Every size and price at a glance. Tap Order to send the details on WhatsApp."
+        />
+        <CategoryTabs tabs={categoryTabs} active={activeCategory} onChange={setActiveCategory} />
 
         {/* Simple Menu List */}
         {loading ? (
@@ -238,34 +201,8 @@ export default function Menu({ initialProducts = [], initialCategories = [], ini
             {/* Always show View All Products button if there are products */}
             {displayProducts.length > 0 && (
               <div className="text-center mt-4">
-                <Link
-                  href="/menu"
-                  style={{
-                    background: "linear-gradient(135deg, #e4718a, #ff91a4)",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "50px",
-                    padding: "12px 30px",
-                    fontSize: "1rem",
-                    fontWeight: "600",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    boxShadow: "0 4px 15px rgba(228, 113, 138, 0.3)",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "8px"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = "translateY(-1px)";
-                    e.target.style.boxShadow = "0 6px 20px rgba(228, 113, 138, 0.4)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = "translateY(0)";
-                      e.target.style.boxShadow = "0 4px 15px rgba(228, 113, 138, 0.3)";
-                  }}
-                >
-                  <span>Browse Complete Menu</span>
+                <Link href="/menu" className={styles.browseButton}>
+                  <span>See the full menu</span>
                   <FaUtensils aria-hidden="true" />
                 </Link>
               </div>

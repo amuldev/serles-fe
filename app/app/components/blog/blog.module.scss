@@ -3,7 +3,7 @@
 // for post titles (the same pairing the template's blog CSS uses), Montserrat
 // for body copy.
 
-$primary: #b61123;
+$primary: #671d32; // brand burgundy (was #b61123, 24 Nov 2026)
 $accent: #ff91a4;
 $ink: #111111;
 $body: #444444;
@@ -87,8 +87,8 @@ $line: #ececec;
 }
 
 .cardTitle {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+  font-style: normal;
   font-size: 22px;
   line-height: 1.35;
   color: $ink;
@@ -143,7 +143,7 @@ $line: #ececec;
 
 .eyebrow {
   display: block;
-  font-family: 'Oswald', sans-serif;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 3px;
@@ -153,11 +153,11 @@ $line: #ececec;
 }
 
 .pageTitle {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+  font-style: normal;
   font-weight: 700;
   font-size: 40px;
-  color: $ink;
+  color: $primary;
   margin-bottom: 14px;
 
   @media (max-width: 767px) {
@@ -180,8 +180,8 @@ $line: #ececec;
   background: #fbfbfb;
 
   h4 {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+    font-style: normal;
     color: $ink;
     margin-bottom: 10px;
   }
@@ -252,7 +252,7 @@ $line: #ececec;
 }
 
 .sidebarHeading {
-  font-family: 'Oswald', sans-serif;
+  font-family: inherit;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
@@ -358,8 +358,8 @@ $line: #ececec;
   }
 
   h3 {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+    font-style: normal;
     font-size: 15px;
     line-height: 1.45;
     color: $ink;
@@ -406,8 +406,8 @@ $line: #ececec;
   text-align: center;
 
   h5 {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+    font-style: normal;
     color: #ffffff;
     margin-bottom: 10px;
   }
@@ -444,8 +444,8 @@ $line: #ececec;
 }
 
 .postTitle {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+  font-style: normal;
   font-weight: 700;
   font-size: 38px;
   line-height: 1.25;
@@ -490,7 +490,7 @@ $line: #ececec;
   font-size: 17px;
   line-height: 1.8;
   color: $ink;
-  font-style: italic;
+  font-style: normal;
   padding-left: 20px;
   border-left: 3px solid $accent;
   margin-bottom: 30px;
@@ -505,8 +505,8 @@ $line: #ececec;
   h2,
   h3,
   h4 {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif; // Playfair was never loaded
+    font-style: normal;
     color: $ink;
     margin: 38px 0 16px;
     line-height: 1.3;
@@ -560,7 +560,7 @@ $line: #ececec;
     background: #faf7f7;
     border-left: 3px solid $primary;
     border-radius: 0 12px 12px 0;
-    font-style: italic;
+    font-style: normal;
     color: $ink;
   }
 
@@ -673,7 +673,7 @@ $line: #ececec;
 }
 
 .internalHeading {
-  font-family: 'Oswald', sans-serif;
+  font-family: inherit;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;

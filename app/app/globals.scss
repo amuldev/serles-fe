@@ -348,3 +348,29 @@ body {
   outline: 3px solid #a95d76;
   outline-offset: 2px;
 }
+
+// Brand link colour (24 Nov 2026): body links were Bootstrap 4's hard-coded
+// blue (#007bff). Scoped to <main> so the header menu and footer keep their
+// own colours (a wider selector turned the dark nav's links burgundy).
+main a:not([class]) {
+  color: #671d32;
+  text-underline-offset: 3px;
+}
+main a:not([class]):hover {
+  color: #4f1426;
+}
+
+// Template Bootstrap 4 buttons in brand colours (24 Nov 2026): btn-primary and
+// btn-outline-primary rendered Bootstrap blue (e.g. "Back to All Cakes").
+// Prefixed with `main` because bootstrap.min.css loads after this file.
+main .btn-primary, main .btn-primary:not(:disabled):not(.disabled):active {
+  background-color: #671d32; border-color: #671d32; color: #fff;
+}
+main .btn-primary:hover, main .btn-primary:focus { background-color: #4f1426; border-color: #4f1426; color: #fff; }
+main .btn-outline-primary {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; border: 1.5px solid #671d32; border-radius: 12px; color: #671d32;
+}
+main .btn-outline-primary:hover, main .btn-outline-primary:focus, main .btn-outline-primary:not(:disabled):not(.disabled):active {
+  background-color: #fff1f5; border-color: #671d32; color: #671d32;
+}
+main .btn:focus-visible { outline: 3px solid #a95d76; outline-offset: 2px; box-shadow: none; }

@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
                 lineHeight: "1.8"
               }}>
                 <h1 className="text-center mb-5" style={{ 
-                  color: "#e4718a",
+                  color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif",
                   fontWeight: "700",
                   fontSize: "2.5rem"
                 }}>
@@ -45,7 +45,7 @@ export default function PrivacyPolicyPage() {
                     })}
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>1. Information We Collect</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>1. Information We Collect</h2>
                   <p>
                     We collect information you provide directly to us, such as when you:
                   </p>
@@ -57,7 +57,7 @@ export default function PrivacyPolicyPage() {
                     <li>Visit our website (cookies and usage data)</li>
                   </ul>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>2. Types of Information</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>2. Types of Information</h2>
                   <p><strong>Personal Information:</strong></p>
                   <ul style={{ marginLeft: "2rem", marginBottom: "1rem" }}>
                     <li>Name and contact details (phone, email, address)</li>
@@ -74,7 +74,7 @@ export default function PrivacyPolicyPage() {
                     <li>Cookies and similar technologies</li>
                   </ul>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>3. How We Use Your Information</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>3. How We Use Your Information</h2>
                   <p>We use the collected information to:</p>
                   <ul style={{ marginLeft: "2rem", marginBottom: "1rem" }}>
                     <li>Process and fulfill your orders</li>
@@ -85,7 +85,7 @@ export default function PrivacyPolicyPage() {
                     <li>Comply with legal obligations</li>
                   </ul>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>4. Information Sharing</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>4. Information Sharing</h2>
                   <p>
                     We do not sell, trade, or rent your personal information to third parties. We may share information with:
                   </p>
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
                     <li>Service providers (website hosting, analytics)</li>
                   </ul>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>5. Data Security</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>5. Data Security</h2>
                   <p>
                     We implement appropriate security measures to protect your personal information:
                   </p>
@@ -108,7 +108,7 @@ export default function PrivacyPolicyPage() {
                     <li>Secure data storage and transmission</li>
                   </ul>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>6. Cookies and Tracking</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>6. Cookies and Tracking</h2>
                   <p>
                     We use cookies and similar technologies to:
                   </p>
@@ -122,7 +122,7 @@ export default function PrivacyPolicyPage() {
                     You can control cookie settings through your browser preferences.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>7. Your Rights</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>7. Your Rights</h2>
                   <p>You have the right to:</p>
                   <ul style={{ marginLeft: "2rem", marginBottom: "1rem" }}>
                     <li>Access your personal information</li>
@@ -133,7 +133,7 @@ export default function PrivacyPolicyPage() {
                     <li>Lodge a complaint with authorities</li>
                   </ul>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>8. Data Retention</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>8. Data Retention</h2>
                   <p>
                     We retain your personal information for as long as necessary to:
                   </p>
@@ -147,22 +147,22 @@ export default function PrivacyPolicyPage() {
                     Order information is typically retained for 7 years for tax and legal purposes.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>9. Children's Privacy</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>9. Children's Privacy</h2>
                   <p>
                     Our website is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent and believe your child has provided us with personal information, please contact us.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>10. Third-Party Links</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>10. Third-Party Links</h2>
                   <p>
                     Our website may contain links to third-party websites. We are not responsible for the privacy practices of these websites. We encourage you to read their privacy policies.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>11. Changes to Privacy Policy</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>11. Changes to Privacy Policy</h2>
                   <p>
                     We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
                   </p>
 
-                  <h2 style={{ color: "#e4718a", marginTop: "2rem", marginBottom: "1rem" }}>12. Contact Us</h2>
+                  <h2 style={{ color: "#671d32", fontFamily: "Georgia, 'Times New Roman', serif", marginTop: "2rem", marginBottom: "1rem" }}>12. Contact Us</h2>
                   <p>
                     If you have any questions about this Privacy Policy, please contact us:
                   </p>

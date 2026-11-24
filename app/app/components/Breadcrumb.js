@@ -1,44 +1,43 @@
 import Link from "next/link";
+import styles from './Breadcrumb.module.scss';
 
 /**
- * Breadcrumb bar with the page title.
+ * Page title band with a breadcrumb trail.
  *
- * The title renders as the page's `<h1>` by default. It used to be an `<h2>` while
- * the site's only `<h1>` was the logo in the header, so every page's strongest
- * heading said "Serles Bake" instead of what the page is about.
+ * The title renders as the page's `<h1>` by default. Pages that already render
+ * their own `<h1>` in the body (blog, contact, the legal pages) pass
+ * `headingLevel="h2"`; the label is then a paragraph so it doesn't precede the
+ * real H1 in the outline.
  *
- * Pages that already render their own `<h1>` in the body (blog index and posts,
- * contact, the legal pages) pass `headingLevel="h2"`; that visual breadcrumb
- * label is a paragraph so it doesn't precede the actual H1 in the outline.
+ * Restyled 24 Nov 2026 (ui-ux-pro-max pass): the template rendered a grey
+ * uppercase title and a trail that ended in a bare "Home |" on most pages. The
+ * trail now always ends with the current page and is a real <nav> list.
  */
 export default function Breadcrumb({ title, items = [], headingLevel = "h1" }) {
   const Heading = headingLevel === "h1" ? "h1" : "p";
+  const crumbs = items.length > 0 ? items : [{ label: title }];
 
   return (
-    <div className="breadcrumb-option">
+    <div className={styles.band}>
       <div className="container">
-        <div className="row">
-          <div className="col-lg-6 col-md-6 col-sm-6">
-            <div className="breadcrumb__text ">
-              <Heading className="text-uppercase h2">{title}</Heading>
-            </div>
-          </div>
-          <div className="col-lg-6 col-md-6 col-sm-6">
-            <div className="breadcrumb__links">
-              <Link href="/">Home</Link>
-              {items.map((item, index) => (
-                <span key={index}>
-                  {item.href ? (
-                    <Link href={item.href}>{item.label || item.name}</Link>
-                  ) : (
-                    item.label || item.name
-                  )}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+        <Heading className={styles.title}>{title}</Heading>
+        <nav aria-label="Breadcrumb">
+          <ol className={styles.trail}>
+            <li><Link href="/">Home</Link></li>
+            {crumbs.map((item, index) => {
+              const label = item.label || item.name;
+              const last = index === crumbs.length - 1;
+              return (
+                <li key={`${label}-${index}`}>
+                  {item.href && !last
+                    ? <Link href={item.href}>{label}</Link>
+                    : <span aria-current={last ? 'page' : undefined}>{label}</span>}
+                </li>
+              );
+            })}
+          </ol>
+        </nav>
       </div>
     </div>
   );
-} 
+}

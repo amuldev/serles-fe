@@ -1,7 +1,7 @@
 .delivery {
   max-width: 1080px; padding-top: 40px; padding-bottom: 64px; color: #352b30;
   p, li { line-height: 1.85; font-size: 1rem; }
-  h2 { font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.3; margin-bottom: 18px; }
+  h2 { font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.3; margin-bottom: 18px; color: #671d32; font-family: Georgia, 'Times New Roman', serif; font-weight: 700; }
   a { text-underline-offset: 3px; }
   a:focus-visible, summary:focus-visible { outline: 3px solid #8d2547; outline-offset: 4px; }
 }
@@ -13,8 +13,8 @@
   padding: 12px 20px; border-radius: 8px; font-weight: 700; text-decoration: none;
   text-align: center; max-width: 100%; overflow-wrap: anywhere;
 }
-.delivery .primary { background: #8d2547; color: #fff; }
-.delivery .secondary { border: 1px solid #8d2547; color: #70213b; background: #fff; }
+.delivery .primary { background: #671d32; color: #fff; }
+.delivery .secondary { border: 1.5px solid #671d32; color: #671d32; background: #fff; }
 .section { margin: 42px 0; }
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .card { background: #faf8f8; border: 1px solid #eadfe3; border-radius: 14px; padding: 26px; }

@@ -23,7 +23,7 @@ export default function Header() {
         <div className='d-flex align-items-center justify-content-start gap-3 p-3'>
           <Image src="/img/serlesbakelogo.webp" alt="Serle's Bake — homemade cakes in Tenkasi"
           title="Serle's Bake — homemade cakes in Tenkasi" width={60} height={60} />
-          <p className='text-black h6 mb-0'>Serles Bake</p>
+          <p className='text-black h6 mb-0'>Serle&apos;s Bake</p>
         </div>
         
         {/* Mobile Navigation Menu */}
@@ -72,7 +72,7 @@ export default function Header() {
                           on-page heading, and pages with a real heading of their own
                           (blog posts, contact) shipped two H1s. The `h1` class is kept,
                           so this is a semantic change only — nothing moves visually. */}
-                      <span className='h1 text-white fw -bold mb-0 d-block'>Serles Bake</span>
+                      <span className='h1 text-white fw-bold mb-0 d-block'>Serle&apos;s Bake</span>
                     </Link>
                   <Link href="tel:+916383070725" className="text-primary-light text-decoration-none d-none d-lg-block">
                     <i className="bi bi-telephone text-primary-light d-inline-flex align-items-center justify-content-center gap-3 h-100 ">

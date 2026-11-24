@@ -1,0 +1,10 @@
+@use '../../styles/brand' as *;
+
+.wrap { margin-bottom: clamp(22px, 3.5vw, 36px); }
+.center { text-align: center; .intro { margin-left: auto; margin-right: auto; } }
+.withAction { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; }
+.text { min-width: 0; }
+.eyebrow { @include eyebrow; }
+.title { @include section-title; }
+.intro { max-width: 640px; margin: 12px 0 0; color: $muted; font-size: 16px; line-height: 1.7; }
+.action { flex-shrink: 0; }

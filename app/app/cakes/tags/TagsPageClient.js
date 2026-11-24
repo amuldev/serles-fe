@@ -66,10 +66,10 @@ export default function TagsPageClient({ initialTags, initialProducts }) {
   }, [fetchData, hasServerData]);
 
   // Breadcrumb items
+  // Breadcrumb adds "Home" itself (this list used to repeat it: "Home | Home").
   const breadcrumbItems = [
-    { name: "Home", href: "/" },
     { name: "Cakes", href: "/cakes" },
-    { name: "Tags", href: "/cakes/tags" }
+    { name: "Tags" }
   ];
 
   // Meta data - dynamically generated from API with fallback
@@ -119,16 +119,16 @@ export default function TagsPageClient({ initialTags, initialProducts }) {
   return (
     <>
 
-      <div className="container mt-5">
-        <Breadcrumb 
-          title="All Tags"
-          items={breadcrumbItems}
-        />
+      <Breadcrumb
+        title="All Tags"
+        items={breadcrumbItems}
+      />
+      <div className="container py-5">
 
         <div className="row">
           <div className="col-lg-12">
-            <div className="section-title">
-              <h2>Browse by Tags</h2>
+            <div className="mb-4" style={{ maxWidth: 760 }}>
+              <h2 style={{ color: '#671d32', fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 700, fontSize: 'clamp(26px, 3vw, 34px)', marginBottom: 12 }}>Browse by tag</h2>
               <p>Use a tag to explore products grouped under the same catalog label. Open a collection, then compare the individual cake photos, sizes and prices.</p>
               <p>Tags help you browse; they do not confirm a cake recipe, dietary option or design change. Ask us about the product you choose and the date you need.</p>
               <p>For the full range, <Link href="/cakes">browse cakes by category</Link>. For a quick price comparison, <Link href="/menu">open the cake menu</Link>. Send your preferred cake, size, message and date on WhatsApp before confirming an order.</p>
@@ -149,28 +149,20 @@ export default function TagsPageClient({ initialTags, initialProducts }) {
                         style={{
                           display: 'block',
                           padding: '20px',
-                          border: '1px solid #e0e0e0',
-                          borderRadius: '8px',
+                          border: '1px solid #eedde2',
+                          borderRadius: '16px',
                           textAlign: 'center',
                           transition: 'all 0.3s ease',
                           backgroundColor: '#fff',
                           color: '#333',
                           textDecoration: 'none'
                         }}
-                        onMouseEnter={(e) => {
-                          e.target.style.transform = 'translateY(-5px)';
-                          e.target.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-                          e.target.style.borderColor = '#b61123';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.transform = 'translateY(0)';
-                          e.target.style.boxShadow = 'none';
-                          e.target.style.borderColor = '#e0e0e0';
-                        }}
+                        onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#671d32'; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#eedde2'; }}
                       >
-                        <h2 className="mb-2" style={{ color: '#b61123', fontWeight: '600' }}>
+                        <h3 className="mb-2" style={{ color: '#671d32', fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 700, fontSize: 24 }}>
                           {tag.name}
-                        </h2>
+                        </h3>
                         <p className="mb-0 text-muted">
                           {tag.productCount} {tag.productCount === 1 ? 'product' : 'products'}
                         </p>
@@ -203,7 +195,7 @@ export default function TagsPageClient({ initialTags, initialProducts }) {
           <div className="col-lg-12">
             <div className="text-center">
               <Link href="/cakes" className="btn btn-outline-primary">
-                ← Back to All Cakes
+                ← Back to all cakes
               </Link>
             </div>
           </div>

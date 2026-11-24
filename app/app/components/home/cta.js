@@ -1,88 +1,59 @@
-"use client"
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaWhatsapp, FaArrowRight, FaTag } from 'react-icons/fa';
+import { getProductsUrl } from '../../config/api';
+import { catalogList, fetchCatalogJson } from '../../utils/catalog';
+import { formatPriceRange } from '../ProductCard';
+import styles from './cta.module.scss';
 
-export default function FeaturedCakeCTA() {
+const SLUG = 'black-forest';
+const WHATSAPP = `https://wa.me/916383070725?text=${encodeURIComponent('Hi! I want to order the Black Forest cake.')}`;
+
+async function featured() {
+  try {
+    return catalogList(await fetchCatalogJson(getProductsUrl())).find((p) => p.slug === SLUG) || null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Featured cake banner (rebuilt 24 Nov 2026, ui-ux-pro-max pass). It used a
+ * template stock photo under a grey overlay; it now shows the real Black Forest
+ * photo and its live price. The first-order offer text is unchanged pending
+ * the owner's terms.
+ */
+export default async function FeaturedCakeCTA() {
+  const product = await featured();
+  const href = product?.category?.slug ? `/cakes/${product.category.slug}/${SLUG}` : '/cakes';
+  const price = formatPriceRange(product?.price_range);
+
   return (
-    <section className="cta-section container-fluid p-0"
-      style={{
-        backgroundImage: "url('/img/hero/hero-1.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        textAlign: "center",
-        position: "relative",
-        color: "#fff",
-        minHeight: "340px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-      }}
-    >
-      <div 
-        style={{
-          background: "rgba(35, 31, 32, 0.68)",
-          padding: "40px 10% 36px 10%",
-
-          margin: "0 auto",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.18)"
-        }}
-      >
-        <div style={{ marginBottom: "10px" }}>
-          <span
-            style={{
-              color: "#ffb6c1",
-              fontFamily: "'Pacifico', cursive",
-              fontSize: "2rem",
-              fontWeight: 700,
-              letterSpacing: "1px"
-            }}
-          >
-            Black Forest
-          </span>
+    <section className={styles.section} aria-labelledby="featured-heading">
+      <div className={`container ${styles.grid}`}>
+        <div className={styles.photo}>
+          {product?.featured_image?.url && (
+            <Image src={product.featured_image.url} alt={product.featured_image.alt_text || 'Black Forest cake'} fill sizes="(max-width: 991px) 100vw, 45vw" />
+          )}
         </div>
-        <h2
-          className="h1 text-white"
-        >
-          OUR FEATURED HOMEMADE CAKE
-        </h2>
-        <div
-          style={{
-            width: "60px",
-            height: "4px",
-            background: "#ffb6c1",
-            margin: "0 auto 22px auto",
-            borderRadius: "2px"
-          }}
-        ></div>
-        <p
-          style={{
-            fontSize: "1.08rem",
-            color: "#f3eaea",
-            margin: "0 0 28px 0",
-            lineHeight: "1.6"
-          }}
-        >
-          Introducing our signature Black Forest Cake, a timeless favorite and the star of our menu. Crafted with layers of rich chocolate sponge, velvety whipped cream, and topped with juicy cherries, this cake is the perfect choice for any celebration or indulgence. Experience the taste that everyone is talking about!
-        </p>
-        <h3 className="text-pink h2 mb-4 text-white">10% OFF on First Order</h3>
-        <Link
-          href="https://wa.me/916383070725?text=I%20want%20to%20order%20the%20Black%20Forest%20cake"
-          style={{
-            display: "inline-block",
-            background: "#ff6f91",
-            color: "#fff",
-            fontWeight: 700,
-            fontSize: "1.1rem",
-            padding: "12px 36px",
-            borderRadius: "6px",
-            textDecoration: "none",
-            boxShadow: "0 2px 8px rgba(255, 111, 145, 0.18)",
-            transition: "background 0.2s"
-          }}
-          onMouseEnter={e => (e.target.style.background = "#e4718a")}
-          onMouseLeave={e => (e.target.style.background = "#ff6f91")}
-        >
-          Order Now
-        </Link>
+        <div className={styles.text}>
+          <p className={styles.eyebrow}>Our featured cake</p>
+          <h2 id="featured-heading" className={styles.title}>Black Forest</h2>
+          <p className={styles.copy}>
+            Our signature Black Forest: layers of chocolate sponge and whipped cream, topped with cherries.
+            A favourite for birthdays and every celebration.
+          </p>
+          {price && <p className={styles.price}>{price}</p>}
+          <p className={styles.offer}><FaTag aria-hidden="true" /> 10% OFF on First Order</p>
+          <div className={styles.ctas}>
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`${styles.button} ${styles.whatsapp}`}>
+              <FaWhatsapp aria-hidden="true" /> Order on WhatsApp
+            </a>
+            <Link href={href} className={`${styles.button} ${styles.light}`}>
+              See sizes <FaArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,0 +1,23 @@
+@use '../../styles/brand' as *;
+
+.section { padding: clamp(48px, 7vw, 88px) 0; }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.photo {
+  overflow: hidden; border-radius: 22px; background: $blush;
+  img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+}
+.lead { margin: 0 0 12px; color: $ink; font-size: 18px; font-weight: 600; line-height: 1.6; }
+.text {
+  margin: 0 0 24px; color: $muted; font-size: 16px; line-height: 1.75;
+  a { color: $wine; font-weight: 600; text-underline-offset: 3px; }
+}
+.features {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0 0 24px; padding: 0; list-style: none;
+  li { display: flex; align-items: flex-start; gap: 14px; padding: 16px; border: 1px solid $border; border-radius: 16px; background: #fff; color: $muted; font-size: 15px; line-height: 1.6; }
+  strong { display: block; margin-bottom: 2px; color: $ink; font-size: 16px; }
+}
+.icon { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: $blush; color: $wine; font-size: 18px; }
+.more { @include button-outline; }
+
+@media (max-width: 991px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 575px) { .features { grid-template-columns: 1fr; } .more { width: 100%; } }

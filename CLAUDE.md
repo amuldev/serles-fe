@@ -260,6 +260,35 @@ not.
 
 Bigger than any of the above for a local bakery: an active **Google Business Profile**.
 
+## UI system (ui-ux-pro-max pass, 24 Nov 2026)
+
+**Brand:** burgundy `#671d32` with blush and cream, Georgia serif headings,
+Inter body. The tokens and mixins live in `app/styles/_brand.scss`; import
+them with `@use '../styles/brand' as *;`.
+
+**Reuse these instead of adding inline styles:**
+- `components/ui/SectionHeading` (eyebrow, title, intro, action)
+- `components/ui/CategoryTabs`
+- `components/MenuProductCard`, `components/ProductCard`
+- `components/Breadcrumb` (the page title band)
+- `utils/siteLinks.js` (Business Profile, Instagram and YouTube URLs)
+
+**Rules:**
+- SVG icons from `react-icons`, never emoji or Font Awesome 5 classes. Only
+  FA4 is loaded, so `fas`/`fab` classes render as empty squares.
+- Tap targets of at least 44px, a visible `:focus-visible`, and
+  `prefers-reduced-motion` respected.
+- No text on `#ffb6c1`/`#e4718a` backgrounds; contrast is too low.
+
+**Template gotchas:**
+- Bootstrap is 4.4.1 and loads after `globals.scss`. Brand overrides for
+  `.btn-*` and links are prefixed with `main` and scoped to `<main>`; a wider
+  link rule once hid the header menu.
+- The template's `.section-title span` restyles any span inside it (pink,
+  Oswald), so don't wrap new headings in `section-title`.
+- Don't put invented facts in copy: founding year, counts, FSSAI, pickup,
+  response times and offer terms all need the owner.
+
 ## Running without Django (database mode, added 24 Nov 2026)
 
 **What it is:** setting the server-only env var `STOREFRONT_DATABASE_URL` makes the
