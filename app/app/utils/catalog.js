@@ -40,7 +40,13 @@ export async function fetchCatalogJson(url) {
   });
 
   if (!response.ok) {
-    throw new Error(`Catalog request failed (${response.status})`);
+    // A 402 means the request went to the paused Django host. That only
+    // happens when database mode is off, typically a local .env.local
+    // without STOREFRONT_DATABASE_URL. Say so instead of a bare status code.
+    const hint = response.status === 402 && isServer() && !process.env.STOREFRONT_DATABASE_URL
+      ? ' - the Django API is paused; set STOREFRONT_DATABASE_URL (Supabase transaction pooler) in app/.env.local to read the database directly'
+      : '';
+    throw new Error(`Catalog request failed (${response.status})${hint}`);
   }
 
   return response.json();
