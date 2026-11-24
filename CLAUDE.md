@@ -297,6 +297,11 @@ Unset, it reads the Django API exactly as before.
   `apiFetch`'s literal `typeof window` check keeps `postgres` out of browser bundles.
 - **Before shipping, scan the build:** `.next/static` must contain no
   `serles-storefront` string and no connection string.
+- **Keep `max_pipeline: 0` in `db.js`.** Supabase's transaction pooler never
+  answers pipelined parameterless queries, so Vercel builds hung to the 45-min
+  limit (24 Nov 2026). Every load goes through `withDbDeadline` (30 s, 3 tries).
+  Test DB changes with a clean build **through the pooler**, not the direct host:
+  the direct connection does not show the bug.
 
 ## The backend has a stale hostname — avoid it
 
