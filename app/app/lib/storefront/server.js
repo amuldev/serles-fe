@@ -11,9 +11,9 @@ import { apiSnapshotNeeds, postListParams, resolveApi } from './api.js';
 // Every load goes through withDbDeadline: the Supabase pooler can stall silently.
 const DAY = 86400;
 const dataCachedCatalog = unstable_cache(() => withDbDeadline('catalog snapshot', loadCatalogSnapshot),
-  ['storefront-catalog-v1'], { revalidate: DAY, tags: ['catalog'] });
+  ['storefront-catalog-v2'], { revalidate: DAY, tags: ['catalog'] });
 const dataCachedBlog = unstable_cache(() => withDbDeadline('blog snapshot', loadBlogSnapshot),
-  ['storefront-blog-v1'], { revalidate: DAY, tags: ['blog'] });
+  ['storefront-blog-v2'], { revalidate: DAY, tags: ['blog'] });
 
 // Concurrent callers share one load. Without this, a build prerendering dozens
 // of pages at once started dozens of snapshot loads (each ~56 round trips to the
@@ -38,7 +38,7 @@ const cachedBlog = shareLoad(dataCachedBlog);
 // The /blog page's search/category filters: Django's exact list SQL, cached per query string.
 const cachedPostListIds = unstable_cache(
   (query) => withDbDeadline('blog list query', () => loadPostListIds(new URLSearchParams(query))),
-  ['storefront-post-list-v1'], { revalidate: DAY, tags: ['blog'] });
+  ['storefront-post-list-v2'], { revalidate: DAY, tags: ['blog'] });
 
 export function storefrontDataSource() {
   return storefrontDbConfigured() ? 'database' : 'django-api';
