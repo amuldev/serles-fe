@@ -322,9 +322,14 @@ with a static fallback if the API fails (`app/app/sitemap.xml/route.js`).
 - **Pages and server fetches are cached for 1 day**: `revalidate = 86400` on every
   catalog/blog page, and server fetches use the data cache tagged `catalog`/`blog`
   (see `utils/catalog.js`).
-- **The dynamic `/cakes` routes need `generateStaticParams` returning `[]`.**
-  Without it they were `ƒ` (a full render on every request). Check that the build
-  output still shows `●` for them.
+- **The dynamic `/cakes` routes list every slug in `generateStaticParams`.**
+  Without it they were `ƒ` (a full render on every request). Returning `[]`
+  (render on first visit) worked locally but **404'd every page on Vercel**, and
+  the 404 was cached for a day (24 Nov 2026). Check the build output lists
+  each category/product/tag under its `●` route.
+- **Never read `searchParams` in a cached page** - it makes the page `ƒ`. `/blog`
+  did (7 s per visit); search now lives at `/blog/search` (noindex) and old
+  `/blog?search=` / `?category=` links redirect in `next.config.mjs`.
 - **Server fetches add `?ssr=1`.** Django answers those with `no-store`, so the
   CDN never feeds a stale copy into a refresh.
 - **Edits appear immediately:** Django POSTs `/api/revalidate` (header
