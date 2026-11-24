@@ -488,12 +488,14 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
           }
 
           .product-details-container {
-            padding-bottom: 132px;
+            /* The page-end spacer already clears the sticky CTA; this
+               duplicated it and left a 132px gap mid-page. */
+            padding-bottom: 24px;
           }
 
           .mobile-sticky-cta-spacer {
             display: block;
-            height: 132px;
+            height: 88px;
           }
         }
       `}</style>

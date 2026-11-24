@@ -25,7 +25,7 @@ export default function HomeShowcase({ products = [], categories = [] }) {
   // Bestsellers first, then other cakes to fill two full rows.
   const shown = (active === 'best'
     ? [...products.filter((p) => p.is_best_seller), ...products.filter((p) => !p.is_best_seller)]
-    : products.filter((p) => p.category?.slug === active)).slice(0, 8);
+    : products.filter((p) => p.category?.slug === active)).slice(0, 10);
   const moreHref = active === 'best' ? '/cakes' : `/cakes/${active}`;
 
   if (products.length === 0) return null;
@@ -42,7 +42,7 @@ export default function HomeShowcase({ products = [], categories = [] }) {
             </button>
           ))}
         </div>
-        <div id="showcase-panel" role="tabpanel" className="row">
+        <div id="showcase-panel" role="tabpanel" className={`row ${styles.grid}`}>
           {shown.map((p, i) => <ProductCard key={p.id} product={p} headingLevel="h3" priority={i < 2} showBadge={active !== 'best'} />)}
         </div>
         <div className={styles.more}>

@@ -32,3 +32,12 @@
   .photo, .photo img, .name { transition: none; }
   .card:hover .photo img { transform: none; }
 }
+
+// Desktop: five per row so cards read smaller (24 Nov 2026). Doubled class
+// beats Bootstrap's .col-lg-3 regardless of stylesheet order.
+@media (min-width: 992px) {
+  .col.col { flex: 0 0 20%; max-width: 20%; }
+  .name { font-size: 15px; }
+  .price { font-size: 14px; }
+  .photo { border-radius: 14px; margin-bottom: 8px; }
+}

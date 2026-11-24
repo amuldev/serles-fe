@@ -97,3 +97,9 @@
 @media (prefers-reduced-motion: reduce) {
   .drawer, .overlay, .nav a::after, .order { transition: none; }
 }
+
+.stripShort { display: none; }
+@media (max-width: 575px) {
+  .stripLong { display: none; }
+  .stripShort { display: inline; }
+}

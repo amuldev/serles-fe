@@ -17,3 +17,6 @@
 .moreLink { @include button-primary; }
 .menuLink { color: $wine; font-weight: 700; text-underline-offset: 4px; &:hover { color: $wine-dark; } }
 @media (prefers-reduced-motion: reduce) { .tab::after { transition: none; } }
+
+@media (min-width: 768px) and (max-width: 991px) { .grid > :nth-child(n + 10) { display: none; } }
+@media (max-width: 767px) { .grid > :nth-child(n + 7) { display: none; } }

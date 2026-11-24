@@ -402,3 +402,15 @@ main .btn:focus-visible { outline: 3px solid #a95d76; outline-offset: 2px; box-s
 // an alternating background.
 .section-std { padding: clamp(48px, 7vw, 88px) 0; }
 .section-alt { padding: clamp(48px, 7vw, 88px) 0; background: var(--color-alt); }
+
+// Mobile spacing (24 Nov 2026): the template's .spad adds 100px below every
+// section and the product page sat under an empty band.
+@media (max-width: 767px) {
+  .spad { padding-bottom: 48px; }
+  .product-details.spad { padding-top: 20px; }
+  .product-details .product__details__accordion { margin-top: 28px !important; }
+  .related-products-section { margin-top: 24px !important; padding-top: 32px !important; }
+}
+@media (min-width: 768px) {
+  .product-details.spad { padding-top: 40px; }
+}

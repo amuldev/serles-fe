@@ -11,3 +11,15 @@
   background: $sand; color: $wine; font-size: 28px;
 }
 @media (max-width: 767px) { .grid { grid-template-columns: 1fr; gap: 24px; } }
+
+@media (max-width: 767px) {
+  .section { padding: 32px 0; }
+  .grid { gap: 14px; }
+  .item {
+    display: grid; grid-template-columns: 52px 1fr; grid-template-rows: auto auto; column-gap: 14px; row-gap: 2px;
+    align-items: center; text-align: left; font-size: 14px;
+    strong { grid-column: 2; font-size: 19px; }
+    span:last-child { grid-column: 2; }
+  }
+  .icon { grid-row: 1 / span 2; width: 52px; height: 52px; margin: 0; font-size: 21px; }
+}

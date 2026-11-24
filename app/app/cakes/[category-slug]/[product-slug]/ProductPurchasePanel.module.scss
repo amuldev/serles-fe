@@ -92,3 +92,5 @@ $ring: #a95d76;
   .size, .cta, .stepper button { transition: none; }
   .cta:hover { transform: none; }
 }
+
+// (gap fixes live in globals.scss: they target template classes)
