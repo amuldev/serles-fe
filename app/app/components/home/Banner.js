@@ -119,8 +119,8 @@ export default function Banner() {
         .delivery-cta :global(.delivery-arrow) { margin-left: 3px; font-size: 11px; }
         .banner-delivery:hover .delivery-cta { background: #ffe4cb; transform: translateY(-2px); }
         .delivery-note { margin: 12px 0 0; color: #ead3cb; font-size: 10px; line-height: 1.5; }
-        .banner-dots { display: flex; justify-content: center; gap: 4px; padding-top: 9px; }
-        .banner-dot { display: grid; place-items: center; width: 30px; height: 24px; border: 0; border-radius: 6px; padding: 0; background: transparent; cursor: pointer; }
+        .banner-dots { display: flex; justify-content: center; gap: 0; padding-top: 0; }
+        .banner-dot { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 6px; padding: 0; background: transparent; cursor: pointer; }
         .banner-dot::after { content: ''; width: 7px; height: 7px; border-radius: 20px; background: #dac4c5; transition: width .2s ease; }
         .banner-dot.active::after { width: 23px; background: #8f2d47; }
         .banner-dot:focus-visible { outline: 2px solid #8f2d47; }

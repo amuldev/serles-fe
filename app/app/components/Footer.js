@@ -1,405 +1,99 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import EmailLink from './EmailLink';
-import { FaFacebook, FaInstagram, FaWhatsapp, FaGoogle } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaWhatsapp, FaGoogle, FaYoutube, FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaClock } from 'react-icons/fa';
+import { GOOGLE_PROFILE_URL, INSTAGRAM_URL, YOUTUBE_URL } from '../utils/siteLinks';
+import { FRESH_BAKE_SHORT } from '../utils/deliveryPolicy';
+import styles from './Footer.module.scss';
 
-const contactInfo = [
-  {
-    icon: "fa-map-marker",
-    text: "Tenkasi - Shencottai Main Road, Ilanji, Tenkasi, Tamil Nadu 627805",
-    href: "https://plus.codes/6JWVX77J+CH",
-  },
-  {
-    icon: "fa-envelope",
-    text: "serlesbake@gmail.com",
-    href: "mailto:serlesbake@gmail.com",
-  },
-  {
-    icon: "fa-phone",
-    text: "+91 6383070725",
-    href: "tel:+916383070725",
-  },
+// One address, written the same way as the Bakery schema and the Contact page.
+const ADDRESS = 'Tenkasi – Shencottai Main Road, Ilanji, Tenkasi, Tamil Nadu 627805';
+const WHATSAPP = "https://wa.me/916383070725?text=Hi!%20I'm%20interested%20in%20ordering%20the%20cakes";
+
+const shopLinks = [
+  { label: 'All cakes', href: '/cakes' },
+  { label: 'Menu & prices', href: '/menu' },
+  { label: 'Cake delivery', href: '/cake-delivery' },
+  { label: 'Cake guides', href: '/blog' },
+  { label: 'About us', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
-const socialLinks = [
-  {
-    icon: "fa-facebook",
-    href: "https://www.facebook.com/serlesbake",
-    color: "#3b5998",
-    label: "FaFacebook",
-  },
-  {
-    icon: "fa-instagram",
-    href: "https://www.instagram.com/serles_bake",
-    color: "#e1306c",
-    label: "FaInstagram",
-  },
-  {
-    icon: "fa-whatsapp",
-    href: "https://wa.me/916383070725?text=Hi!%20I'm%20interested%20in%20ordering%20the%20cakes",
-    color: "#25d366",
-    label: "FaWhatsapp",
-  },
+const socials = [
+  { name: "Serle's Bake on Facebook", href: 'https://www.facebook.com/serlesbake', Icon: FaFacebook },
+  { name: "Serle's Bake on Instagram", href: INSTAGRAM_URL, Icon: FaInstagram },
+  { name: "Serle's Bake on YouTube", href: YOUTUBE_URL, Icon: FaYoutube },
+  { name: "Chat with Serle's Bake on WhatsApp", href: WHATSAPP, Icon: FaWhatsapp },
 ];
 
-// Updated working hours: single line for all days, and home delivery mention
-const workingHours = [
-  { day: "Monday - Sunday", time: "7:00 am – 11:00 pm" },
-  { day: "Home Delivery", time: "Within 20 km by road; address and availability confirmed before ordering" },
-];
-
-const quickLinks = [
-  { label: "Cakes", href: "/cakes" },
-  { label: "Menu & Pricing", href: "/menu" },
-  { label: "Cake Delivery", href: "/cake-delivery" },
-  // { label: "Cake Categories", href: "/cakes/category" },
-  { label: "WhatsApp Enquiry", href: "https://wa.me/916383070725?text=Hi!%20I'm%20interested%20in%20ordering%20the%20cakes", external: true, icon: <FaWhatsapp style={{ marginRight: 6, color: "#25d366" }} /> },
-  { label: "Google Reviews", href: "https://plus.codes/6JWVX77J+CH", external: true, icon: <FaGoogle style={{ marginRight: 6, color: "#ea4335" }} /> },
-];
-
-function ContactList({ info }) {
-  return (
-    <ul style={{ color: "#fff", listStyle: "none", padding: 0, margin: 0, fontSize: "1.05rem" }}>
-      {info.map((item, idx) => (
-        <li key={idx} style={{ marginBottom: 10, display: "flex", alignItems: "center" }}>
-          <span style={{ marginRight: 10, color: "#ffb6c1" }}>
-            <i className={`fa ${item.icon}`}></i>
-          </span>
-          {item.href?.startsWith('mailto:') ? <EmailLink className="text-white text-decoration-underline" /> : item.href ? (
-            <a
-              href={item.href}
-              style={{
-                color: "#fff",
-                textDecoration: item.icon === "fa-envelope" ? "underline" : "none",
-                wordBreak: "break-all",
-              }}
-            >
-              {item.text}
-            </a>
-          ) : (
-            item.text
-          )}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function SocialIcons({ links }) {
-  return (
-    <div style={{ marginTop: 18, display: "flex", gap: 16 }}>
-      {links.map((link, idx) => {
-        let IconComponent;
-        switch (link.label) {
-          case "FaFacebook":
-            IconComponent = FaFacebook;
-            break;
-          case "FaInstagram":
-            IconComponent = FaInstagram;
-            break;
-          case "FaWhatsapp":
-            IconComponent = FaWhatsapp;
-            break;
-          default:
-            IconComponent = FaFacebook;
-        }
-        
-        return (
-          <a
-            key={idx}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={link.label}
-            style={{
-              display: "inline-block",
-              background: "#fff",
-              borderRadius: "4px",
-              padding: "7px 12px",
-              color: link.color,
-              fontSize: "1.3rem",
-              border: "2px solid #ffb6c1",
-              transition: "background 0.2s, color 0.2s",
-            }}
-          >
-            <IconComponent size={20} />
-          </a>
-        );
-      })}
-    </div>
-  );
-}
-
-function WorkingHours({ hours }) {
-  return (
-    <div style={{
-      background: "#232025",
-      borderRadius: "6px",
-      padding: "32px 24px",
-      margin: "32px 0",
-      minWidth: "220px",
-      maxWidth: "320px",
-      width: "100%",
-      color: "#fff",
-      boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start"
-    }}>
-      <h2 className="h4" style={{
-        color: "#ffb6c1",
-        fontWeight: 700,
-        marginBottom: "18px",
-        letterSpacing: "1px",
-      }}>
-        WORKING HOURS
-      </h2>
-      <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "1.05rem" }}>
-        {hours.map((item, idx) => (
-          <li key={idx} style={{ marginBottom: 10 }}>
-            <span style={{ fontWeight: 600 }}>{item.day}:</span><br/> {item.time}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function QuickLinks({ links }) {
-  return (
-    <div
-      style={{
-        background: "#232025",
-        borderRadius: "6px",
-        padding: "32px 24px",
-        margin: "32px 0",
-        minWidth: "220px",
-        maxWidth: "320px",
-        width: "100%",
-        color: "#fff",
-        boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start"
-      }}
-    >
-      <h2 className="h4"
-        style={{
-          color: "#ffb6c1",
-          fontWeight: 700,
-          marginBottom: "18px",
-          letterSpacing: "1px",
-        }}
-      >
-        QUICK LINKS
-      </h2>
-      <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "1.05rem", width: "100%" }}>
-        {links.map((item, idx) => (
-          <li key={idx} style={{ marginBottom: 12 }}>
-            {item.external ? (
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "#fff",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  fontWeight: 500,
-                  transition: "color 0.2s",
-                }}
-              >
-                {item.icon} 
-                {item.label}
-              </a>
-            ) : (
-              <Link
-                href={item.href}
-                style={{
-                  color: "#fff",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  fontWeight: 500,
-                  transition: "color 0.2s",
-                }}
-              >
-                {item.icon}
-                {item.label}
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
+/**
+ * Site footer, rebuilt 24 Nov 2026 (ui-ux-pro-max pass): the old one was white
+ * text on light pink (~1.7:1), three cards at different heights, icon-font
+ * glyphs and "Google Reviews" pointing at a plus code. Now: a 4-column grid
+ * (stacked on phones), SVG icons, 44px targets and the Business Profile link.
+ */
 export default function Footer() {
   return (
     <>
-      <footer
-        className="footer"
-        style={{
-          background: "#18171c",
-          padding: 0,
-          borderTop: "4px solid #ffb6c1",
-        }}
-      >
-        <div className="container" style={{ maxWidth: "100vw", padding: 0 }}>
-          <div
-            className="row"
-            style={{
-              margin: 0,
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              alignItems: "stretch",
-              minHeight: "340px",
-            }}
-          >
-            {/* Left: About */}
-            <div
-              className="col-lg-4 col-md-12"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minHeight: "340px",
-                padding: 0,
-              }}
-            >
-              <div className="bg-primary-light"
-                style={{
-                  background: "#ffb6c1",
-                  border: "6px solid #fff",
-                  borderRadius: "6px",
-                  padding: "36px 32px 32px 32px",
-                  margin: "32px 0",
-                  width: "95%",
-                  maxWidth: "420px",
-                  textAlign: "center",
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
-                  position: "relative",
-                }}
-              >
-                <div style={{ marginBottom: "12px" }}>
-                  <Image
-                    src="/img/serlesbakelogo.webp"
-                    alt="Serle's Bake Logo"
-                    title="Serle's Bake Logo"
-                    width={100}
-                    height={100}
-                  />
-                </div>
-                <h2 className="h1 text-white">
-                  SERLE&apos;S BAKE
-                </h2>
-                <p
-                  style={{
-                    color: "#fff",
-                    fontSize: "1.05rem",
-                    lineHeight: "1.7",
-                    margin: 0,
-                    textShadow: "0 1px 4px rgba(0,0,0,0.08)",
-                  }}
-                >
-                  At Serle&apos;s Bake, we craft homemade cakes with love, passion, and the finest ingredients. From birthdays to weddings, our cakes add a sweet touch to every celebration. Experience the warmth of home in every bite. We are committed to delivering freshness, quality, and happiness to your table.
-                </p>
-              </div>
-            </div>
-            {/* Middle: Quick Links */}
-            <div
-              className="col-lg-3 col-md-12"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                alignItems: "center",
-                background: "#18171c",
-                minHeight: "340px",
-                padding: 0,
-                gap: "0 16px",
-              }}
-            >
-              <QuickLinks links={quickLinks} />
-            </div>
-            {/* Right: Get In Touch & Working Hours */}
-            <div
-              className="col-lg-5 col-md-12"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                alignItems: "center",
-                background: "#18171c",
-                minHeight: "340px",
-                padding: 0,
-                gap: "16px",
-              }}
-            >
-              <WorkingHours hours={workingHours} />
+      <footer className={styles.footer}>
+        <div className={`container ${styles.grid}`}>
+          <section className={styles.brand} aria-label="About Serle's Bake">
+            <Image src="/img/serlesbakelogo.webp" alt="Serle's Bake logo" width={84} height={84} className={styles.logo} />
+            <p className={styles.brandName}>Serle&apos;s Bake</p>
+            <p className={styles.brandText}>
+              Homemade cakes from our kitchen in Ilanji, Tenkasi. {FRESH_BAKE_SHORT}
+            </p>
+            <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer" className={styles.reviews}>
+              <FaGoogle aria-hidden="true" /> Read our Google reviews
+            </a>
+          </section>
 
-              <div
-                style={{
-                  flex: "1 1 220px",
-                  padding: "36px 24px 24px 24px",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <h2 className="h4"
-                  style={{
-                    color: "#ffb6c1",
-                    fontWeight: 700,
-                    marginBottom: "18px",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  GET IN TOUCH
-                </h2>
-                <ContactList info={contactInfo} />
-                <SocialIcons links={socialLinks} />
-              </div>
-            </div>
-          </div>
+          <nav className={styles.col} aria-label="Footer">
+            <h2 className={styles.heading}>Shop</h2>
+            <ul className={styles.links}>
+              {shopLinks.map((l) => <li key={l.href}><Link href={l.href}>{l.label}</Link></li>)}
+            </ul>
+          </nav>
+
+          <section className={styles.col} aria-labelledby="footer-hours">
+            <h2 id="footer-hours" className={styles.heading}>Hours</h2>
+            <p className={styles.line}><FaClock aria-hidden="true" /> <span>Every day<br />7:00 am – 11:00 pm</span></p>
+            <p className={styles.small}>Home delivery within 20 km by road. Address and availability are confirmed before you order.</p>
+          </section>
+
+          <section className={styles.col} aria-labelledby="footer-contact">
+            <h2 id="footer-contact" className={styles.heading}>Get in touch</h2>
+            <p className={styles.line}><FaMapMarkerAlt aria-hidden="true" /> <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer">{ADDRESS}</a></p>
+            <p className={styles.line}><FaPhoneAlt aria-hidden="true" /> <a href="tel:+916383070725">+91 63830 70725</a></p>
+            <p className={styles.line}><FaEnvelope aria-hidden="true" /> <EmailLink className={styles.email} /></p>
+            <ul className={styles.socials}>
+              {socials.map(({ name, href, Icon }) => (
+                <li key={href}><a href={href} target="_blank" rel="noopener noreferrer" aria-label={name}><Icon aria-hidden="true" /></a></li>
+              ))}
+            </ul>
+          </section>
         </div>
-        {/* Copyright */}
-        <div className="copyright" style={{ background: "#15141a", padding: "16px 0 0 0" }}>
-          <div className="container">
-            <div className="row" style={{ display: "flex", alignItems: "center" }}>
-              <div className="col-lg-7" style={{ color: "#fff", fontSize: "1rem" }}>
-                <p className="copyright__text text-white" style={{ margin: 0 }}>
-                  &copy; {new Date().getFullYear()} Serle&apos;s Bake
-                </p>
-              </div>
-              <div className="col-lg-5">
-                <div className="copyright__widget">
-                  <ul style={{ display: "flex", flexWrap: "wrap", gap: 16, listStyle: "none", padding: 0, margin: 0 }}>
-                    <li><Link href="/blog" style={{ color: "#ffb6c1" }}>Blog</Link></li>
-                    <li><Link href="/privacy-policy" style={{ color: "#ffb6c1" }}>Privacy Policy</Link></li>
-                    <li><Link href="/terms-conditions" style={{ color: "#ffb6c1" }}>Terms &amp; Conditions</Link></li>
-                    <li><Link href="/site-map" style={{ color: "#ffb6c1" }}>Site Map</Link></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+
+        <div className={styles.bottom}>
+          <div className={`container ${styles.bottomRow}`}>
+            <p>&copy; {new Date().getFullYear()} Serle&apos;s Bake, Ilanji, Tenkasi</p>
+            <ul>
+              <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link href="/terms-conditions">Terms &amp; Conditions</Link></li>
+              <li><Link href="/site-map">Site Map</Link></li>
+            </ul>
           </div>
         </div>
       </footer>
-      {/* Search Begin */}
+      {/* Search overlay markup the template's main.js expects. */}
       <div className="search-model">
         <div className="h-100 d-flex align-items-center justify-content-center">
           <div className="search-close-switch">+</div>
           <form className="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here....." />
+            <input type="text" id="search-input" placeholder="Search here....." aria-label="Search" />
           </form>
         </div>
       </div>
-      {/* Search End */}
     </>
   );
 }

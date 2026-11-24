@@ -16,8 +16,8 @@ const whatsapp = `https://wa.me/916383070725?text=${encodeURIComponent('Hi! I wo
 
 export const metadata = {
   title, description, alternates: { canonical: url },
-  openGraph: { title, description, url, type: 'website', images: ['/img/logo.png'] },
-  twitter: { card: 'summary_large_image', title, description, images: ['/img/logo.png'] },
+  openGraph: { title, description, url, type: 'website', images: ['/img/og/serles-bake-cakes.jpg'] },
+  twitter: { card: 'summary_large_image', title, description, images: ['/img/og/serles-bake-cakes.jpg'] },
 };
 const questions = [
   ['Can I order a cake online in Tenkasi?', 'Yes. Choose a cake and size from our menu, then send the cake, date, cake-cutting time and delivery address or map pin on WhatsApp. We confirm availability, design, the final amount and payment (Google Pay or online payment) in the chat before you proceed. There is no checkout on this website.'],

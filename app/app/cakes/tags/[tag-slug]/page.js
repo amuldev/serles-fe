@@ -83,7 +83,6 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
-    keywords: `${name.toLowerCase()}, ${name.toLowerCase()} Tenkasi, homemade cakes, Serle's Bake, cakes near me, cake delivery Tenkasi`,
     alternates: { canonical: pageUrl },
     openGraph: {
       title,
@@ -91,13 +90,13 @@ export async function generateMetadata({ params }) {
       type: "website",
       url: pageUrl,
       siteName: "Serle's Bake",
-      images: [`${SITE}/img/logo.png`],
+      images: [`${SITE}/img/og/serles-bake-cakes.jpg`],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [`${SITE}/img/logo.png`],
+      images: [`${SITE}/img/og/serles-bake-cakes.jpg`],
     },
   };
 }

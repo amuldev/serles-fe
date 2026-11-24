@@ -59,7 +59,6 @@ export async function generateMetadata({ params }) {
     image: post.cover_image?.url,
     type: 'article',
     publishedTime: post.published_at,
-    keywords: post.focus_keyword || (post.tags_list || []).join(', '),
   });
 }
 

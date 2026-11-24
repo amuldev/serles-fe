@@ -27,7 +27,7 @@ export function buildProductMetadata(product = {}, categorySlug, productSlug) {
     || `Explore ${name} from Serle's Bake in Tenkasi. Ask us on WhatsApp about available weights, designs and delivery for your occasion.`;
   const image = imageUrl(product.featured_image?.url)
     || imageUrl(product.images?.[0]?.url)
-    || `${SITE_URL}/img/logo.png`;
+    || `${SITE_URL}/img/og/serles-bake-cakes.jpg`;
   const ogImage = imageUrl(meta.og_image_url) || image;
   const pageUrl = `${SITE_URL}/cakes/${categorySlug}/${productSlug}`;
 

@@ -1,0 +1,79 @@
+$bg: #1b1418;
+$bg-2: #140f12;
+$pink: #ffb6c1;
+$text: #f3e9ec;
+$muted: #c9b6bd; // 8.9:1 on $bg
+$line: rgba(255, 182, 193, .18);
+
+.footer { background: $bg; color: $text; border-top: 4px solid $pink; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+  gap: 40px;
+  padding-top: clamp(40px, 6vw, 64px);
+  padding-bottom: clamp(32px, 5vw, 48px);
+}
+
+.brand { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.logo { width: 72px; height: 72px; border-radius: 50%; background: #fff; }
+.brandName { margin: 4px 0 0; color: #fff; font-family: Georgia, 'Times New Roman', serif; font-size: 26px; font-weight: 700; line-height: 1.2; }
+.brandText { margin: 0; color: $muted; font-size: 15px; line-height: 1.7; max-width: 34ch; }
+.reviews {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 6px; padding: 10px 16px;
+  border: 1px solid $line; border-radius: 12px; color: #fff; font-size: 14px; font-weight: 700; text-decoration: none;
+  transition: background-color .2s ease, border-color .2s ease;
+  svg { color: #ea4335; }
+  &:hover { background: rgba(255, 255, 255, .06); border-color: $pink; color: #fff; text-decoration: none; }
+}
+
+.col { min-width: 0; }
+.heading { margin: 0 0 16px; color: $pink; font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+
+.links {
+  margin: 0; padding: 0; list-style: none;
+  a {
+    display: inline-flex; align-items: center; min-height: 36px; color: $text; font-size: 15px; text-decoration: none;
+    &:hover { color: $pink; text-decoration: underline; text-underline-offset: 4px; }
+  }
+}
+
+.line {
+  display: flex; align-items: flex-start; gap: 12px; margin: 0 0 12px; color: $text; font-size: 15px; line-height: 1.6;
+  svg { flex-shrink: 0; margin-top: 4px; color: $pink; }
+  a { color: $text; text-decoration: none; overflow-wrap: anywhere; &:hover { color: $pink; text-decoration: underline; } }
+}
+.email { color: $text !important; overflow-wrap: anywhere; }
+.small { margin: 4px 0 0; color: $muted; font-size: 14px; line-height: 1.6; }
+
+.socials {
+  display: flex; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none;
+  a {
+    display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid $line; border-radius: 12px;
+    color: $text; font-size: 19px; transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+    &:hover { background: $pink; border-color: $pink; color: $bg; }
+  }
+}
+
+.bottom { background: $bg-2; border-top: 1px solid $line; }
+.bottomRow {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-top: 16px; padding-bottom: 16px;
+  p { margin: 0; color: $muted; font-size: 14px; }
+  ul { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding: 0; list-style: none; }
+  a { display: inline-flex; align-items: center; min-height: 36px; color: $pink; font-size: 14px; text-decoration: none; &:hover { text-decoration: underline; } }
+}
+
+.footer a:focus-visible { outline: 3px solid $pink; outline-offset: 3px; border-radius: 6px; }
+
+@media (max-width: 991px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+}
+@media (max-width: 575px) {
+  .grid { grid-template-columns: 1fr; gap: 28px; }
+  .bottomRow { flex-direction: column; align-items: flex-start; }
+  // Keep the last row clear of the floating WhatsApp button.
+  .bottom { padding-bottom: 72px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reviews, .socials a { transition: none; }
+}

@@ -333,3 +333,18 @@ body {
   font-weight:700 !important;
   font-size: 2rem !important;
 }
+
+
+// ui-ux-pro-max touch targets (24 Nov 2026): the template's mobile menu
+// open/close buttons were 30-35px; 44px is the minimum comfortable target.
+.canvas__open, .offcanvas__close {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.canvas__open:focus-visible, .offcanvas__close:focus-visible, .banner-dot:focus-visible {
+  outline: 3px solid #a95d76;
+  outline-offset: 2px;
+}

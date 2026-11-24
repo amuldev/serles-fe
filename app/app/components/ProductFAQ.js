@@ -33,7 +33,7 @@ export default function ProductFAQ({ product = {}, phone = "916383070725", whats
         question: 'What weights are available for this cake?',
         answer: `Available weight options: ${weightList}.`,
         type: 'call',
-        phoneLink: `tel:${phone}`
+        phoneLink: `tel:+${phone}`
       });
 
       // Starting price
@@ -70,9 +70,9 @@ export default function ProductFAQ({ product = {}, phone = "916383070725", whats
     // Call
     items.push({
       question: 'Can I call to place an order?',
-      answer: `Yes — call us at ${phone}.`,
+      answer: 'Yes — call us at +91 63830 70725.',
       type: 'call',
-      phoneLink: `tel:${phone}`
+      phoneLink: `tel:+${phone}`
     });
 
     // Payment / Amount

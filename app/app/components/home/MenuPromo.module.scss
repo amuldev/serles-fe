@@ -1,0 +1,50 @@
+$wine: #671d32;
+$wine-dark: #4f1426;
+$ink: #2f1c24;
+$muted: #6b5a60;
+$border: #eedde2;
+$blush: #fff1f5;
+$whatsapp: #128c4a;
+
+.wrap { margin-top: clamp(40px, 6vw, 72px); }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+
+.card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 0;
+  padding: clamp(22px, 3vw, 32px); border: 1px solid $border; border-radius: 20px; background: #fff;
+  box-shadow: 0 12px 32px -20px rgba(103, 29, 50, .3);
+}
+.delivery { background: linear-gradient(160deg, #fff 0%, $blush 100%); }
+
+.eyebrow { margin: 0; color: #9f536b; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 6px 12px; border-radius: 999px;
+  background: $wine; color: #fff; font-size: 13px; font-weight: 700;
+}
+.title { margin: 0; color: $wine; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(24px, 2.4vw, 30px); font-weight: 700; line-height: 1.2; }
+.text { margin: 0; color: $muted; font-size: 16px; line-height: 1.7; }
+.note {
+  display: flex; align-items: flex-start; gap: 8px; margin: 0; color: $ink; font-size: 14px; line-height: 1.6;
+  svg { flex-shrink: 0; margin-top: 4px; color: $wine; }
+}
+
+.chips {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none;
+  li { padding: 6px 12px; border: 1px solid $border; border-radius: 999px; background: #fffafb; color: $ink; font-size: 14px; font-weight: 600; }
+}
+
+.button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; margin-top: auto;
+  padding: 12px 22px; border-radius: 12px; border: 1.5px solid transparent; font-size: 15px; font-weight: 700; text-decoration: none;
+  transition: background-color .2s ease, color .2s ease;
+  &:focus-visible { outline: 3px solid #a95d76; outline-offset: 3px; }
+  &:hover { text-decoration: none; }
+}
+.outline { border-color: $wine; color: $wine; background: #fff; &:hover { background: $blush; color: $wine; } }
+.whatsapp { background: $whatsapp; color: #fff; &:hover { background: #0e7239; color: #fff; } }
+
+@media (max-width: 767px) {
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .button { transition: none; } }

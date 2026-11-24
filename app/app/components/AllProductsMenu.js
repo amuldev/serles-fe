@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { getProductsUrl, getCategoriesUrl, getProductDetailUrl } from '../config/api';
 import apiCache from '../utils/cache';
 import Link from "next/link";
-import Image from 'next/image';
-import { FaWhatsapp } from "react-icons/fa";
+import { FaArrowDown, FaArrowLeft, FaClock } from "react-icons/fa";
 import styles from './home/Menu.module.css';
+import MenuProductCard from './MenuProductCard';
 import { getAnalyticsReference, trackStoreEvent } from '../utils/analytics';
 import { fetchCatalogJson, catalogList } from '../utils/catalog';
 
@@ -236,7 +236,7 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
               textAlign: "center"
             }}>
               <div style={{ fontSize: "1.5rem", fontWeight: "800", color: "#e4718a" }}>
-                🚚
+                <FaClock aria-hidden="true" />
               </div>
               <div style={{ fontSize: "0.9rem", color: "#666", fontWeight: "600" }}>
                 Baked fresh after you order · 4 hrs notice
@@ -334,176 +334,12 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
                 </div>
               )}
               {Object.entries(grouped).map(([name, items], idx) => (
-                <div 
+                <MenuProductCard
                   key={name + idx}
-                  className={styles.menuItem}
-                >
-                  {/* Product Image */}
-                  <div className={styles.menuItemImage}>
-                    {items[0]?.featured_image && items[0]?.featured_image.url ? (
-                      <Image
-                        src={items[0].featured_image.url}
-                        alt={items[0].featured_image.alt_text || name}
-                        title={items[0].featured_image.alt_text || name}
-                        width={160}
-                        height={160}
-                        sizes="(max-width: 575px) 90px, 120px"
-                        loading={idx === 0 ? "eager" : "lazy"}
-                        fetchPriority={idx === 0 ? "high" : "auto"}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover"
-                        }}
-                      />
-                    ) : (
-                      <div style={{
-                        width: "100%",
-                        height: "100%",
-                        background: "#f8f9fa",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#e4718a"
-                      }}>
-                        <i className="fas fa-birthday-cake" style={{ fontSize: "1.5rem" }}></i>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Product Info */}
-                  <div className={styles.menuItemContent}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "5px" }}>
-                      <h3 style={{
-                        fontWeight: "700",
-                        fontSize: "1rem",
-                        color: "#231f20",
-                        margin: 0,
-                        flex: "1"
-                      }}>
-                        {name}
-                      </h3>
-                      {items[0]?.is_best_seller && (
-                        <span style={{
-                          background: "#e4718a",
-                          color: "#fff",
-                          padding: "2px 6px",
-                          borderRadius: "10px",
-                          fontSize: "0.65rem",
-                          fontWeight: "600"
-                        }}>
-                          ⭐ Best
-                        </span>
-                      )}
-                    </div>
-                    
-                    <div className={styles.weightOptions}>
-                      {/* Weight and Price Options */}
-                      {items.length > 0 && (
-                        <div className={styles.weightOptions}>
-                          {/* Show weight options if available */}
-                          {items[0]?.weight_options && items[0].weight_options.length > 0 ? (
-                            items[0].weight_options.map((weightOption, weightIdx) => (
-                              <div key={weightIdx} className={styles.weightOption}>
-                                <span style={{
-                                  color: "#555",
-                                  fontSize: "0.8rem",
-                                  fontWeight: "600"
-                                }}>
-                                  {weightOption.display_name || `${weightOption.weight || 'Enquire'}`}
-                                </span>
-                                
-                                <span style={{
-                                  background: "#28a745",
-                                  color: "#fff",
-                                  padding: "2px 6px",
-                                  borderRadius: "4px",
-                                  fontSize: "0.75rem",
-                                  fontWeight: "700"
-                                }}>
-                                  ₹{weightOption.price || 'Enquire'}
-                                </span>
-                              </div>
-                            ))
-                          ) : (
-                            /* Fallback to price range if no weight options */
-                            <div className={styles.weightOption}>
-                              <span style={{
-                                color: "#555",
-                                fontSize: "0.8rem",
-                                fontWeight: "600"
-                              }}>
-                                Starting from 500gms
-                              </span> 
-                              
-                              <span style={{
-                                background: "#28a745",
-                                color: "#fff",
-                                padding: "2px 6px",
-                                borderRadius: "4px",
-                                fontSize: "0.75rem",
-                                fontWeight: "700"
-                              }}>
-                                {items[0]?.price_range || 'Enquire'}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div style={{ display: "flex", gap: "8px", flexDirection: "column" }}>
-                    {/* View Details Button */}
-                    <Link
-                      href={items[0]?.category?.slug && items[0]?.slug 
-                        ? `/cakes/${items[0].category.slug}/${items[0].slug}`
-                        : '/cakes'
-                      }
-                      style={{
-                        background: "#e4718a",
-                        color: "#fff",
-                        border: "none",
-                        borderRadius: "6px",
-                        padding: "8px 12px",
-                        fontSize: "0.8rem",
-                        fontWeight: "600",
-                        cursor: "pointer",
-                        textDecoration: "none",
-                        textAlign: "center",
-                        transition: "all 0.3s ease",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "4px"
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = "#8f0e1c";
-                        e.target.style.transform = "translateY(-1px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = "#e4718a";
-                        e.target.style.transform = "translateY(0)";
-                      }}
-                    >
-                      <i className="fas fa-eye" style={{ fontSize: "0.7rem" }}></i>
-                      View
-                    </Link>
-
-                    {/* WhatsApp Order Button */}
-                    <button
-                      className={styles.orderButton}
-                      onClick={() => {
-                        const weightOption = items[0]?.weight_options?.[0];
-                        handleWhatsAppEnquiry(name, weightOption);
-                      }}
-                    >
-                      <i className="fab fa-whatsapp" style={{ fontSize: "0.9rem" }}></i>
-                      Order
-                    </button>
-                  </div>
-                </div>
+                  product={items[0]}
+                  priority={idx === 0}
+                  onOrder={(p, option) => handleWhatsAppEnquiry(name, option)}
+                />
               ))}
             </div>
 
@@ -552,7 +388,7 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
                   ) : (
                     <>
                       <span>Load More Products (Page {currentPage + 1})</span>
-                      <i className="fas fa-arrow-down"></i>
+                      <FaArrowDown aria-hidden="true" />
                     </>
                   )}
                 </button>
@@ -582,7 +418,7 @@ export default function AllProductsMenu({ initialProducts = [], initialCategorie
                   e.target.style.transform = "translateX(0)";
                 }}
               >
-                <i className="fas fa-arrow-left"></i>
+                <FaArrowLeft aria-hidden="true" />
                 Back to Home Menu
               </Link>
             </div>

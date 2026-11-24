@@ -10,10 +10,18 @@ import ContactClickTracking from './components/ContactClickTracking';
 
 const inter = Inter({ subsets: ["latin"] });
 
+// Site-wide defaults. Pages without their own openGraph inherit these, so the
+// social title must equal the page title (it said "Cakes Near Me" while the
+// homepage <title> said "Cake Shop & Bakery"). "Near me" in a title does not
+// help: proximity comes from the Business Profile. The share image is a card
+// of real catalog photos, not the logo.
+const SITE_TITLE = "Cake Shop & Bakery in Tenkasi | Serle’s Bake";
+const SITE_DESCRIPTION = "Cake shop & bakery in Tenkasi. Homemade cakes baked fresh after you order: birthday, photo & custom cakes. Order 4 hours ahead on WhatsApp for delivery.";
+const SHARE_IMAGE = { url: '/img/og/serles-bake-cakes.jpg', width: 1200, height: 630, alt: "Homemade cakes from Serle's Bake, Ilanji, Tenkasi" };
+
 export const metadata = {
-  title: "Cakes Near Me in Tenkasi | Homemade Cakes – Serle’s Bake",
-  description: "Explore homemade birthday cakes, brownies and custom designs from Serle’s Bake in Ilanji, Tenkasi. Ask us to check delivery availability for your address.",
-  keywords: "homemade cakes, Serle's Bake, Tenkasi cakes, birthday cakes, wedding cakes, custom cakes, brownies, Tamil Nadu bakery, fresh cakes, premium cakes, flavored cakes",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   authors: [{ name: "Serle's Bake" }],
   creator: "Serle's Bake",
   publisher: "Serle's Bake",
@@ -27,26 +35,19 @@ export const metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Cakes Near Me in Tenkasi | Homemade Cakes – Serle’s Bake",
-    description: "Explore homemade birthday cakes, brownies and custom designs from Serle’s Bake in Ilanji, Tenkasi. Ask us to check delivery availability for your address.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: 'https://www.serlesbake.in',
     siteName: "Serle's Bake",
-    images: [
-      {
-        url: '/img/logo.png',
-        width: 1200,
-        height: 630,
-        alt: "Serle's Bake Logo",
-      },
-    ],
-    locale: 'en_US',
+    images: [SHARE_IMAGE],
+    locale: 'en_IN',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Cakes Near Me in Tenkasi | Homemade Cakes – Serle’s Bake",
-    description: "Explore homemade birthday cakes, brownies and custom designs from Serle’s Bake in Ilanji, Tenkasi. Ask us to check delivery availability for your address.",
-    images: ['/img/logo.png'],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SHARE_IMAGE.url],
   },
   robots: {
     index: true,

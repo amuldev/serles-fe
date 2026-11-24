@@ -18,8 +18,8 @@ export async function generateMetadata({ params }) {
   const description = `Planning a cake for ${area.name}? Check the route from our Ilanji bakery, delivery charges, your address and available arrangements on WhatsApp.`;
   const url = `${SITE_URL}${deliveryAreaPath(area)}`;
   return { title, description, alternates: { canonical: url },
-    openGraph: { title, description, url, type: 'website', images: ['/img/logo.png'] },
-    twitter: { card: 'summary_large_image', title, description, images: ['/img/logo.png'] } };
+    openGraph: { title, description, url, type: 'website', images: ['/img/og/serles-bake-cakes.jpg'] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/img/og/serles-bake-cakes.jpg'] } };
 }
 export default async function DeliveryAreaPage({ params }) {
   const area = findDeliveryArea((await params).area);

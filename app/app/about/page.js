@@ -11,7 +11,6 @@ const DESCRIPTION =
 export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: "about serles bake, tenkasi bakery, cake shop history, custom cake makers, homemade cake shop tenkasi",
   // Without this the page inherits `canonical: '/'` from the root layout and
   // reports itself to Google as a duplicate of the homepage.
   alternates: {

@@ -1,53 +1,37 @@
 'use client';
 
 import React from 'react';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import Image from 'next/image';
 import styles from './Team.module.css';
 import { logImageError, getFallbackImage } from '../../utils/imageUtils';
 
 export default function Team() {
-    // Team member data as props
+    // Personal Facebook/Instagram links removed (24 Nov 2026): they sent
+    // visitors to private accounts. Roles need owner confirmation.
     const teamMembers = [
         {
             name: "SANTHIYA THANGARAJ",
             role: "CEO & Head Baker",
-            image: "/img/team/santhiya-cartoon.webp",
-            socials: {
-                facebook: "https://www.facebook.com/santhiya.krishna.790?mibextid=rS40aB7S9Ucbxw6v",
-                instagram: "https://www.instagram.com/_sandyraj_?igsh=MWw4cDRsdWhnazFoOQ=="
-            }
+            image: "/img/team/santhiya-cartoon.webp"
         },
         {
             name: "THANGARAJ S.",
             role: "CFO & Creative Designer",
-            image: "/img/team/thangaraj-cartoon.webp",
-            socials: {
-                facebook: "https://www.facebook.com/thangaraj.s.102?mibextid=rS40aB7S9Ucbxw6v",
-                instagram: "https://www.instagram.com/thangaraj_s_navy_cop_navigator?igsh=ZjRqejVwMXZqaHUy"
-            }
+            image: "/img/team/thangaraj-cartoon.webp"
         },
         {
             name: "AMULRAJ S.",
             role: "COO",
-            image: "/img/team/amulrajs-cartoon.webp",
-            socials: {
-                facebook: "https://www.facebook.com/profile.php?id=100007379657190",
-                instagram: "https://www.instagram.com/amul_raj_s/profilecard/?igsh=ZmVpNnQ1cTMybWY="
-            }
+            image: "/img/team/amulrajs-cartoon.webp"
         },
         {
             name: "RAMYA",
             role: "CFO",
-            image: "/img/team/ramya-cartoon.webp",
-            socials: {
-                facebook: "https://www.facebook.com/ramya.krish.777?mibextid=rS40aB7S9Ucbxw6v",
-                instagram: "https://www.instagram.com/_mis_delight_?igsh=M2J3Nm03aTdqNnQw"
-            }
+            image: "/img/team/ramya-cartoon.webp"
         }
     ];
 
-    function TeamMember({ name, role, image, socials }) {
+    function TeamMember({ name, role, image }) {
         const handleImageError = (e) => {
             logImageError(image, 'Team', new Error('Image failed to load'));
             e.target.src = getFallbackImage('team');
@@ -64,23 +48,11 @@ export default function Team() {
                         height={400}
                         className={styles.teamMemberImage}
                         onError={handleImageError}
-                        priority={true}
+                        sizes="(max-width: 991px) 50vw, 25vw"
                     />
                     <div className={`team__item__text ${styles.teamItemText}`}>
                         <h3 className="h6">{name}</h3>
                         <span>{role}</span>
-                        <div className="team__item__social">
-                            {socials.facebook && (
-                                <a href={socials.facebook} target="_blank" rel="noopener noreferrer">
-                                    <FaFacebook />
-                                </a>
-                            )}
-                            {socials.instagram && (
-                                <a href={socials.instagram} target="_blank" rel="noopener noreferrer">
-                                    <FaInstagram />
-                                </a>
-                            )}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -108,7 +80,6 @@ export default function Team() {
                             name={member.name}
                             role={member.role}
                             image={member.image}
-                            socials={member.socials}
                         />
                     ))}
                 </div>

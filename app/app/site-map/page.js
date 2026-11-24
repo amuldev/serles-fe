@@ -13,8 +13,8 @@ export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "https://www.serlesbake.in/site-map" },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.serlesbake.in/site-map", type: "website", images: ["/img/logo.png"] },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION, images: ["/img/logo.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.serlesbake.in/site-map", type: "website", images: ["/img/og/serles-bake-cakes.jpg"] },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION, images: ["/img/og/serles-bake-cakes.jpg"] },
 };
 
 const staticPages = [

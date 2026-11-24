@@ -26,8 +26,6 @@ const DESCRIPTION =
 export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords:
-    "cake types, cake tags, chocolate cakes Tenkasi, brownies, Serle's Bake, cakes near me",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: TITLE,
@@ -35,13 +33,13 @@ export const metadata = {
     type: "website",
     url: PAGE_URL,
     siteName: "Serle's Bake",
-    images: [`${SITE}/img/logo.png`],
+    images: [`${SITE}/img/og/serles-bake-cakes.jpg`],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: [`${SITE}/img/logo.png`],
+    images: [`${SITE}/img/og/serles-bake-cakes.jpg`],
   },
 };
 

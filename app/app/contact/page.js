@@ -11,8 +11,6 @@ const DESCRIPTION =
 export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords:
-    'cake shop contact tenkasi, serles bake contact, customer support, best cake shop tenkasi',
   alternates: {
     canonical: 'https://www.serlesbake.in/contact',
   },
@@ -22,10 +20,10 @@ export const metadata = {
     url: 'https://www.serlesbake.in/contact',
     siteName: "Serle's Bake",
     type: 'website',
-    locale: 'en_US',
+    locale: 'en_IN',
     images: [
       {
-        url: '/img/logo.png',
+        url: '/img/og/serles-bake-cakes.jpg',
         width: 1200,
         height: 630,
         alt: "Serle's Bake Logo",
@@ -36,7 +34,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: TITLE,
     description: DESCRIPTION,
-    images: ['/img/logo.png'],
+    images: ['/img/og/serles-bake-cakes.jpg'],
   },
 };
 

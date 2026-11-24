@@ -6,7 +6,6 @@ export const metadata = buildMetadata({
   path: '/privacy-policy',
   title: "Privacy Policy | Serle’s Bake, Tenkasi",
   description: "Read how Serle's Bake handles your contact details and cake order information, including how to contact our Ilanji bakery about privacy.",
-  keywords: "cake shop privacy tenkasi, serles bake privacy, order privacy, best cake shop tenkasi",
 });
 
 export default function PrivacyPolicyPage() {

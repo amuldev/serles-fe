@@ -33,7 +33,7 @@ function canonicalSiteUrl(raw) {
 
 export const SITE_URL = canonicalSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 export const SITE_NAME = "Serle's Bake";
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/img/logo.png`;
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/img/og/serles-bake-cakes.jpg`;
 
 // Revalidate windows (seconds). One day for both: Django calls /api/revalidate
 // when a post is saved, so edits still appear immediately. The old 5/10-minute
@@ -268,7 +268,6 @@ export function buildMetadata({
   type = 'website',
   publishedTime,
   modifiedTime,
-  keywords,
   canonicalOverride,
 } = {}) {
   const resolvedTitle = meta.meta_title || title || `Blog | ${SITE_NAME}`;
@@ -282,7 +281,6 @@ export function buildMetadata({
   return {
     title: resolvedTitle,
     description: resolvedDescription,
-    ...(keywords ? { keywords } : {}),
     alternates: { canonical },
     openGraph: {
       title: meta.og_title || resolvedTitle,
@@ -291,7 +289,7 @@ export function buildMetadata({
       siteName: SITE_NAME,
       type,
       images: [{ url: ogImage }],
-      locale: 'en_US',
+      locale: 'en_IN',
       ...(type === 'article' && publishedTime ? { publishedTime } : {}),
       ...(type === 'article' && modifiedTime ? { modifiedTime } : {}),
     },

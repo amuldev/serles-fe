@@ -51,9 +51,6 @@ export async function generateMetadata() {
   return {
     title: TITLE,
     description,
-    keywords: `cakes in Tenkasi, cakes near me, homemade cakes, Serle's Bake${
-      categories.length > 0 ? `, ${categories.map((c) => c.name.toLowerCase()).join(", ")}` : ", black forest cake, red velvet cake, choco truffle cake"
-    }, birthday cakes, custom cakes, photo cakes, cake delivery Tenkasi`,
     // The root layout sets `canonical: '/'`, which every page that doesn't
     // override it inherits. /cakes is the main commercial page; without this it
     // told Google it was a duplicate of the homepage.
@@ -64,13 +61,13 @@ export async function generateMetadata() {
       type: "website",
       url: PAGE_URL,
       siteName: "Serle's Bake",
-      images: [`${SITE}/img/logo.png`],
+      images: [`${SITE}/img/og/serles-bake-cakes.jpg`],
     },
     twitter: {
       card: "summary_large_image",
       title: TITLE,
       description,
-      images: [`${SITE}/img/logo.png`],
+      images: [`${SITE}/img/og/serles-bake-cakes.jpg`],
     },
   };
 }

@@ -9,6 +9,7 @@ import Breadcrumb from "../../../components/Breadcrumb";
 import ProductCard from "../../../components/ProductCard";
 import ProductFAQ from "../../../components/ProductFAQ";
 import ProductOrderingDetails from '../../../components/ProductOrderingDetails';
+import { DELIVERY_CHARGES, FRESH_BAKE_SHORT } from '../../../utils/deliveryPolicy';
 import apiCache from "../../../utils/cache";
 import { getAnalyticsReference, trackStoreEvent } from "../../../utils/analytics";
 
@@ -837,12 +838,16 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
                     <div className={`accordion-content ${activeAccordion === 'additional' ? 'active' : ''}`}>
                       <div className="accordion-body">
                         <h3>Additional Information</h3>
-                        <p>This cake is made with the finest ingredients and baked fresh to order. Perfect for birthdays, anniversaries, and special celebrations.</p>
+                        {/* Product-specific facts instead of the same generic
+                            list on every product (SEO audit, 24 Nov 2026). */}
                         <ul>
-                          <li>Fresh ingredients</li>
-                          <li>Customizable design</li>
-                          <li>Home delivery available</li>
-                          <li>Made to order</li>
+                          {product.weight_options?.length > 0 && (
+                            <li><strong>Sizes:</strong> {product.weight_options.map((w) => (w.display_name || w.name || '').replace(/\s*[-–—]\s*₹.*$/, '').trim()).filter(Boolean).join(', ')}</li>
+                          )}
+                          <li><strong>Freshness:</strong> {FRESH_BAKE_SHORT}</li>
+                          <li><strong>Eggless:</strong> ask us on WhatsApp whether this cake can be made eggless before you order.</li>
+                          <li><strong>Delivery:</strong> {DELIVERY_CHARGES}</li>
+                          <li><strong>Payment:</strong> Google Pay or online payment, confirmed with you on WhatsApp.</li>
                         </ul>
                       </div>
                     </div>

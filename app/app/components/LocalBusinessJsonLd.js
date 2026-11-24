@@ -44,7 +44,7 @@ const bakery = {
   '@id': `${SITE_URL}/#business`,
   name: SITE_NAME,
   url: SITE_URL,
-  image: `${SITE_URL}/img/logo.png`,
+  image: `${SITE_URL}/img/og/serles-bake-cakes.jpg`,
   logo: `${SITE_URL}/img/logo.png`,
   description:
     `Homemade cake shop in Ilanji, Tenkasi, Tamil Nadu, baking birthday, photo, custom and tiered cakes and brownies. Every cake is baked fresh after the order; please order at least 4 hours ahead. ${DELIVERY_COVERAGE}`,
@@ -80,6 +80,7 @@ const bakery = {
   sameAs: [
     'https://www.facebook.com/serlesbake',
     'https://www.instagram.com/serles_bake',
+    'https://www.youtube.com/@SerlesBake',
   ],
   contactPoint: {
     '@type': 'ContactPoint',

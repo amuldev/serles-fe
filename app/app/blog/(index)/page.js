@@ -11,8 +11,6 @@ export const metadata = buildMetadata({
   title: `Cake Guides & Baking Stories | ${SITE_NAME}`,
   description: BLOG_PAGE_DESCRIPTION,
   path: '/blog',
-  keywords:
-    "cake blog, birthday cake Tenkasi, custom cake Tenkasi, wedding cake guide, cake buying guide, Serle's Bake",
 });
 
 export default function BlogIndexPage() {
