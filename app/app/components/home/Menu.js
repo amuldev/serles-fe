@@ -133,12 +133,6 @@ export default function Menu({ initialProducts = [], initialCategories = [], ini
     window.open(whatsappUrl, '_blank');
   };
 
-  // Debug: Log category mapping
-  console.log('Active category:', activeCategory);
-  console.log('Categories from API:', categories);
-  console.log('Category tabs:', categoryTabs);
-  console.log('All products:', products.map(p => ({ name: p.name, category: p.category?.name, categorySlug: p.category?.slug })));
-  console.log('Filtered products:', filteredProducts.map(p => p.name));
 
   return (
     <section style={{ background: "#fff", padding: "60px 0" }}>

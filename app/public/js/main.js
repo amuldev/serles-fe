@@ -163,7 +163,9 @@
     /*--------------------------
         Select
     ----------------------------*/
-    $("select").niceSelect();
+    // niceSelect removed (24 Nov 2026): every <select> is React's. Replacing it
+    // before hydration threw React error #418 on /cakes, and React then
+    // re-rendered over it anyway, so it had no visible effect.
 
     /*------------------
 		Magnific

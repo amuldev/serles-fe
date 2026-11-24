@@ -189,7 +189,7 @@ export default function RootLayout({ children }) {
         <script defer src="/js/owl.carousel.min.js"></script>
         <script defer src="/js/jquery.barfiller.js"></script>
         <script defer src="/js/jquery.nicescroll.min.js"></script>
-        <script defer src="/js/main.js?v=20261124"></script>
+        <script defer src="/js/main.js?v=20261124b"></script>
 
         {/* Preloader Script */}
         <script dangerouslySetInnerHTML={{
@@ -201,6 +201,7 @@ export default function RootLayout({ children }) {
               window.preloaderInitialized = true;
               
               // Initialize the jQuery plugins once the page has loaded
+              window.addEventListener('load', function() {
                 setTimeout(function() {
                   if (typeof $ !== 'undefined') {
                     // Initialize slicknav if it exists
@@ -213,11 +214,6 @@ export default function RootLayout({ children }) {
                       } catch (e) {
                         console.warn('Slicknav initialization failed:', e);
                       }
-                    }
-                    
-                    // Initialize other plugins
-                    if (typeof $.fn.niceSelect !== 'undefined') {
-                      $('select').niceSelect();
                     }
                     
                     if (typeof $.fn.magnificPopup !== 'undefined') {
