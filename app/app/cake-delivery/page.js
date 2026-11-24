@@ -6,8 +6,11 @@ import { DELIVERY_COVERAGE, DELIVERY_CHARGES } from '../utils/deliveryPolicy';
 import styles from './page.module.scss';
 import { DELIVERY_AREA_PAGES, deliveryAreaPath } from '../utils/deliveryAreas';
 
-const title = "Cake Delivery from Ilanji, Tenkasi | Serle's Bake";
-const description = 'Check cake delivery within 20 km by road from Serle’s Bake in Ilanji. Browse cakes, check delivery charges and confirm your address and date on WhatsApp.';
+// Targets the searches Search Console shows for ordering intent ("tenkasi cake
+// home delivery", "cake order online"). Ordering is online via WhatsApp with
+// Google Pay/online payment - there is no web checkout, so copy never implies one.
+const title = "Online Cake Order & Home Delivery in Tenkasi | Serle's Bake";
+const description = 'Order cakes online from Serle’s Bake, Tenkasi: choose a cake, confirm on WhatsApp and pay by Google Pay. Home delivery within 20 km by road of Ilanji.';
 const url = `${SITE_URL}/cake-delivery`;
 const whatsapp = `https://wa.me/916383070725?text=${encodeURIComponent('Hi! I would like to check cake delivery from Ilanji. My delivery address/map pin is: \nEvent date and time: \nCake/design and size: ')}`;
 
@@ -17,6 +20,7 @@ export const metadata = {
   twitter: { card: 'summary_large_image', title, description, images: ['/img/logo.png'] },
 };
 const questions = [
+  ['Can I order a cake online in Tenkasi?', 'Yes. Choose a cake and size from our menu, then send the cake, date, cake-cutting time and delivery address or map pin on WhatsApp. We confirm availability, design, the final amount and payment (Google Pay or online payment) in the chat before you proceed. There is no checkout on this website.'],
   ['How far do you deliver?', DELIVERY_COVERAGE],
   ['What does delivery cost?', DELIVERY_CHARGES],
   ['Can I order for today?', 'Ask us to check availability for your cake, design and event time. Same-day delivery is subject to confirmation; sending a message does not reserve a slot.'],
@@ -34,10 +38,10 @@ export default function CakeDeliveryPage() {
         provider: { '@id': `${SITE_URL}/#business` } },
       { '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Cake delivery', item: url },
+        { '@type': 'ListItem', position: 2, name: 'Online cake order & delivery', item: url },
       ] },
     ] }} />
-    <Breadcrumb title="Cake delivery from Ilanji" />
+    <Breadcrumb title="Online cake order & home delivery in Tenkasi" />
     <div className={`container ${styles.delivery}`} data-contact-source="delivery_hub">
       <section className={styles.intro} aria-labelledby="delivery-intro">
         <p className={styles.eyebrow}>Serle&apos;s Bake · Ilanji, Tenkasi</p>
@@ -72,7 +76,7 @@ export default function CakeDeliveryPage() {
         </section>
       </div>
       <section className={styles.section} aria-labelledby="order-heading">
-        <h2 id="order-heading">How to arrange your cake</h2>
+        <h2 id="order-heading">How to order a cake online in Tenkasi</h2>
         <ol className={styles.steps}>
           <li><strong>Choose a cake.</strong> Browse our <Link href="/cakes">cake collection</Link> and note the design and weight you would like.</li>
           <li><strong>Send the essentials privately.</strong> Message your address or map pin, date, cake-cutting time, design request and preferred size on WhatsApp.</li>
@@ -83,7 +87,7 @@ export default function CakeDeliveryPage() {
         <p>Ordering from another city? Read our <Link href="/blog/order-cake-for-family-in-tenkasi-from-another-city">guide to arranging a cake for family in Tenkasi</Link>. For a hall, hotel or other event space, use the <Link href="/blog/cake-delivery-venue-handover-checklist">venue handover checklist</Link>.</p>
       </section>
       <section className={styles.section} aria-labelledby="questions-heading">
-        <h2 id="questions-heading">Delivery questions</h2>
+        <h2 id="questions-heading">Online ordering and delivery questions</h2>
         {questions.map(([question, answer]) => <details className={styles.question} key={question}>
           <summary>{question}</summary><p>{answer}</p>
         </details>)}

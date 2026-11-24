@@ -34,7 +34,7 @@ export default function About() {
                                 Serle&apos;s Bake is a homemade cake bakery on Tenkasi–Shencottai Main Road in Ilanji, Tenkasi.
                             </p>
                             <p style={{ color: "#555", fontSize: "1rem", marginBottom: 30 }}>
-                                Browse our birthday cakes, photo and custom designs, tiered cakes and brownies. Share your occasion, preferred size and date on WhatsApp so we can check availability, design details and the final amount. <Link href="/cake-delivery">Delivery is checked by road distance from our Ilanji bakery</Link>, within 20 km. <Link href="/contact">Find our location and contact details</Link>.
+                                Browse our birthday cakes, photo and custom designs, tiered cakes and brownies. Share your occasion, preferred size and date on WhatsApp so we can check availability, design details and the final amount. Delivery is checked by road distance from our Ilanji bakery, within 20 km: see <Link href="/cake-delivery">online cake order and home delivery in Tenkasi</Link>. <Link href="/contact">Find our location and contact details</Link>.
                             </p>
                             <div className="row">
                                 <div className="col-lg-6 col-12 mb-3">
