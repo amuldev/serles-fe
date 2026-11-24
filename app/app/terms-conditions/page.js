@@ -16,12 +16,11 @@ export const metadata = buildMetadata({
 export default function TermsConditionsPage() {
   return (
     <>
-      <Breadcrumb title="Terms & Conditions" headingLevel="h2" />
+      <Breadcrumb title="Terms & Conditions" />
       
       <section className={styles.section}>
         <div className="container">
           <article className={styles.card}>
-            <h1 className={styles.title}>Terms &amp; Conditions</h1>
             <p className={styles.updated}>Last updated: {LAST_UPDATED}</p>
 
                   <h2>1. Acceptance of Terms</h2>

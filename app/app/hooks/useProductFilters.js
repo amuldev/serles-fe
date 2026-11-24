@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 
-export default function useProductFilters(products = [], onCategoryChange = null) {
+// initialCategory: a category page passes its own slug so the filter shows
+// the category being viewed instead of "All categories".
+export default function useProductFilters(products = [], onCategoryChange = null, initialCategory = "") {
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [isFiltering, setIsFiltering] = useState(false);

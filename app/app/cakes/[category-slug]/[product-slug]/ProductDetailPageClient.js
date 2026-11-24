@@ -530,6 +530,7 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
                     className="big_img"
                   />
                 </div>
+                {productImages.length > 1 && (
                 <div className="product__details__thumb" role="group" aria-label={`${product.name} photo gallery`}>
                   {productImages.map((image, index) => (
                     <button
@@ -553,6 +554,7 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
                     </button>
                   ))}
                 </div>
+                )}
               </div>
             </div>
             <div className="col-lg-6">
@@ -762,31 +764,7 @@ Please contact me for more details. Thank you!${getAnalyticsReference()}`;
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <h2 className="h3" style={{
-                color: '#333', 
-                fontWeight: '700', 
-                marginBottom: '30px',
-                textAlign: 'center',
-                position: 'relative'
-              }}>
-                <span style={{ 
-                  background: 'white', 
-                  padding: '0 20px',
-                  position: 'relative',
-                  zIndex: '1'
-                }}>
-                  Related Products
-                </span>
-                <div style={{ 
-                  position: 'absolute', 
-                  top: '50%', 
-                  left: '0', 
-                  right: '0', 
-                  height: '2px', 
-                  background: 'linear-gradient(90deg, transparent, #ff91a4, transparent)',
-                  zIndex: '0'
-                }}></div>
-              </h2>
+              <h2 className="product-section-title">Related cakes</h2>
             </div>
           </div>
           <div className="row">

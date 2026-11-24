@@ -1,3 +1,4 @@
+import { formatPriceRange } from '../ProductCard';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './blog.module.scss';
@@ -31,7 +32,7 @@ export default function PostInternalLinks({ products = [], categories = [] }) {
                   <div className={styles.productName}>{product.name}</div>
                   {product.price_range && (
                     <div className={styles.productPrice}>
-                      {String(product.price_range).replace(/\$/g, '₹')}
+                      {formatPriceRange(product.price_range)}
                     </div>
                   )}
                 </div>

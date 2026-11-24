@@ -1,37 +1,42 @@
+// Delivery hub and area pages (brand tokens from globals.scss).
 .delivery {
-  max-width: 1080px; padding-top: 40px; padding-bottom: 64px; color: #352b30;
-  p, li { line-height: 1.85; font-size: 1rem; }
-  h2 { font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.3; margin-bottom: 18px; color: #671d32; font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-weight: 700; }
+  max-width: 1080px; padding-top: 32px; padding-bottom: 24px; color: var(--color-ink, #2f1c24);
+  p, li { line-height: 1.75; font-size: 1rem; }
+  h2 { font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.25; margin-bottom: 14px; color: var(--color-primary, #671d32); font-family: var(--font-display), Georgia, 'Times New Roman', serif; font-weight: 700; }
   a { text-underline-offset: 3px; }
-  a:focus-visible, summary:focus-visible { outline: 3px solid #8d2547; outline-offset: 4px; }
+  a:focus-visible, summary:focus-visible { outline: 3px solid #a95d76; outline-offset: 4px; }
 }
-.intro, .closing { background: #fff3f5; border-radius: 18px; padding: clamp(22px, 5vw, 48px); }
-.eyebrow { font-weight: 700; color: #85213c; }
-.actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+.intro, .closing { background: var(--color-blush, #fff1f5); border-radius: 18px; padding: clamp(20px, 5vw, 44px); }
+.closing { margin-top: 36px; background: var(--color-alt, #f6f0e6); }
+.eyebrow { margin-bottom: 6px; font-size: 14px; font-weight: 700; color: #85213c; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 .primary, .secondary {
   display: inline-flex; align-items: center; justify-content: center; min-height: 48px;
-  padding: 12px 20px; border-radius: 8px; font-weight: 700; text-decoration: none;
+  padding: 12px 20px; border-radius: 12px; font-weight: 700; text-decoration: none;
   text-align: center; max-width: 100%; overflow-wrap: anywhere;
 }
-.delivery .primary { background: #671d32; color: #fff; }
-.delivery .secondary { border: 1.5px solid #671d32; color: #671d32; background: #fff; }
-.section { margin: 42px 0; }
+.delivery .primary { background: var(--color-primary, #671d32); color: #fff; }
+.delivery .primary:hover { background: var(--color-primary-dark, #4f1426); color: #fff; }
+.delivery .secondary { border: 1.5px solid var(--color-primary, #671d32); color: var(--color-primary, #671d32); background: #fff; }
+.section { margin: 36px 0; }
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .card { background: #faf8f8; border: 1px solid #eadfe3; border-radius: 14px; padding: 26px; }
-.steps { padding-left: 24px; li { padding-left: 5px; margin-bottom: 16px; } }
+.steps { padding-left: 24px; li { padding-left: 5px; margin-bottom: 12px; } }
 .question {
   border-bottom: 1px solid #e6d9df; padding: 18px 0;
   summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; }
   p { margin: 14px 0 0; }
 }
+.footnote { margin: 20px 0 0; color: var(--color-muted, #6b5a60); font-size: 13px !important; }
+
+// Answer-first facts: three equal tiles (km, charge, notice).
+.routeFacts {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 4px 0 16px;
+  span { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 14px; background: #fff; color: var(--color-muted, #6b5a60); font-size: 13px; line-height: 1.35; }
+  strong { color: var(--color-primary, #671d32); font-size: 20px; line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; }
+}
 @media (max-width: 640px) {
   .grid { grid-template-columns: 1fr; }
   .actions > a { width: 100%; }
-  .delivery { padding-bottom: 96px; }
-}
-
-.routeFacts {
-  display: flex; flex-wrap: wrap; gap: 10px 24px; margin-bottom: 12px;
-  span { display: inline-flex; flex-direction: column; padding: 12px 16px; border-radius: 14px; background: var(--color-alt, #f6f0e6); color: var(--color-muted, #6b5a60); font-size: 14px; }
-  strong { color: var(--color-primary, #671d32); font-size: 22px; line-height: 1.2; }
+  .routeFacts { gap: 8px; span { padding: 10px; } strong { font-size: 17px; } }
 }

@@ -149,7 +149,7 @@ function CategoryCopy({ slug, name }) {
   const { heading, paragraphs } = copyForCategory(slug, name);
 
   return (
-    <section className="spad pt-0">
+    <section className="spad pt-0 catalog-copy">
       <div className="container">
         <div className="row">
           <div className="col-lg-10">

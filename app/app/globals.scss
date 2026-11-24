@@ -414,3 +414,50 @@ main .btn:focus-visible { outline: 3px solid #a95d76; outline-offset: 2px; box-s
 @media (min-width: 768px) {
   .product-details.spad { padding-top: 40px; }
 }
+
+// ---------------------------------------------------------------------------
+// Live mobile QA fixes (24 Nov 2026)
+// ---------------------------------------------------------------------------
+// Cormorant's default old-style numerals made "1 kg" read as "ı kg".
+html { font-variant-numeric: lining-nums; }
+
+// Brand section headings used outside the shared components.
+.product-section-title {
+  margin: 0 0 18px; color: var(--color-primary); font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(26px, 3vw, 34px); font-weight: 700; line-height: 1.2; text-align: left;
+}
+.product__details__accordion .accordion-body h3 {
+  color: var(--color-primary); font-family: var(--font-display), Georgia, serif; font-size: 22px; font-weight: 700;
+}
+
+// Product gallery: one square frame, square thumbnails (photos were letterboxed
+// or pushed the title below the fold depending on their shape).
+.product__details__big__img {
+  aspect-ratio: 1; overflow: hidden; border-radius: 18px; background: var(--color-alt);
+  img { width: 100% !important; height: 100% !important; object-fit: cover; }
+}
+.product__details__thumb {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px;
+  .pt__item { width: 72px !important; height: 72px !important; margin: 0 !important; overflow: hidden; border-radius: 12px; }
+  .pt__item img { width: 100% !important; height: 100% !important; object-fit: cover; }
+  .pt__item.active { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+}
+@media (max-width: 767px) {
+  .product__details__big__img { aspect-ratio: 4 / 3; }
+}
+
+// SEO copy blocks under /cakes and category grids: brand headings, muted body.
+.catalog-copy {
+  h2 { margin: 28px 0 10px; color: var(--color-primary); font-family: var(--font-display), Georgia, serif; font-size: clamp(24px, 2.6vw, 30px); font-weight: 700; }
+  p { color: var(--color-muted); font-size: 16px; line-height: 1.75; }
+}
+
+// Gaps: template .shop section opened with a 70px band; pages ended with
+// 120-200px of white before the footer.
+.shop.spad { padding-top: 24px; }
+main > :last-child.spad, main .related.spad { padding-bottom: 40px; }
+
+.visually-hidden {
+  position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important;
+  overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;
+}

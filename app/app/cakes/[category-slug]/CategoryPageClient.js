@@ -56,7 +56,7 @@ export default function CategoryPageClient({
     sortBy,
     setSortBy,
     isFiltering
-  } = useProductFilters(products, handleCategoryChange);
+  } = useProductFilters(products, handleCategoryChange, categorySlug);
 
   // Fetch data only once with caching
   useEffect(() => {

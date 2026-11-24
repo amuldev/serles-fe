@@ -12,7 +12,7 @@
 .trail {
   display: flex; flex-wrap: wrap; align-items: center; gap: 2px 0; margin: 0; padding: 0; list-style: none; font-size: 14px;
   li { display: inline-flex; align-items: center; color: $muted; }
-  li + li::before { content: '/'; margin: 0 10px; color: #c9aab4; }
+  li:not(:last-child)::after { content: '/'; margin: 0 10px; color: #c9aab4; }
   a {
     display: inline-flex; align-items: center; min-height: 32px; color: $wine; font-weight: 600; text-decoration: none;
     &:hover { text-decoration: underline; text-underline-offset: 3px; }

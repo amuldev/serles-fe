@@ -124,7 +124,7 @@ export default async function CakesIndexPage() {
           that has to rank for the commercial keywords. This copy is rendered on
           the server, below the grid, so it adds substance without pushing the
           products down the page. */}
-      <section className="spad pt-0">
+      <section className="spad pt-0 catalog-copy">
         <div className="container">
           <div className="row">
             <div className="col-lg-10">

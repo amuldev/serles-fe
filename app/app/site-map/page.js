@@ -66,10 +66,9 @@ export default async function SiteMapPage() {
     .filter((product) => product.slug && product.category?.slug)
     .map((product) => [product.name, `/cakes/${product.category.slug}/${product.slug}`]);
   const content = [
-    <Breadcrumb key="breadcrumb" title="Site Map" headingLevel="h2" />,
-    <div key="content" style={{ background: "linear-gradient(135deg, #fef7f8 0%, #fff5f6 100%)", padding: "60px 0", minHeight: "70vh" }}>
+    <Breadcrumb key="breadcrumb" title="Site Map" />,
+    <div key="content" style={{ background: "var(--color-cream)", padding: "32px 0 48px" }}>
       <div className="container">
-        <h1 className="text-center mb-3" style={{ color: "#671d32", fontFamily: "var(--font-display), Georgia, 'Times New Roman', serif", fontWeight: 700 }}>Site Map</h1>
         <p className="text-center text-muted mb-5">Browse the pages, cake categories and products available at Serle&apos;s Bake.</p>
         <div className="row">
           <LinkList title="Main Pages" items={staticPages} />

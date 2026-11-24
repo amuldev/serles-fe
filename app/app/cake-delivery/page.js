@@ -42,12 +42,12 @@ export default function CakeDeliveryPage() {
         { '@type': 'ListItem', position: 2, name: 'Online cake order & delivery', item: url },
       ] },
     ] }} />
-    <Breadcrumb title="Online cake order & home delivery in Tenkasi" />
+    <Breadcrumb title="Online cake order & home delivery in Tenkasi" items={[{ label: 'Cake delivery' }]} />
     <div className={`container ${styles.delivery}`} data-contact-source="delivery_hub">
       <section className={styles.intro} aria-labelledby="delivery-intro">
         <p className={styles.eyebrow}>Serle&apos;s Bake · Ilanji, Tenkasi</p>
-        <h2 id="delivery-intro">A cake for your celebration, with the delivery details agreed first</h2>
-        <p>{DELIVERY_COVERAGE}</p>
+        <h2 id="delivery-intro">We deliver within 30 km of our Ilanji bakery</h2>
+        <p>Tenkasi, Shencottai, Courtallam, Kadayanallur, Pavoorchatram, Surandai and the villages around them. Delivery is ₹50 for the first 5 km, then ₹10 per km. Send your map pin on WhatsApp and we confirm the exact charge before you pay.</p>
         <p><strong>{FRESH_BAKE_HEADLINE}.</strong> We start baking after you order, never in advance, so please order at least {ORDER_LEAD_HOURS} hours before you need the cake.</p>
         <div className={styles.actions}>
           <a className={styles.primary} href={whatsapp} target="_blank" rel="noopener noreferrer">Check delivery on WhatsApp</a>
@@ -56,13 +56,12 @@ export default function CakeDeliveryPage() {
       </section>
       <section className={styles.section} aria-labelledby="coverage-heading">
         <h2 id="coverage-heading">Checking your delivery address</h2>
-        <p>Our bakery is on Tenkasi–Shencottai Main Road in Ilanji. For addresses in Ilanji, Tenkasi, Sengottai (Shencottai), Courtallam and surrounding villages, please send a map pin. Coverage depends on the road route to that address, within our 30 km limit, and the arrangements available for your order.</p>
-        <p>For nearby places such as Kottakulam, Vallam, Piranoor, Panpoli or Pudur near Sengottai, ask us to check your exact destination. A nearby town name alone does not establish delivery eligibility. We confirm the destination individually before accepting an order.</p>
-        <p>We bake from Ilanji; the delivery destinations are served from this bakery. <Link href="/contact">Find our bakery and contact details</Link>.</p>
+        <p>Our bakery is on Tenkasi–Shencottai Main Road in Ilanji. Send a map pin with your order so we can work out the road distance and charge for your exact address.</p>
+        <p>Nearby places such as Kottakulam, Vallam, Piranoor, Panpoli and Pudur near Sengottai are all within our area. <Link href="/contact">Find our bakery and contact details</Link>.</p>
       </section>
       <section className={styles.section} aria-labelledby="area-guides-heading">
         <h2 id="area-guides-heading">Local delivery guides</h2>
-        <p>These guides include driving estimates to mapped village points. Your actual address and order availability are checked separately.</p>
+        <p>Distance and estimated delivery charge from our bakery to each place:</p>
         <ul>{DELIVERY_AREA_PAGES.map(area => <li key={area.slug}><Link href={deliveryAreaPath(area)}>Cake delivery to {area.name}</Link> — about {area.km.toFixed(1)} km by road, delivery about ₹{estimateDeliveryCharge(area.km)}</li>)}</ul>
         <p>Established guides: <Link href="/blog/cake-delivery-in-tenkasi-timings-and-ordering">Tenkasi</Link>, <Link href="/blog/cake-delivery-in-shencottai">Sengottai / Shencottai</Link> and <Link href="/blog/cake-delivery-in-courtallam">Courtallam</Link>.</p>
       </section>
@@ -83,7 +82,7 @@ export default function CakeDeliveryPage() {
           <li><strong>Choose a cake.</strong> Browse our <Link href="/cakes">cake collection</Link> and note the design and weight you would like.</li>
           <li><strong>Send the essentials privately.</strong> Message your address or map pin, date, cake-cutting time, design request and preferred size on WhatsApp, at least {ORDER_LEAD_HOURS} hours before you need the cake.</li>
           <li><strong>Check the details with us.</strong> We confirm coverage, availability, customization, the final amount and payment instructions.</li>
-          <li><strong>Check your confirmation.</strong> Review the agreed cake, message, delivery address and timing in the chat. A website enquiry is the start of the conversation.</li>
+          <li><strong>Check your confirmation.</strong> We confirm the cake, message, address and time in the chat, then bake it fresh.</li>
         </ol>
         <p>We accept Google Pay and online payments. For a photo cake, attach a clear original photo in the chat after checking that the design can be made.</p>
         <p>Ordering from another city? Read our <Link href="/blog/order-cake-for-family-in-tenkasi-from-another-city">guide to arranging a cake for family in Tenkasi</Link>. For a hall, hotel or other event space, use the <Link href="/blog/cake-delivery-venue-handover-checklist">venue handover checklist</Link>.</p>

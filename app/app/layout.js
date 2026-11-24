@@ -69,7 +69,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={display.variable}>
       <head>
-        <link rel="icon" href="/serlesfavicon.ico" />
+        {/* Icons come from app/favicon.ico, app/icon.png and app/apple-icon.png
+            (Next adds the <link> tags). The old extra /serlesfavicon.ico link
+            competed with the stock Next.js favicon, so Google showed a globe. */}
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="google-site-verification" content="WAogh12govTmEEog4Dqeoj5kzeCMJrW4pDF2s_cY14A" />
         <meta name="theme-color" content="#b61123" />

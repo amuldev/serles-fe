@@ -161,3 +161,9 @@
 }
 .backLink:hover { background: #fff1f5; color: #671d32; text-decoration: none; }
 .backLink:focus-visible { outline: 3px solid #a95d76; outline-offset: 3px; }
+
+/* Phones: keep the clock icon inline with the notice text. */
+@media (max-width: 575px) {
+  .freshNote { display: block; line-height: 1.6; }
+  .freshNote svg { display: inline; margin-right: 6px; vertical-align: -2px; }
+}

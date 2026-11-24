@@ -23,12 +23,11 @@ const LAST_UPDATED = '24 November 2026';
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <Breadcrumb title="Privacy Policy" headingLevel="h2" />
+      <Breadcrumb title="Privacy Policy" />
 
       <section className={styles.section}>
         <div className="container">
           <article className={styles.card}>
-            <h1 className={styles.title}>Privacy Policy</h1>
             <p className={styles.updated}>Last updated: {LAST_UPDATED}</p>
 
             <p>

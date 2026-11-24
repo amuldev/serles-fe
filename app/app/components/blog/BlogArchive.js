@@ -46,7 +46,6 @@ export default function BlogArchive({
       <JsonLd data={[collectionSchema, buildBreadcrumbSchema(breadcrumb)]} />
 
       <Breadcrumb
-        headingLevel="h2"
         title={title}
         items={[
           { label: 'Blog', href: '/blog' },
@@ -61,7 +60,6 @@ export default function BlogArchive({
             <div className="col-lg-12">
               <div className="mb-4">{/* not "section-title": template styles its spans pink */}
                 {eyebrow && <span className={styles.eyebrow}>{eyebrow}</span>}
-                <h1 className={styles.pageTitle}>{title}</h1>
                 {description && <p className={styles.pageIntro}>{description}</p>}
               </div>
             </div>
